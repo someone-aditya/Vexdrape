@@ -4,1039 +4,582 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080808">
-<title>VEXDRAPE — Wear Your Perspective</title>
-<meta name="description" content="VEXDRAPE — Streetwear. Everyday culture. Wear your perspective.">
+<meta name="theme-color" content="#090909">
+<meta name="description" content="VEXDRAPE — Wear Your Perspective. Discover independent streetwear and original graphic T-shirts.">
+<title>VEXDRAPE® — Wear Your Perspective</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg:#080808;
-  --card:#141414;
-  --white:#f5f5f5;
-  --grey:#999;
+  --bg:#090909;
+  --panel:#111;
+  --white:#f3f3f0;
+  --muted:#858585;
   --line:#292929;
+  --mono:"DM Mono",monospace;
+  --display:"Space Grotesk",sans-serif;
 }
-
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--white);
+  font-family:"Manrope",sans-serif;overflow-x:hidden;
 }
-
-html { scroll-behavior:smooth; }
-
-body {
-  background:var(--bg);
-  color:var(--white);
-  font-family:Arial,Helvetica,sans-serif;
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+::selection{background:white;color:black}
+.topbar{
+  background:#eee;color:#111;text-align:center;
+  padding:10px;font:10px var(--mono);
+  letter-spacing:2px;
 }
-
-a { color:inherit;text-decoration:none; }
-button { font:inherit;cursor:pointer; }
-
-.announcement {
-  background:#eee;
-  color:#111;
-  text-align:center;
-  padding:10px;
-  font-size:10px;
-  letter-spacing:3px;
-  font-weight:bold;
-}
-
-header {
-  position:sticky;
-  top:0;
-  z-index:20;
-  background:rgba(8,8,8,.94);
-  backdrop-filter:blur(15px);
+nav{
+  height:76px;padding:0 6%;
+  display:flex;align-items:center;justify-content:space-between;
   border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:rgba(9,9,9,.94);
+  backdrop-filter:blur(15px);z-index:20;
 }
-
-nav {
-  max-width:1250px;
-  height:75px;
-  padding:0 25px;
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.logo{
+  font:700 27px var(--display);
+  letter-spacing:-2px;
 }
-
-.logo {
-  font-size:25px;
-  font-weight:900;
-  letter-spacing:3px;
-  font-style:italic;
+.logo span{color:#888}
+.navlinks{display:flex;gap:34px}
+.navlinks a,.nav-right button{
+  font:10px var(--mono);letter-spacing:1.5px;
+  color:#ccc;transition:.2s;
 }
-
-.navlinks {
-  display:flex;
-  gap:32px;
-  font-size:11px;
-  letter-spacing:2px;
-  text-transform:uppercase;
+.navlinks a:hover,.nav-right button:hover{color:white}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-right button{background:none;border:0}
+.menu-btn{display:none}
+.hero{
+  min-height:650px;height:calc(90vh - 76px);
+  max-height:900px;position:relative;overflow:hidden;
+  display:flex;align-items:center;padding:7%;
+  background:
+   radial-gradient(ellipse at 75% 45%,#292929 0%,transparent 42%),
+   linear-gradient(115deg,#090909 20%,#141414 100%);
 }
-
-.navlinks a { color:#bbb; }
-.navlinks a:hover { color:white; }
-
-.nav-actions {
-  display:flex;
-  align-items:center;
-  gap:20px;
+.hero:before{
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(#ffffff08 1px,transparent 1px),
+  linear-gradient(90deg,#ffffff08 1px,transparent 1px);
+  background-size:65px 65px;
+  mask-image:linear-gradient(90deg,transparent,#000);
 }
-
-.nav-actions button {
-  color:white;
-  background:none;
-  border:0;
-  font-size:11px;
-  letter-spacing:2px;
+.hero-copy{position:relative;z-index:2;max-width:650px}
+.eyebrow{
+  font:10px var(--mono);letter-spacing:3px;color:#aaa;
+  display:flex;align-items:center;gap:12px;
 }
-
-#menuButton { display:none; }
-
-.hero {
-  max-width:1250px;
-  margin:auto;
-  min-height:620px;
-  padding:85px 25px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:center;
-  gap:50px;
+.eyebrow:before{content:"";width:30px;height:1px;background:white}
+.hero h1{
+  font:700 clamp(70px,12vw,160px)/.78 var(--display);
+  letter-spacing:-.095em;margin:35px 0;
 }
-
-.eyebrow {
-  color:#aaa;
-  font-size:10px;
-  letter-spacing:4px;
-  text-transform:uppercase;
+.hero h1 span{display:block;color:#777}
+.hero-desc{
+  color:#aaa;font-size:13px;line-height:1.9;
+  max-width:360px;margin-bottom:30px;
 }
-
-.hero h1 {
-  font-size:clamp(55px,8vw,110px);
-  line-height:.9;
-  letter-spacing:-7px;
-  margin:25px 0;
-  font-weight:900;
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:17px 25px;background:var(--white);color:#090909;
+  font:11px var(--mono);letter-spacing:1.5px;
+  border:1px solid var(--white);transition:.25s;
 }
-
-.hero h1 span {
-  display:block;
-  color:#777;
+.btn:hover{background:transparent;color:white}
+.btn-outline{background:transparent;color:white}
+.btn-outline:hover{background:white;color:black}
+.hero-art{
+  position:absolute;right:8%;top:50%;transform:translateY(-50%);
+  width:min(39vw,470px);aspect-ratio:1;
+  display:grid;place-items:center;
 }
-
-.hero p {
-  max-width:420px;
-  color:#aaa;
-  line-height:1.9;
-  font-size:14px;
+.orbit{
+  position:absolute;width:85%;height:85%;border:1px solid #777;
+  border-radius:50%;transform:rotate(-30deg) scaleY(.42);
 }
-
-.buttons {
-  display:flex;
-  gap:12px;
-  margin-top:32px;
-  flex-wrap:wrap;
-}
-
-.btn {
-  display:inline-block;
-  padding:16px 23px;
-  background:white;
-  color:black;
-  border:1px solid white;
-  font-size:10px;
-  letter-spacing:2px;
-  font-weight:bold;
-  text-transform:uppercase;
-  transition:.25s;
-}
-
-.btn:hover {
-  background:transparent;
-  color:white;
-}
-
-.btn.secondary {
-  background:transparent;
-  color:white;
-  border-color:#555;
-}
-
-.hero-art {
-  height:450px;
-  background:radial-gradient(circle,#333,#151515 55%,#090909);
-  border:1px solid var(--line);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  position:relative;
-  overflow:hidden;
-}
-
-.hero-art:before {
-  content:"";
-  position:absolute;
-  width:330px;
-  height:330px;
-  border:1px solid #555;
-  border-radius:50%;
-}
-
-.hero-symbol {
-  font-size:160px;
-  font-weight:900;
-  font-style:italic;
-  z-index:1;
-}
-
-.hero-word {
-  font-size:32px;
-  font-weight:900;
-  letter-spacing:7px;
-  z-index:1;
-}
-
-.hero-tagline {
-  margin-top:15px;
-  font-size:9px;
-  letter-spacing:5px;
-  color:#aaa;
-  z-index:1;
-}
-
-.ticker {
-  padding:18px;
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  text-align:center;
-  font-size:10px;
-  letter-spacing:5px;
-  color:#bbb;
-}
-
-section.content {
-  max-width:1250px;
-  margin:auto;
-  padding:95px 25px;
-}
-
-.section-heading {
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  gap:25px;
-  margin-bottom:35px;
-}
-
-.section-heading h2 {
-  font-size:clamp(35px,5vw,55px);
-  letter-spacing:-3px;
-  margin-top:12px;
-}
-
-.section-heading p {
-  max-width:350px;
-  font-size:13px;
-  color:#999;
-  line-height:1.8;
-}
-
-.filters {
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:28px;
-}
-
-.filter {
-  padding:11px 17px;
-  background:transparent;
-  border:1px solid #444;
-  color:#aaa;
-  font-size:10px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-}
-
-.filter.active,
-.filter:hover {
-  background:white;
-  color:black;
-  border-color:white;
-}
-
-.products {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.product-image {
-  height:390px;
-  background:linear-gradient(145deg,#262626,#101010);
-  border:1px solid #292929;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  position:relative;
-  overflow:hidden;
-}
-
-.product-image.ivory {
-  background:linear-gradient(145deg,#deded9,#aaa);
-}
-
-.product-image.charcoal {
-  background:linear-gradient(145deg,#454545,#171717);
-}
-
-.shirt {
-  width:190px;
-  height:235px;
-  background:#101010;
-  clip-path:polygon(
-    25% 0,39% 7%,61% 7%,75% 0,
-    100% 17%,84% 40%,76% 33%,
-    76% 100%,24% 100%,24% 33%,
-    16% 40%,0 17%
-  );
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  filter:drop-shadow(0 15px 20px #000);
+.orbit.two{width:110%;height:110%;transform:rotate(55deg) scaleY(.35);border-color:#555}
+.orbit.three{width:65%;height:65%;transform:rotate(20deg) scaleY(.5);border-color:#aaa}
+.planet{
+  width:43%;aspect-ratio:1;border-radius:50%;
+  background:
+    radial-gradient(circle at 30% 30%,#aaa,#444 32%,#111 72%);
+  box-shadow:inset -20px -15px 30px #000,0 0 80px #aaa2;
   position:relative;
 }
-
-.shirt.white { background:#eee; }
-.shirt.grey { background:#383838; }
-
-.print {
-  color:white;
-  text-align:center;
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:2px;
+.planet:after{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  background:repeating-linear-gradient(15deg,transparent 0 8px,#ffffff19 9px 10px);
 }
-
-.shirt.white .print { color:#111; }
-
-.print small {
-  display:block;
-  font-size:6px;
-  margin-top:7px;
-  letter-spacing:2px;
+.art-label{
+  position:absolute;bottom:0;right:0;
+  font:9px var(--mono);letter-spacing:2px;color:#999;
 }
-
-.product-label {
-  position:absolute;
-  top:15px;
-  left:15px;
-  background:white;
-  color:black;
-  padding:7px 10px;
-  font-size:9px;
-  letter-spacing:2px;
-  font-weight:bold;
+.hero-index{
+  position:absolute;bottom:35px;left:7%;
+  font:10px var(--mono);color:#777;letter-spacing:2px;
 }
-
-.product-info {
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  padding:16px 2px 6px;
+.hero-index span{color:white}
+.ticker{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:17px 0;overflow:hidden;white-space:nowrap;
 }
-
-.product-info h3 {
-  font-size:12px;
-  letter-spacing:1px;
+.ticker-track{display:flex;width:max-content;animation:move 28s linear infinite}
+.ticker span{
+  font:11px var(--mono);letter-spacing:3px;padding:0 30px;color:#aaa;
 }
-
-.product-info span {
-  color:#aaa;
-  font-size:11px;
+.ticker b{color:white}
+@keyframes move{to{transform:translateX(-50%)}}
+.section{padding:110px 7%}
+.section-head{
+  display:flex;align-items:end;justify-content:space-between;
+  gap:20px;margin-bottom:42px;
 }
-
-.product-description {
-  font-size:10px;
-  color:#888;
-  padding:0 2px;
-}
-
-.product button {
-  width:100%;
-  margin-top:12px;
-  padding:12px;
-  background:transparent;
-  color:white;
-  border:1px solid #555;
-  font-size:9px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-}
-
-.product button:hover {
-  background:white;
-  color:black;
-}
-
-.about {
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:55px;
-  align-items:center;
-}
-
-.about-art {
-  min-height:330px;
-  background:linear-gradient(135deg,#292929,#080808);
-  display:grid;
-  place-items:center;
-  border:1px solid var(--line);
-}
-
-.about-art strong {
-  font-size:130px;
-  font-style:italic;
-  letter-spacing:-15px;
-}
-
-.about h2 {
-  font-size:clamp(35px,5vw,55px);
+.kicker{font:10px var(--mono);letter-spacing:2px;color:#888;margin-bottom:15px}
+.section h2{
+  font:600 clamp(36px,5vw,64px)/1 var(--display);
   letter-spacing:-3px;
-  margin:18px 0;
 }
-
-.about p {
-  color:#999;
-  font-size:14px;
-  line-height:2;
-  margin-bottom:15px;
+.section-note{font:10px var(--mono);color:#888;letter-spacing:1px}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.filter{
+  background:transparent;color:#999;border:1px solid #333;
+  padding:10px 16px;font:10px var(--mono);letter-spacing:1px;
 }
-
-.newsletter {
-  background:#eee;
-  color:#111;
-  text-align:center;
-  padding:80px 20px;
+.filter.active,.filter:hover{background:white;color:black;border-color:white}
+.products{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
 }
-
-.newsletter h2 {
-  font-size:clamp(35px,5vw,55px);
-  letter-spacing:-3px;
-  margin:15px 0;
+.product{min-width:0;cursor:pointer}
+.product-image{
+  position:relative;aspect-ratio: .83;background:#151515;
+  display:grid;place-items:center;overflow:hidden;
+  border:1px solid #222;
 }
-
-.newsletter p {
-  color:#555;
-  font-size:13px;
+.product-image:after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(145deg,#ffffff0a,transparent 60%);
+  pointer-events:none;
 }
-
-.newsletter form {
-  display:flex;
-  max-width:440px;
-  margin:25px auto;
+.product-image:hover .shirt{transform:scale(1.045) rotate(-2deg)}
+.shirt{
+  width:65%;height:70%;position:relative;
+  background:linear-gradient(120deg,#242424,#080808 70%);
+  clip-path:polygon(24% 0,39% 0,44% 7%,56% 7%,61% 0,76% 0,100% 19%,85% 40%,76% 32%,76% 100%,24% 100%,24% 32%,15% 40%,0 19%);
+  filter:drop-shadow(0 20px 25px #000);
+  transition:.5s;
 }
-
-.newsletter input {
-  flex:1;
-  min-width:0;
-  padding:15px;
-  border:1px solid #aaa;
-  background:transparent;
-  color:#111;
+.shirt.white{background:linear-gradient(120deg,#fff,#bdbdbd)}
+.shirt-mark{
+  position:absolute;top:33%;left:50%;transform:translateX(-50%);
+  width:75%;text-align:center;color:white;
+  font:700 clamp(9px,1.4vw,17px) var(--display);
+  letter-spacing:-1px;
 }
-
-.newsletter button {
-  padding:15px;
-  background:#111;
-  color:white;
-  border:0;
-  font-size:10px;
-  letter-spacing:2px;
+.shirt.white .shirt-mark{color:#111}
+.shirt-mark small{display:block;font:6px var(--mono);letter-spacing:1px;margin-top:5px}
+.shirt-mark .orb{
+  display:block;width:42px;height:42px;border:1px solid currentColor;
+  border-radius:50%;margin:0 auto 10px;
+  background:repeating-linear-gradient(0deg,transparent 0 4px,currentColor 5px 6px);
 }
-
-footer {
-  max-width:1250px;
-  margin:auto;
-  padding:55px 25px 25px;
+.product-tag{
+  position:absolute;top:15px;left:15px;
+  font:9px var(--mono);letter-spacing:1px;
+  background:#eee;color:#111;padding:7px 9px;z-index:2;
 }
-
-.footer-top {
-  display:flex;
-  justify-content:space-between;
-  gap:30px;
-  padding-bottom:45px;
+.quick-view{
+  position:absolute;bottom:15px;left:15px;right:15px;
+  padding:13px;background:#eee;color:#111;
+  text-align:center;font:10px var(--mono);letter-spacing:1px;
+  opacity:0;transform:translateY(8px);transition:.25s;z-index:3;
 }
-
-.footer-logo {
-  font-size:27px;
-  font-weight:900;
-  letter-spacing:3px;
-  font-style:italic;
+.product-image:hover .quick-view{opacity:1;transform:none}
+.product-info{display:flex;justify-content:space-between;gap:10px;padding:16px 2px}
+.product-name{font-size:13px;font-weight:700}
+.product-meta{font:9px var(--mono);color:#777;margin-top:7px;letter-spacing:1px}
+.product-price{font:12px var(--mono);white-space:nowrap}
+.product.hidden{display:none}
+.collection{
+  background:#eaeae7;color:#111;padding:100px 7%;
+  display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;
 }
-
-footer p {
-  color:#888;
-  font-size:12px;
-  line-height:1.9;
-  margin-top:12px;
+.collection h2{
+  font:700 clamp(45px,7vw,90px)/.9 var(--display);
+  letter-spacing:-6px;margin:20px 0;
 }
-
-.footer-links {
-  display:flex;
-  gap:55px;
+.collection p{font-size:13px;line-height:1.9;color:#555;max-width:390px;margin-bottom:25px}
+.collection .kicker{color:#666}
+.collection-visual{
+  min-height:400px;background:#111;position:relative;overflow:hidden;
+  display:grid;place-items:center;
 }
-
-.footer-links div {
-  display:grid;
-  gap:14px;
+.collection-visual .big-type{
+  font:700 clamp(55px,9vw,120px)/.8 var(--display);
+  letter-spacing:-9px;text-align:center;color:#eee;
 }
-
-.footer-links b {
-  font-size:10px;
-  letter-spacing:2px;
+.collection-visual .big-type span{color:#777}
+.collection-visual small{
+  position:absolute;bottom:20px;right:20px;
+  color:#aaa;font:9px var(--mono);letter-spacing:2px;
 }
-
-.footer-links a {
-  color:#999;
-  font-size:11px;
+.manifesto{
+  text-align:center;padding:130px 7%;
+  background:#0d0d0d;border-bottom:1px solid var(--line);
 }
-
-.copyright {
-  border-top:1px solid var(--line);
-  padding-top:22px;
-  color:#777;
-  font-size:9px;
-  letter-spacing:2px;
-  display:flex;
-  justify-content:space-between;
+.manifesto .statement{
+  font:600 clamp(32px,6vw,75px)/1.12 var(--display);
+  letter-spacing:-3px;max-width:900px;margin:25px auto;
 }
-
-/* Shopping bag */
-.drawer-bg {
-  position:fixed;
-  inset:0;
-  background:#000b;
-  z-index:30;
-  display:none;
+.manifesto .statement span{color:#777}
+.manifesto p{font:10px var(--mono);letter-spacing:2px;color:#888}
+.about{
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;
+  padding:100px 7%;
 }
-
-.drawer {
-  position:fixed;
-  top:0;
-  right:-430px;
-  width:min(430px,100%);
-  height:100%;
-  background:#111;
-  z-index:31;
-  padding:25px;
-  transition:.3s;
-  border-left:1px solid #333;
+.about h2{font:600 clamp(40px,6vw,68px)/.95 var(--display);letter-spacing:-4px}
+.about p{font-size:13px;line-height:2;color:#999;max-width:450px;margin-top:20px}
+.about .about-right{display:flex;flex-direction:column;justify-content:center}
+.about-stat{border-top:1px solid var(--line);padding:20px 0}
+.about-stat strong{font:22px var(--display);display:block}
+.about-stat small{font:9px var(--mono);color:#777;letter-spacing:2px}
+footer{border-top:1px solid var(--line);padding:55px 7% 25px}
+.footer-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:55px}
+.footer-logo{font:700 36px var(--display);letter-spacing:-3px}
+.footer-logo span{color:#777}
+.footer-tag{font:10px var(--mono);color:#888;margin-top:10px;letter-spacing:1px}
+.footer-links{display:flex;gap:60px}
+.footer-links div{display:flex;flex-direction:column;gap:14px}
+.footer-links small{font:9px var(--mono);color:#777;letter-spacing:2px;margin-bottom:5px}
+.footer-links a{font-size:12px;color:#ccc}
+.footer-bottom{
+  display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;
+  border-top:1px solid var(--line);padding-top:20px;
+  color:#666;font:9px var(--mono);letter-spacing:1px;
 }
-
-.drawer.open { right:0; }
-.drawer-bg.open { display:block; }
-
-.drawer-header {
-  display:flex;
-  justify-content:space-between;
-  border-bottom:1px solid #333;
-  padding-bottom:20px;
+.toast{
+  position:fixed;bottom:25px;left:50%;transform:translate(-50%,20px);
+  background:#eee;color:#111;padding:14px 20px;
+  font:10px var(--mono);letter-spacing:1px;
+  opacity:0;pointer-events:none;transition:.3s;z-index:50;
 }
-
-.drawer-header button {
-  background:none;
-  color:white;
-  border:0;
-  font-size:23px;
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.reveal{opacity:0;transform:translateY(25px);transition:.8s}
+.reveal.visible{opacity:1;transform:none}
+@media(max-width:800px){
+  .navlinks{gap:15px}
+  .hero-art{right:-8%;opacity:.55;width:65vw}
+  .hero-copy{max-width:550px}
+  .products{grid-template-columns:repeat(2,1fr)}
+  .collection{grid-template-columns:1fr}
+  .collection-visual{min-height:300px}
 }
-
-#bagItems { padding:20px 0; }
-
-.bag-item {
-  display:flex;
-  justify-content:space-between;
-  padding:15px 0;
-  border-bottom:1px solid #333;
-  font-size:12px;
-}
-
-.bag-item button {
-  background:none;
-  color:#aaa;
-  border:0;
-  text-decoration:underline;
-}
-
-.drawer-note {
-  color:#888;
-  font-size:11px;
-  line-height:1.8;
-  margin-top:20px;
-}
-
-.toast {
-  position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:white;
-  color:black;
-  padding:14px 20px;
-  font-size:11px;
-  z-index:50;
-  display:none;
-}
-
-@media(max-width:800px) {
-  .navlinks { display:none; }
-  #menuButton { display:block; }
-  .hero {
-    grid-template-columns:1fr;
-    padding:65px 20px;
+@media(max-width:560px){
+  nav{height:65px;padding:0 5%}
+  .logo{font-size:24px}
+  .navlinks{
+    display:none;position:absolute;top:65px;left:0;right:0;
+    padding:25px;background:#101010;border-bottom:1px solid #333;
+    flex-direction:column;gap:22px;
   }
-  .hero-art { height:350px; }
-  section.content { padding:70px 20px; }
-  .products { grid-template-columns:repeat(2,1fr); }
-  .product-image { height:300px; }
-  .about { grid-template-columns:1fr; }
-}
-
-@media(max-width:520px) {
-  .hero h1 { letter-spacing:-4px; }
-  .hero-art { height:290px; }
-  .hero-word { font-size:22px;letter-spacing:4px; }
-  .hero-symbol { font-size:120px; }
-  .section-heading { display:block; }
-  .section-heading p { margin-top:15px; }
-  .products { gap:12px; }
-  .product-image { height:220px; }
-  .shirt { transform:scale(.78); }
-  .product-info { display:block; }
-  .product-info span { display:block;margin-top:7px; }
-  .footer-top { display:block; }
-  .footer-links { margin-top:30px; }
-  .copyright { display:block;line-height:2.5; }
-  .newsletter form { flex-direction:column;gap:8px; }
-  #mobileMenu {
-    display:none;
-    position:absolute;
-    top:75px;
-    left:0;
-    right:0;
-    background:#111;
-    padding:25px;
-    border-bottom:1px solid #333;
-  }
-  #mobileMenu.open { display:grid;gap:20px; }
-  #mobileMenu a {
-    font-size:11px;
-    letter-spacing:2px;
-    text-transform:uppercase;
-  }
+  .navlinks.open{display:flex}
+  .menu-btn{display:block}
+  .nav-right{gap:16px}
+  .hero{height:690px;min-height:0;align-items:flex-start;padding:110px 7% 0}
+  .hero h1{font-size:clamp(68px,17vw,105px)}
+  .hero-art{top:68%;right:0;width:65vw;opacity:.5}
+  .hero-index{bottom:20px}
+  .section{padding:75px 5%}
+  .section-head{align-items:start;flex-direction:column}
+  .products{gap:10px}
+  .product-name{font-size:11px}
+  .product-price{font-size:10px}
+  .quick-view{opacity:1;transform:none;font-size:8px;padding:10px}
+  .collection{padding:75px 6%}
+  .collection h2{letter-spacing:-4px}
+  .manifesto{padding:95px 6%}
+  .about{grid-template-columns:1fr;padding:75px 6%;gap:35px}
+  .footer-links{gap:35px}
+  footer{padding:45px 6% 20px}
 }
 </style>
 </head>
 
 <body>
+<div class="topbar">VEXDRAPE® — AN INDEPENDENT STREETWEAR PROJECT</div>
 
-<div class="announcement">
-VEXDRAPE — A DIFFERENT PERSPECTIVE
-</div>
-
-<header>
 <nav>
-  <a class="logo" href="#home">VEXDRAPE</a>
-
-  <div class="navlinks">
-    <a href="#home">Home</a>
-    <a href="#shop">Shop</a>
-    <a href="#story">Our story</a>
-    <a href="#contact">Contact</a>
+  <a class="logo" href="#">VEX<span>DRAPE</span>®</a>
+  <div class="navlinks" id="navlinks">
+    <a href="#collection">COLLECTION</a>
+    <a href="#about">ABOUT</a>
+    <a href="#contact">CONTACT</a>
   </div>
-
-  <div class="nav-actions">
-    <button id="openBag">BAG (<span id="bagCount">0</span>)</button>
-    <button id="menuButton">☰</button>
-  </div>
-
-  <div id="mobileMenu">
-    <a href="#home">Home</a>
-    <a href="#shop">Shop</a>
-    <a href="#story">Our story</a>
-    <a href="#contact">Contact</a>
+  <div class="nav-right">
+    <button onclick="showToast('The store is currently in preview mode.')">BAG (0)</button>
+    <button class="menu-btn" onclick="toggleMenu()">MENU</button>
   </div>
 </nav>
-</header>
 
 <main>
-
-<section class="hero" id="home">
-
-  <div>
-    <div class="eyebrow">Independent streetwear · Est. 2026</div>
-
-    <h1>
-      WEAR YOUR
-      <span>PERSPECTIVE.</span>
-    </h1>
-
-    <p>
-      Clothing is more than what you put on.
-      It is how you show up, what you stand for,
-      and the point of view you bring with you.
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">INDEPENDENT STREETWEAR · EST. 2026</div>
+    <h1>WEAR<br><span>YOUR</span><br>PERSPECTIVE.</h1>
+    <p class="hero-desc">
+      Not made to blend in. VEXDRAPE is built around individuality,
+      creative expression and seeing things differently.
     </p>
-
-    <div class="buttons">
-      <a href="#shop" class="btn">Explore collection</a>
-      <a href="#story" class="btn secondary">Discover VEXDRAPE</a>
-    </div>
+    <a class="btn" href="#collection">EXPLORE THE COLLECTION ↗</a>
   </div>
-
-  <div class="hero-art">
-    <div class="hero-symbol">V</div>
-    <div class="hero-word">VEXDRAPE</div>
-    <div class="hero-tagline">WEAR YOUR PERSPECTIVE</div>
+  <div class="hero-art" aria-hidden="true">
+    <div class="orbit two"></div>
+    <div class="orbit"></div>
+    <div class="orbit three"></div>
+    <div class="planet"></div>
+    <div class="art-label">FIG. 001 — A DIFFERENT VIEW</div>
   </div>
-
+  <div class="hero-index">01 / 03 &nbsp; <span>THE FIRST PERSPECTIVE</span></div>
 </section>
 
 <div class="ticker">
-VEXDRAPE ✳ WEAR YOUR PERSPECTIVE ✳ STREETWEAR ✳ EVERYDAY CULTURE
+  <div class="ticker-track">
+    <span>VEXDRAPE®</span><span>✳</span><span>WEAR YOUR PERSPECTIVE</span><span>✳</span>
+    <span>INDEPENDENT STREETWEAR</span><span>✳</span><span>DROP 001</span><span>✳</span>
+    <span>VEXDRAPE®</span><span>✳</span><span>WEAR YOUR PERSPECTIVE</span><span>✳</span>
+    <span>INDEPENDENT STREETWEAR</span><span>✳</span><span>DROP 001</span><span>✳</span>
+  </div>
 </div>
 
-<section class="content" id="shop">
-
-  <div class="section-heading">
+<section class="section" id="collection">
+  <div class="section-head reveal">
     <div>
-      <div class="eyebrow">The first perspective</div>
-      <h2>THE COLLECTION</h2>
+      <div class="kicker">01 — THE COLLECTION</div>
+      <h2>SELECT YOUR<br>POINT OF VIEW.</h2>
     </div>
-
-    <p>
-      Discover the first VEXDRAPE design concepts.
-      Our collection is currently being developed.
-    </p>
+    <div class="section-note">DROP 001 / CONCEPT PREVIEW</div>
   </div>
 
-  <div class="filters">
-    <button class="filter active" data-filter="all">All pieces</button>
-    <button class="filter" data-filter="oversized">Oversized</button>
-    <button class="filter" data-filter="regular">Regular fit</button>
+  <div class="filters reveal">
+    <button class="filter active" data-filter="all">ALL PIECES</button>
+    <button class="filter" data-filter="oversized">OVERSIZED</button>
+    <button class="filter" data-filter="regular">REGULAR FIT</button>
   </div>
 
   <div class="products">
-
-    <article class="product" data-type="oversized">
+    <article class="product reveal" data-type="oversized">
       <div class="product-image">
-        <span class="product-label">CONCEPT 01</span>
+        <span class="product-tag">DROP 001</span>
         <div class="shirt">
-          <div class="print">V.<small>VEXDRAPE</small></div>
+          <div class="shirt-mark"><span class="orb"></span>VEXDRAPE<small>THE FIRST PERSPECTIVE</small></div>
         </div>
+        <div class="quick-view" onclick="showToast('Product preview only — coming soon.')">VIEW PRODUCT ↗</div>
       </div>
       <div class="product-info">
-        <h3>The Signature Tee</h3>
-        <span>Coming soon</span>
+        <div><div class="product-name">The Perspective Tee</div><div class="product-meta">OVERSIZED / BLACK</div></div>
+        <div class="product-price">COMING SOON</div>
       </div>
-      <p class="product-description">Oversized · Black · Minimal chest mark</p>
-      <button data-add="signature">View concept</button>
     </article>
 
-    <article class="product" data-type="oversized">
-      <div class="product-image charcoal">
-        <span class="product-label">CONCEPT 02</span>
-        <div class="shirt grey">
-          <div class="print">SEE BEYOND<small>THE FRAME / VD-001</small></div>
-        </div>
-      </div>
-      <div class="product-info">
-        <h3>Beyond the Frame</h3>
-        <span>Coming soon</span>
-      </div>
-      <p class="product-description">Oversized · Charcoal · Back graphic</p>
-      <button data-add="frame">View concept</button>
-    </article>
-
-    <article class="product" data-type="regular">
-      <div class="product-image ivory">
-        <span class="product-label">CONCEPT 03</span>
-        <div class="shirt white">
-          <div class="print">VEXDRAPE<small>NOT MADE TO FIT A FRAME</small></div>
-        </div>
-      </div>
-      <div class="product-info">
-        <h3>Undefined</h3>
-        <span>Coming soon</span>
-      </div>
-      <p class="product-description">Regular fit · Ivory · Typography</p>
-      <button data-add="undefined">View concept</button>
-    </article>
-
-    <article class="product" data-type="regular">
+    <article class="product reveal" data-type="oversized">
       <div class="product-image">
-        <span class="product-label">CONCEPT 04</span>
-        <div class="shirt">
-          <div class="print">OWN YOUR<small>POINT OF VIEW</small></div>
-        </div>
-      </div>
-      <div class="product-info">
-        <h3>Point of View</h3>
-        <span>Coming soon</span>
-      </div>
-      <p class="product-description">Regular fit · Black · Typography</p>
-      <button data-add="view">View concept</button>
-    </article>
-
-    <article class="product" data-type="oversized">
-      <div class="product-image charcoal">
-        <span class="product-label">CONCEPT 05</span>
-        <div class="shirt grey">
-          <div class="print">STAY<small>UNDEFINED / VEXDRAPE</small></div>
-        </div>
-      </div>
-      <div class="product-info">
-        <h3>Stay Undefined</h3>
-        <span>Coming soon</span>
-      </div>
-      <p class="product-description">Oversized · Graphite · Statement print</p>
-      <button data-add="undefined2">View concept</button>
-    </article>
-
-    <article class="product" data-type="regular">
-      <div class="product-image ivory">
-        <span class="product-label">CONCEPT 06</span>
+        <span class="product-tag">DROP 001</span>
         <div class="shirt white">
-          <div class="print">V.<small>EVERYDAY CULTURE</small></div>
+          <div class="shirt-mark"><span class="orb"></span>BEYOND<small>THE FRAME — VEXDRAPE</small></div>
         </div>
+        <div class="quick-view" onclick="showToast('Product preview only — coming soon.')">VIEW PRODUCT ↗</div>
       </div>
       <div class="product-info">
-        <h3>Everyday Essential</h3>
-        <span>Coming soon</span>
+        <div><div class="product-name">Beyond The Frame</div><div class="product-meta">OVERSIZED / WHITE</div></div>
+        <div class="product-price">COMING SOON</div>
       </div>
-      <p class="product-description">Regular fit · Off-white · Small emblem</p>
-      <button data-add="essential">View concept</button>
     </article>
 
+    <article class="product reveal" data-type="regular">
+      <div class="product-image">
+        <span class="product-tag">DROP 001</span>
+        <div class="shirt">
+          <div class="shirt-mark">UNDEFINED<small>NO FIXED POINT OF VIEW</small></div>
+        </div>
+        <div class="quick-view" onclick="showToast('Product preview only — coming soon.')">VIEW PRODUCT ↗</div>
+      </div>
+      <div class="product-info">
+        <div><div class="product-name">Stay Undefined</div><div class="product-meta">REGULAR / BLACK</div></div>
+        <div class="product-price">COMING SOON</div>
+      </div>
+    </article>
+
+    <article class="product reveal" data-type="regular">
+      <div class="product-image">
+        <span class="product-tag">DROP 001</span>
+        <div class="shirt white">
+          <div class="shirt-mark">POINT<br>OF VIEW<small>VEXDRAPE®</small></div>
+        </div>
+        <div class="quick-view" onclick="showToast('Product preview only — coming soon.')">VIEW PRODUCT ↗</div>
+      </div>
+      <div class="product-info">
+        <div><div class="product-name">Point Of View</div><div class="product-meta">REGULAR / WHITE</div></div>
+        <div class="product-price">COMING SOON</div>
+      </div>
+    </article>
+
+    <article class="product reveal" data-type="oversized">
+      <div class="product-image">
+        <span class="product-tag">DROP 001</span>
+        <div class="shirt">
+          <div class="shirt-mark"><span class="orb"></span>THINK<br>DIFFERENT<small>VEXDRAPE®</small></div>
+        </div>
+        <div class="quick-view" onclick="showToast('Product preview only — coming soon.')">VIEW PRODUCT ↗</div>
+      </div>
+      <div class="product-info">
+        <div><div class="product-name">Different Thinking</div><div class="product-meta">OVERSIZED / BLACK</div></div>
+        <div class="product-price">COMING SOON</div>
+      </div>
+    </article>
+
+    <article class="product reveal" data-type="regular">
+      <div class="product-image">
+        <span class="product-tag">DROP 001</span>
+        <div class="shirt">
+          <div class="shirt-mark">V.<small>WEAR YOUR PERSPECTIVE</small></div>
+        </div>
+        <div class="quick-view" onclick="showToast('Product preview only — coming soon.')">VIEW PRODUCT ↗</div>
+      </div>
+      <div class="product-info">
+        <div><div class="product-name">The Essential</div><div class="product-meta">REGULAR / BLACK</div></div>
+        <div class="product-price">COMING SOON</div>
+      </div>
+    </article>
   </div>
 </section>
 
-<section class="content about" id="story">
-
-  <div class="about-art">
-    <strong>VD.</strong>
-  </div>
-
-  <div>
-    <div class="eyebrow">The idea behind the name</div>
-    <h2>YOUR VIEW.<br>YOUR RULES.</h2>
-
+<section class="collection">
+  <div class="reveal">
+    <div class="kicker">02 — FIRST RELEASE</div>
+    <h2>DROP<br>001<span>.</span></h2>
     <p>
-      VEXDRAPE is being built around one simple idea:
-      personal style should feel like your own.
+      A first look at the VEXDRAPE identity. Built around
+      graphic expression, everyday wear and the freedom to
+      create your own perspective.
     </p>
-
-    <p>
-      We are starting with everyday streetwear,
-      original graphics and pieces designed to
-      be worn your way.
-    </p>
-
-    <a href="#shop" class="btn secondary">Explore concepts</a>
+    <a class="btn btn-outline" href="#collection">DISCOVER THE PIECES ↗</a>
   </div>
-
+  <div class="collection-visual reveal">
+    <div class="big-type">VEX<br><span>DRAPE</span></div>
+    <small>THE FIRST PERSPECTIVE / 001</small>
+  </div>
 </section>
 
-<section class="newsletter" id="contact">
-
-  <div class="eyebrow">Be part of the first drop</div>
-
-  <h2>STAY IN THE LOOP.</h2>
-
-  <p>Get updates when the first VEXDRAPE collection is ready.</p>
-
-  <form id="notifyForm">
-    <input type="email" placeholder="Your email address" required>
-    <button type="submit">Notify me</button>
-  </form>
-
-  <p id="formMessage"></p>
-
+<section class="manifesto">
+  <div class="kicker">THE VEXDRAPE IDEA</div>
+  <div class="statement reveal">
+    STYLE IS NOT ABOUT<br>FITTING IN.<br>
+    <span>IT'S ABOUT HOW YOU SEE.</span>
+  </div>
+  <p>WEAR YOUR PERSPECTIVE. — VEXDRAPE®</p>
 </section>
 
+<section class="about" id="about">
+  <div class="reveal">
+    <div class="kicker">03 — WHO WE ARE</div>
+    <h2>MORE THAN<br>WHAT YOU WEAR.</h2>
+  </div>
+  <div class="about-right reveal">
+    <p>
+      VEXDRAPE is an independent streetwear concept built on
+      individuality and creative expression. We believe clothing
+      can be a way to communicate without saying a word.
+      <br><br>
+      Our direction is simple: original ideas, considered graphics
+      and everyday pieces that let you express your perspective.
+    </p>
+    <div class="about-stat">
+      <strong>01 / ORIGINALITY</strong>
+      <small>CREATE YOUR OWN DIRECTION</small>
+    </div>
+    <div class="about-stat">
+      <strong>02 / EXPRESSION</strong>
+      <small>WEAR WHAT YOU BELIEVE</small>
+    </div>
+  </div>
+</section>
 </main>
 
-<footer>
-
+<footer id="contact">
   <div class="footer-top">
     <div>
-      <div class="footer-logo">VEXDRAPE</div>
-      <p>Wear your perspective.<br>Streetwear · Everyday culture.</p>
+      <div class="footer-logo">VEX<span>DRAPE</span>®</div>
+      <div class="footer-tag">WEAR YOUR PERSPECTIVE.</div>
     </div>
-
     <div class="footer-links">
       <div>
-        <b>EXPLORE</b>
-        <a href="#shop">Collection</a>
-        <a href="#story">Our story</a>
-        <a href="#contact">Contact</a>
+        <small>EXPLORE</small>
+        <a href="#collection">Collection</a>
+        <a href="#about">About us</a>
       </div>
-
       <div>
-        <b>SOCIAL</b>
-        <!-- Replace the link with your real Instagram profile URL -->
-        <a href="https://www.instagram.com/Vexdrape/" target="_blank">Instagram</a>
+        <small>FOLLOW</small>
+        <a href="https://www.instagram.com/vexdrape/" target="_blank" rel="noopener">Instagram ↗</a>
+        <a href="mailto:hello@vexdrape.com">Contact</a>
       </div>
     </div>
   </div>
-
-  <div class="copyright">
-    <span>© <span id="year"></span> VEXDRAPE. All rights reserved.</span>
-    <span>WEAR YOUR PERSPECTIVE.</span>
+  <div class="footer-bottom">
+    <span>© 2026 VEXDRAPE. ALL RIGHTS RESERVED.</span>
+    <span>INDEPENDENT STREETWEAR PROJECT</span>
   </div>
-
 </footer>
-
-<div class="drawer-bg" id="drawerBg"></div>
-
-<div class="drawer" id="drawer">
-  <div class="drawer-header">
-    <strong>YOUR BAG</strong>
-    <button id="closeBag">×</button>
-  </div>
-
-  <div id="bagItems">
-    <p style="color:#888;padding-top:20px">Your bag is empty.</p>
-  </div>
-
-  <p class="drawer-note">
-    These are product concepts, not available for purchase yet.
-    Checkout will be enabled after product samples, prices,
-    payment and fulfilment arrangements are confirmed.
-  </p>
-</div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-const $ = id => document.getElementById(id);
-
-const productNames = {
-  signature:"The Signature Tee",
-  frame:"Beyond the Frame",
-  undefined:"Undefined",
-  view:"Point of View",
-  undefined2:"Stay Undefined",
-  essential:"Everyday Essential"
-};
-
-let bag = [];
-
-function toast(message) {
-  const box = $("toast");
-  box.textContent = message;
-  box.style.display = "block";
-
+function showToast(message){
+  const toast=document.getElementById("toast");
+  toast.textContent=message;
+  toast.classList.add("show");
   clearTimeout(window.toastTimer);
-
-  window.toastTimer = setTimeout(() => {
-    box.style.display = "none";
-  }, 2500);
+  window.toastTimer=setTimeout(()=>toast.classList.remove("show"),2600);
 }
 
-// Product filters
-document.querySelectorAll(".filter").forEach(button => {
-  button.addEventListener("click", () => {
+function toggleMenu(){
+  document.getElementById("navlinks").classList.toggle("open");
+}
 
-    document.querySelectorAll(".filter").forEach(item => {
-      item.classList.remove("active");
-    });
+document.querySelectorAll(".navlinks a").forEach(link=>{
+  link.addEventListener("click",()=>{
+    document.getElementById("navlinks").classList.remove("open");
+  });
+});
 
+document.querySelectorAll(".filter").forEach(button=>{
+  button.addEventListener("click",()=>{
+    document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
     button.classList.add("active");
-
-    const filter = button.dataset.filter;
-
-    document.querySelectorAll(".product").forEach(product => {
-      product.style.display =
-        filter === "all" || product.dataset.type === filter
-          ? ""
-          : "none";
+    const filter=button.dataset.filter;
+    document.querySelectorAll(".product").forEach(product=>{
+      product.classList.toggle("hidden",
+        filter!=="all" && product.dataset.type!==filter);
     });
   });
 });
 
-// Product buttons: concepts are not purchasable yet
-document.querySelectorAll("[data-add]").forEach(button => {
-  button.addEventListener("click", () => {
-    toast("This design is a preview. VEXDRAPE is coming soon.");
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
   });
-});
+},{threshold:.12});
 
-// Shopping bag preview
-function renderBag() {
-  $("bagCount").textContent = bag.length;
-
-  $("bagItems").innerHTML = bag.length
-    ? bag.map((item,index) => `
-      <div class="bag-item">
-        <span>${productNames[item]}</span>
-        <button onclick="removeItem(${index})">Remove</button>
-      </div>
-    `).join("")
-    : '<p style="color:#888;padding-top:20px">Your bag is empty.</p>';
-}
-
-function removeItem(index) {
-  bag.splice(index,1);
-  renderBag();
-}
-
-function openBag() {
-  $("drawer").classList.add("open");
-  $("drawerBg").classList.add("open");
-}
-
-function closeBag() {
-  $("drawer").classList.remove("open");
-  $("drawerBg").classList.remove("open");
-}
-
-$("openBag").addEventListener("click",openBag);
-$("closeBag").addEventListener("click",closeBag);
-$("drawerBg").addEventListener("click",closeBag);
-
-// Mobile navigation
-$("menuButton").addEventListener("click",() => {
-  $("mobileMenu").classList.toggle("open");
-});
-
-document.querySelectorAll("#mobileMenu a").forEach(link => {
-  link.addEventListener("click",() => {
-    $("mobileMenu").classList.remove("open");
-  });
-});
-
-// Newsletter demo
-$("notifyForm").addEventListener("submit",event => {
-  event.preventDefault();
-
-  $("formMessage").textContent =
-    "Thanks for your interest in VEXDRAPE!";
-
-  $("notifyForm").reset();
-});
-
-// Current year
-$("year").textContent = new Date().getFullYear();
-
-renderBag();
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 </script>
-
 </body>
 </html>
