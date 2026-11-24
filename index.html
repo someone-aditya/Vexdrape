@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -256,8 +255,25 @@ footer{padding:55px 7% 25px;border-top:1px solid var(--line)}
     <button class="quick-add" onclick="openProduct('perspective')">VIEW PRODUCT ↗</button>
    </div>
    <div class="product-info">
-    <div><h3>THE PERSPECTIVE</h3><p>Oversized · UC22</p><div class="colors"><span class="swatch" style="background:#171715"></span><span class="swatch" style="background:#e9e6dc"></span><span class="swatch" style="background:#555550"></span></div></div>
+    <div><h3>THE PERSPECTIVE</h3><p>Oversized · UC22 · XS–XXL</p><div class="colors"><span class="swatch" style="background:#171715"></span><span class="swatch" style="background:#e9e6dc"></span><span class="swatch" style="background:#555550"></span></div></div>
     <span class="price">₹899</span>
+   </div>
+  </article>
+
+  <article class="product-card">
+   <div class="product-image grey">
+    <span class="product-tag">DROP 001</span>
+    <svg viewBox="0 0 300 370">
+     <path d="M92 42 L122 26 Q150 54 178 26 L208 42 L272 78 L240 144 L206 126 L218 345 Q150 359 82 345 L94 126 L60 144 L28 78Z" fill="#252522" stroke="#57564f" stroke-width="2"/>
+     <path d="M122 26 Q122 72 150 72 Q178 72 178 26" fill="none" stroke="#68675e" stroke-width="7"/>
+     <text x="150" y="152" text-anchor="middle" fill="#f0eee8" font-size="10" letter-spacing="1.5">UH24</text>
+     <text x="150" y="168" text-anchor="middle" fill="#aaa89f" font-size="8" letter-spacing="1">HOODIE</text>
+    </svg>
+    <button class="quick-add" onclick="openProduct('uh24')">VIEW PIECE ↗</button>
+   </div>
+   <div class="product-info">
+    <div><h3>UH24 HOODIE</h3><p>Back crown emblem · Qikink UH24 · Coming soon</p></div>
+    <span class="price">SOON</span>
    </div>
   </article>
 
@@ -385,6 +401,7 @@ footer{padding:55px 7% 25px;border-top:1px solid var(--line)}
     </div>
     <label class="option-label">SIZE</label>
     <div class="options" id="sizeOptions">
+     <button class="option" onclick="selectOption(this,'sizeOptions')">XS</button>
      <button class="option" onclick="selectOption(this,'sizeOptions')">S</button>
      <button class="option selected" onclick="selectOption(this,'sizeOptions')">M</button>
      <button class="option" onclick="selectOption(this,'sizeOptions')">L</button>
@@ -403,6 +420,10 @@ const products = {
   name:"THE PERSPECTIVE",price:899,available:true,
   description:"Unisex oversized T-shirt · Qikink UC22 · DROP 001."
  },
+ uh24:{
+  name:"UH24 HOODIE",price:0,available:false,
+  description:"Streetwear hoodie featuring the VEXDRAPE crown logo on the back · Qikink UH24 · Coming soon."
+ },
  frame:{
   name:"BEYOND THE FRAME",price:0,available:false,
   description:"An upcoming DROP 001 design concept."
@@ -412,6 +433,7 @@ const products = {
   description:"An upcoming DROP 001 design concept."
  }
 };
+const cardIndexes = { perspective:0, uh24:1, frame:2, undefined:3 };
 let selectedProduct="perspective";
 let cart=[];
 
@@ -426,7 +448,8 @@ function openProduct(id){
  document.getElementById('addButton').textContent=p.available?'ADD TO BAG — ₹'+p.price:'COMING SOON';
  document.getElementById('addButton').disabled=!p.available;
  document.getElementById('addButton').style.opacity=p.available?'1':'.4';
- document.getElementById('modalImage').innerHTML=document.querySelectorAll('.product-image svg')[id==='perspective'?0:id==='frame'?1:2].outerHTML;
+ const idx = cardIndexes[id] ?? 0;
+ document.getElementById('modalImage').innerHTML=document.querySelectorAll('.product-image svg')[idx].outerHTML;
  document.getElementById('productModal').classList.add('active');
 }
 function closeProduct(){document.getElementById('productModal').classList.remove('active')}
