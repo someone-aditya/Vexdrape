@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#11110f">
 <title>VEXDRAPE — Wear Your Perspective</title>
-<meta name="description" content="VEXDRAPE — Premium minimal streetwear. DROP 001: THE FIRST PERSPECTIVE.">
+<meta name="description" content="VEXDRAPE — Independent minimal streetwear. DROP 001: THE FIRST PERSPECTIVE.">
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
@@ -21,12 +21,27 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--black);color:var(--cream);font-family:'DM Sans',sans-serif}
+body{background:var(--black);color:var(--cream);font-family:'DM Sans',sans-serif;position:relative;overflow-x:hidden}
 button,a{font:inherit}
 a{color:inherit;text-decoration:none}
 button{cursor:pointer}
+
+.ambient-stage{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.ambient-orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.22;will-change:transform;transition:transform .12s linear}
+.orb-one{width:460px;height:460px;top:-110px;left:-100px;background:radial-gradient(circle,#f0eee8 0%,transparent 70%)}
+.orb-two{width:520px;height:520px;top:38%;right:-150px;background:radial-gradient(circle,#85847e 0%,transparent 70%)}
+.orb-three{width:420px;height:420px;bottom:-120px;left:22%;background:radial-gradient(circle,#d9d6cc 0%,transparent 70%);opacity:.14}
+
+.floating-piece{position:absolute;opacity:.085;color:var(--cream);will-change:transform;transition:transform .12s linear}
+.floating-piece svg{width:100%;height:100%;display:block}
+.piece-shirt-a{width:170px;top:14%;right:8%}
+.piece-shoe-a{width:165px;top:36%;left:4%}
+.piece-hoodie-a{width:190px;top:58%;right:6%}
+.piece-shoe-b{width:150px;top:79%;left:10%}
+
+.announcement,header,main,footer{position:relative;z-index:1}
 .announcement{text-align:center;padding:10px;background:var(--cream);color:var(--black);font-size:10px;letter-spacing:2px;font-weight:700}
-header{height:82px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(17,17,15,.94);backdrop-filter:blur(16px);z-index:10}
+header{height:82px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(17,17,15,.92);backdrop-filter:blur(16px);z-index:10}
 .brand{display:flex;align-items:center;gap:11px}
 .brand svg{width:46px;height:46px}
 .brand-name{font-family:'Space Grotesk';font-weight:700;font-size:20px;letter-spacing:3px}
@@ -34,9 +49,12 @@ nav{display:flex;gap:35px;align-items:center}
 nav a{font-size:11px;letter-spacing:1.5px;color:#d4d2cb;transition:.2s}
 nav a:hover{color:white}
 .header-right{display:flex;gap:22px;align-items:center}
-.icon-btn{background:none;border:0;color:var(--cream);font-size:12px;letter-spacing:1px}
-.bag-count{background:var(--cream);color:var(--black);border-radius:50%;padding:3px 7px;font-size:10px;margin-left:5px}
+.icon-btn{background:none;border:0;color:var(--cream);font-size:12px;letter-spacing:1px;transition:transform .2s}
+.icon-btn:hover{transform:translateY(-1px)}
+.bag-count{background:var(--cream);color:var(--black);border-radius:50%;padding:3px 7px;font-size:10px;margin-left:5px;font-weight:700;display:inline-block;transition:transform .25s}
+.bag-count.bump{transform:scale(1.25)}
 .menu-btn{display:none}
+
 .hero{min-height:660px;display:grid;grid-template-columns:1fr 1fr;padding:70px 7%;align-items:center;gap:40px;overflow:hidden}
 .eyebrow{font-size:10px;letter-spacing:4px;color:#aaa89f;margin-bottom:25px}
 .hero h1{font-family:'Space Grotesk';font-size:clamp(52px,7vw,100px);line-height:.95;letter-spacing:-5px;font-weight:600}
@@ -44,29 +62,33 @@ nav a:hover{color:white}
 .hero-description{max-width:370px;color:#aaa89f;line-height:1.9;font-size:13px;margin:28px 0 34px}
 .actions{display:flex;gap:12px;flex-wrap:wrap}
 .btn{padding:16px 24px;border:1px solid var(--cream);font-size:10px;letter-spacing:2px;font-weight:700;transition:.25s;display:inline-block}
+.btn:active{transform:scale(.98)}
 .btn-primary{background:var(--cream);color:var(--black)}
 .btn-primary:hover{background:transparent;color:var(--cream)}
 .btn-outline:hover{background:var(--cream);color:var(--black)}
 .hero-art{position:relative;min-height:460px;display:flex;align-items:center;justify-content:center}
-.hero-circle{position:absolute;width:min(420px,90%);aspect-ratio:1;border:1px solid #55534d;border-radius:50%}
+.hero-circle{position:absolute;width:min(420px,90%);aspect-ratio:1;border:1px solid #55534d;border-radius:50%;transition:transform .15s linear}
 .hero-circle:before,.hero-circle:after{content:"";position:absolute;border:1px solid #373630;border-radius:50%;inset:25px}
 .hero-circle:after{inset:52px}
-.hero-shirt{position:relative;width:75%;max-width:390px;filter:drop-shadow(0 25px 30px #000)}
+.hero-shirt{position:relative;width:75%;max-width:390px;filter:drop-shadow(0 25px 30px #000);transition:transform .15s linear}
 .hero-caption{position:absolute;bottom:12px;right:0;font-size:9px;letter-spacing:3px;color:#77766e}
+
 .marquee{background:var(--cream);color:var(--black);overflow:hidden;padding:17px 0;white-space:nowrap}
 .marquee-track{display:inline-block;animation:move 27s linear infinite;font-family:'Space Grotesk';font-size:13px;letter-spacing:4px;font-weight:700}
 @keyframes move{to{transform:translateX(-50%)}}
+
 .section{padding:100px 7%}
 .section-top{display:flex;justify-content:space-between;align-items:end;margin-bottom:42px;gap:20px}
 .section-label{font-size:10px;letter-spacing:3px;color:#aaa89f;margin-bottom:13px}
 .section h2{font-family:'Space Grotesk';font-size:clamp(35px,5vw,60px);letter-spacing:-2px;font-weight:500}
-.section-note{font-size:11px;color:#aaa89f;line-height:1.8;max-width:250px}
+.section-note{font-size:11px;color:#aaa89f;line-height:1.8;max-width:260px}
 .products{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.product-card{min-width:0}
-.product-image{position:relative;aspect-ratio:4/5;background:#252522;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.product-card{min-width:0;transition:transform .35s ease}
+.product-card:hover{transform:translateY(-4px)}
+.product-image{position:relative;aspect-ratio:4/5;background:#252522;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:background-color .3s ease}
 .product-image.light{background:#d9d6cc}
 .product-image.grey{background:#393936}
-.product-image svg{width:84%;height:90%;transition:transform .5s}
+.product-image svg{width:84%;height:90%;transition:transform .5s ease}
 .product-card:hover .product-image svg{transform:scale(1.045)}
 .product-tag{position:absolute;top:15px;left:15px;background:var(--cream);color:var(--black);font-size:9px;padding:7px 10px;letter-spacing:1.5px;font-weight:700}
 .quick-add{position:absolute;bottom:13px;left:13px;right:13px;border:0;padding:14px;background:var(--cream);color:var(--black);font-size:10px;letter-spacing:2px;font-weight:700;opacity:0;transform:translateY(8px);transition:.25s}
@@ -75,38 +97,48 @@ nav a:hover{color:white}
 .product-info h3{font-size:13px;font-weight:600;letter-spacing:.5px}
 .product-info p{font-size:11px;color:#96948d;margin-top:7px}
 .price{font-size:13px;font-weight:600;white-space:nowrap}
-.colors{display:flex;gap:6px;margin-top:12px}
-.swatch{width:12px;height:12px;border-radius:50%;border:1px solid #777}
+.colors{display:flex;gap:8px;margin-top:12px;align-items:center}
+.swatch-btn{width:16px;height:16px;border-radius:50%;border:1px solid #777;padding:0;position:relative;transition:transform .2s,box-shadow .2s}
+.swatch-btn:hover{transform:scale(1.15)}
+.swatch-btn.active{box-shadow:0 0 0 2px var(--black),0 0 0 3.5px var(--cream);border-color:var(--cream)}
+
 .story{background:var(--cream);color:var(--black);padding:100px 7%;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
-.story-visual{min-height:380px;background:#d9d6cc;display:flex;align-items:center;justify-content:center;position:relative}
-.story-visual svg{width:72%;max-width:340px}
+.story-visual{min-height:380px;background:#d9d6cc;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.story-visual svg{width:72%;max-width:340px;transition:transform .15s linear}
 .story-copy .section-label{color:#77746c}
 .story-copy h2{font-family:'Space Grotesk';font-size:clamp(38px,5vw,65px);line-height:1.05;letter-spacing:-3px;font-weight:500}
 .story-copy p{font-size:13px;line-height:2;color:#68665f;max-width:400px;margin:25px 0}
 .story-copy .btn{border-color:var(--black)}
 .story-copy .btn-primary{background:var(--black);color:var(--cream)}
 .story-copy .btn-primary:hover{background:transparent;color:var(--black)}
+
 .values{padding:80px 7%;display:grid;grid-template-columns:repeat(3,1fr);gap:35px}
-.value{border-top:1px solid var(--line);padding-top:22px}
+.value{border-top:1px solid var(--line);padding-top:22px;transition:border-color .25s}
+.value:hover{border-top-color:var(--cream)}
 .value-number{font-family:'Space Grotesk';font-size:12px;color:#85847e}
 .value h3{font-size:14px;letter-spacing:1px;margin:20px 0 12px}
 .value p{font-size:12px;line-height:1.8;color:#96948d;max-width:270px}
-.newsletter{padding:85px 7%;text-align:center;background:#1b1b18}
+
+.newsletter{padding:85px 7%;text-align:center;background:rgba(27,27,24,.92)}
 .newsletter h2{font-family:'Space Grotesk';font-size:clamp(32px,5vw,55px);letter-spacing:-2px}
 .newsletter p{font-size:12px;color:#aaa89f;margin:15px 0 25px}
 .newsletter-form{display:flex;max-width:420px;margin:auto;border-bottom:1px solid #777;padding-bottom:8px}
 .newsletter-form input{background:none;border:0;outline:0;color:white;flex:1;padding:10px;font-size:12px;min-width:0}
 .newsletter-form button{background:none;border:0;color:var(--cream);font-size:10px;letter-spacing:2px;font-weight:700}
-footer{padding:55px 7% 25px;border-top:1px solid var(--line)}
+.subscribe-status{margin-top:16px;font-size:11px;color:#d4d2cb;min-height:16px}
+
+footer{padding:55px 7% 25px;border-top:1px solid var(--line);background:rgba(17,17,15,.94)}
 .footer-top{display:flex;justify-content:space-between;gap:35px;flex-wrap:wrap;padding-bottom:50px}
 .footer-brand p{font-size:11px;color:#85847e;margin-top:15px;letter-spacing:1px}
 .footer-links{display:flex;gap:60px}
 .footer-links h4{font-size:10px;letter-spacing:2px;margin-bottom:18px}
-.footer-links a{display:block;font-size:11px;color:#96948d;margin:12px 0}
+.footer-links a{display:block;font-size:11px;color:#96948d;margin:12px 0;transition:.2s}
+.footer-links a:hover{color:var(--cream)}
 .footer-bottom{border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;color:#77766e;font-size:9px;letter-spacing:1px;gap:15px;flex-wrap:wrap}
+
 .overlay{position:fixed;inset:0;background:#0009;z-index:20;opacity:0;pointer-events:none;transition:.25s}
 .overlay.active{opacity:1;pointer-events:auto}
-.drawer{position:fixed;right:0;top:0;height:100%;width:min(430px,100%);background:var(--cream);color:var(--black);z-index:21;padding:28px;transform:translateX(100%);transition:.3s;overflow:auto}
+.drawer{position:fixed;right:0;top:0;height:100%;width:min(430px,100%);background:var(--cream);color:var(--black);z-index:21;padding:28px;transform:translateX(100%);transition:.32s cubic-bezier(.22,1,.36,1);overflow:auto}
 .drawer.active{transform:none}
 .drawer-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ccc;padding-bottom:20px}
 .drawer-head h2{font-family:'Space Grotesk';font-size:22px}
@@ -116,27 +148,38 @@ footer{padding:55px 7% 25px;border-top:1px solid var(--line)}
 .cart-thumb svg{width:90%}
 .cart-details{flex:1}
 .cart-details h3{font-size:13px}
-.cart-details p{font-size:11px;color:#777;margin-top:8px}
-.cart-details button{border:0;background:none;text-decoration:underline;font-size:10px;margin-top:12px}
+.cart-details p{font-size:11px;color:#68665f;margin-top:7px}
+.qty-row{display:flex;align-items:center;gap:10px;margin-top:10px}
+.qty-btn{border:1px solid #888;background:transparent;color:var(--black);width:24px;height:24px;font-size:12px;line-height:1}
+.qty-val{font-size:11px;font-weight:700}
+.remove-btn{border:0;background:none;text-decoration:underline;font-size:10px;margin-top:10px;color:var(--black)}
 .cart-total{display:flex;justify-content:space-between;margin:25px 0;font-weight:700}
-.cart-message{font-size:11px;line-height:1.7;color:#777;margin-bottom:18px}
+.cart-message{font-size:11px;line-height:1.7;color:#68665f;margin-bottom:18px}
 .checkout{width:100%;background:var(--black);color:white;border:0;padding:17px;font-size:10px;letter-spacing:2px;font-weight:700}
-.empty{text-align:center;padding:60px 0;color:#777;font-size:13px}
+.empty{text-align:center;padding:60px 0;color:#68665f;font-size:13px}
+
 .modal{position:fixed;inset:0;background:#000b;z-index:30;display:none;align-items:center;justify-content:center;padding:20px}
 .modal.active{display:flex}
-.modal-box{background:var(--cream);color:var(--black);width:min(650px,100%);padding:30px;position:relative}
+.modal-box{background:var(--cream);color:var(--black);width:min(650px,100%);padding:30px;position:relative;animation:popIn .24s ease}
+@keyframes popIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
 .modal-close{position:absolute;right:20px;top:15px;background:none;border:0;font-size:25px}
 .modal-content{display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center}
-.modal-product-image{background:#292925;min-height:300px;display:flex;align-items:center;justify-content:center}
+.modal-product-image{background:#292925;min-height:300px;display:flex;align-items:center;justify-content:center;transition:background-color .25s ease}
 .modal-product-image svg{width:90%}
 .modal-content h2{font-family:'Space Grotesk';font-size:27px}
-.modal-content p{font-size:12px;color:#777;margin:12px 0}
+.modal-content p{font-size:12px;color:#68665f;margin:12px 0;line-height:1.6}
 .modal-price{font-weight:700;font-size:18px;margin:15px 0}
 .option-label{font-size:10px;letter-spacing:1px;font-weight:700;margin:17px 0 9px;display:block}
 .options{display:flex;gap:7px;flex-wrap:wrap}
-.option{border:1px solid #aaa;background:transparent;padding:9px 12px;font-size:10px}
+.option{border:1px solid #aaa;background:transparent;padding:9px 12px;font-size:10px;transition:.2s}
 .option.selected{background:var(--black);color:white;border-color:var(--black)}
 .add-button{width:100%;background:var(--black);color:white;border:0;padding:15px;margin-top:20px;font-size:10px;letter-spacing:2px;font-weight:700}
+
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ .marquee-track{animation:none}
+ .ambient-orb,.floating-piece,.hero-circle,.hero-shirt,.story-visual svg{transition:none}
+}
 @media(max-width:760px){
  header{height:70px;padding:0 5%}
  .brand-name{font-size:17px}
@@ -160,6 +203,9 @@ footer{padding:55px 7% 25px;border-top:1px solid var(--line)}
  .modal-content{grid-template-columns:1fr}
  .modal-product-image{min-height:220px}
  .modal-box{max-height:90vh;overflow:auto}
+ .floating-piece{opacity:.055}
+ .piece-shirt-a,.piece-hoodie-a{width:120px}
+ .piece-shoe-a,.piece-shoe-b{width:115px}
 }
 @media(max-width:390px){
  .products{grid-template-columns:1fr}
@@ -169,6 +215,39 @@ footer{padding:55px 7% 25px;border-top:1px solid var(--line)}
 </head>
 
 <body>
+<div class="ambient-stage" aria-hidden="true">
+ <div class="ambient-orb orb-one" data-speed="0.08"></div>
+ <div class="ambient-orb orb-two" data-speed="-0.11"></div>
+ <div class="ambient-orb orb-three" data-speed="0.06"></div>
+
+ <div class="floating-piece piece-shirt-a" data-speed="0.14" data-rot="8">
+  <svg viewBox="0 0 120 140" fill="none" stroke="currentColor" stroke-width="1.6">
+   <path d="M36 16 L48 10 Q60 22 72 10 L84 16 L110 32 L96 58 L82 51 L87 128 Q60 135 33 128 L38 51 L24 58 L10 32 Z"/>
+  </svg>
+ </div>
+
+ <div class="floating-piece piece-shoe-a" data-speed="-0.12" data-rot="-12">
+  <svg viewBox="0 0 160 90" fill="none" stroke="currentColor" stroke-width="1.6">
+   <path d="M16 58 L46 42 L74 22 L98 28 L128 45 L146 52 L144 66 L16 66 Z"/>
+   <path d="M14 71 L146 71"/>
+  </svg>
+ </div>
+
+ <div class="floating-piece piece-hoodie-a" data-speed="0.16" data-rot="-7">
+  <svg viewBox="0 0 130 150" fill="none" stroke="currentColor" stroke-width="1.6">
+   <path d="M36 22 L50 12 Q65 26 80 12 L94 22 L120 38 L105 68 L90 59 L95 138 Q65 145 35 138 L40 59 L25 68 L10 38 Z"/>
+   <path d="M50 12 Q50 38 65 38 Q80 38 80 12"/>
+  </svg>
+ </div>
+
+ <div class="floating-piece piece-shoe-b" data-speed="-0.15" data-rot="11">
+  <svg viewBox="0 0 160 90" fill="none" stroke="currentColor" stroke-width="1.6">
+   <path d="M18 56 L48 40 L76 20 L100 26 L130 44 L146 52 L144 65 L18 65 Z"/>
+   <path d="M16 70 L146 70"/>
+  </svg>
+ </div>
+</div>
+
 <div class="announcement">DROP 001 — THE FIRST PERSPECTIVE &nbsp; / &nbsp; VEXDRAPE</div>
 
 <header>
@@ -185,7 +264,7 @@ footer{padding:55px 7% 25px;border-top:1px solid var(--line)}
   <span class="brand-name">VEXDRAPE</span>
  </a>
 
- <nav id="nav">
+ <nav id="nav" aria-label="Primary navigation">
   <a href="#home" onclick="closeNav()">HOME</a>
   <a href="#collection" onclick="closeNav()">COLLECTION</a>
   <a href="#story" onclick="closeNav()">OUR STORY</a>
@@ -193,8 +272,8 @@ footer{padding:55px 7% 25px;border-top:1px solid var(--line)}
  </nav>
 
  <div class="header-right">
-  <button class="icon-btn menu-btn" onclick="toggleNav()">MENU</button>
-  <button class="icon-btn" onclick="openCart()">BAG <span class="bag-count" id="bagCount">0</span></button>
+  <button class="icon-btn menu-btn" onclick="toggleNav()" aria-label="Toggle menu">MENU</button>
+  <button class="icon-btn" onclick="openCart()" aria-label="Open shopping bag">BAG <span class="bag-count" id="bagCount">0</span></button>
  </div>
 </header>
 
@@ -210,8 +289,8 @@ footer{padding:55px 7% 25px;border-top:1px solid var(--line)}
   </div>
  </div>
  <div class="hero-art">
-  <div class="hero-circle"></div>
-  <svg class="hero-shirt" viewBox="0 0 400 460" xmlns="http://www.w3.org/2000/svg">
+  <div class="hero-circle" id="heroCircle"></div>
+  <svg class="hero-shirt" id="heroShirt" viewBox="0 0 400 460" xmlns="http://www.w3.org/2000/svg" aria-label="VEXDRAPE editorial garment illustration">
    <defs>
     <linearGradient id="shirtShade" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#343430"/><stop offset=".55" stop-color="#20201e"/><stop offset="1" stop-color="#11110f"/></linearGradient>
    </defs>
@@ -228,7 +307,7 @@ footer{padding:55px 7% 25px;border-top:1px solid var(--line)}
  </div>
 </section>
 
-<div class="marquee">
+<div class="marquee" aria-hidden="true">
  <div class="marquee-track">VEXDRAPE ✳ WEAR YOUR PERSPECTIVE ✳ DROP 001 ✳ VEXDRAPE ✳ WEAR YOUR PERSPECTIVE ✳ DROP 001 ✳ VEXDRAPE ✳ WEAR YOUR PERSPECTIVE ✳ DROP 001 ✳ </div>
 </div>
 
@@ -243,10 +322,10 @@ footer{padding:55px 7% 25px;border-top:1px solid var(--line)}
 
  <div class="products">
   <article class="product-card">
-   <div class="product-image">
+   <div class="product-image" id="perspectiveCardImage">
     <span class="product-tag">FEATURED</span>
-    <svg viewBox="0 0 300 370">
-     <path d="M100 37 L125 25 Q150 50 175 25 L200 37 L267 75 L237 135 L205 120 L217 345 Q150 359 83 345 L95 120 L63 135 L33 75Z" fill="#171715" stroke="#55544e" stroke-width="2"/>
+    <svg id="perspectiveCardSvg" viewBox="0 0 300 370" aria-label="THE PERSPECTIVE oversized T-shirt preview">
+     <path id="perspectiveShirtPath" d="M100 37 L125 25 Q150 50 175 25 L200 37 L267 75 L237 135 L205 120 L217 345 Q150 359 83 345 L95 120 L63 135 L33 75Z" fill="#171715" stroke="#55544e" stroke-width="2"/>
      <path d="M125 25 Q125 68 150 68 Q175 68 175 25" fill="none" stroke="#77766e" stroke-width="6"/>
      <circle cx="150" cy="135" r="18" fill="none" stroke="#f0eee8" stroke-width="1.4"/>
      <circle cx="150" cy="135" r="14" fill="none" stroke="#f0eee8" stroke-width=".7"/>
@@ -255,7 +334,15 @@ footer{padding:55px 7% 25px;border-top:1px solid var(--line)}
     <button class="quick-add" onclick="openProduct('perspective')">VIEW PRODUCT ↗</button>
    </div>
    <div class="product-info">
-    <div><h3>THE PERSPECTIVE</h3><p>Oversized · UC22 · XS–XXL</p><div class="colors"><span class="swatch" style="background:#171715"></span><span class="swatch" style="background:#e9e6dc"></span><span class="swatch" style="background:#555550"></span></div></div>
+    <div>
+     <h3>THE PERSPECTIVE</h3>
+     <p>Oversized · UC22 · XS–XXL</p>
+     <div class="colors" aria-label="Select colour preview">
+      <button type="button" class="swatch-btn active" style="background:#171715" data-colour="Black" aria-label="Black" onclick="previewCardColour('Black',this)"></button>
+      <button type="button" class="swatch-btn" style="background:#e9e6dc" data-colour="Off White" aria-label="Off White" onclick="previewCardColour('Off White',this)"></button>
+      <button type="button" class="swatch-btn" style="background:#555550" data-colour="Charcoal" aria-label="Charcoal" onclick="previewCardColour('Charcoal',this)"></button>
+     </div>
+    </div>
     <span class="price">₹899</span>
    </div>
   </article>
@@ -263,7 +350,7 @@ footer{padding:55px 7% 25px;border-top:1px solid var(--line)}
   <article class="product-card">
    <div class="product-image grey">
     <span class="product-tag">DROP 001</span>
-    <svg viewBox="0 0 300 370">
+    <svg viewBox="0 0 300 370" aria-label="UH24 HOODIE preview">
      <path d="M92 42 L122 26 Q150 54 178 26 L208 42 L272 78 L240 144 L206 126 L218 345 Q150 359 82 345 L94 126 L60 144 L28 78Z" fill="#252522" stroke="#57564f" stroke-width="2"/>
      <path d="M122 26 Q122 72 150 72 Q178 72 178 26" fill="none" stroke="#68675e" stroke-width="7"/>
      <text x="150" y="152" text-anchor="middle" fill="#f0eee8" font-size="10" letter-spacing="1.5">UH24</text>
@@ -280,7 +367,7 @@ footer{padding:55px 7% 25px;border-top:1px solid var(--line)}
   <article class="product-card">
    <div class="product-image light">
     <span class="product-tag">DROP 001</span>
-    <svg viewBox="0 0 300 370">
+    <svg viewBox="0 0 300 370" aria-label="BEYOND THE FRAME concept preview">
      <path d="M100 37 L125 25 Q150 50 175 25 L200 37 L267 75 L237 135 L205 120 L217 345 Q150 359 83 345 L95 120 L63 135 L33 75Z" fill="#e9e6dc" stroke="#aaa79e" stroke-width="2"/>
      <path d="M125 25 Q125 68 150 68 Q175 68 175 25" fill="none" stroke="#b7b3a9" stroke-width="6"/>
      <text x="150" y="150" text-anchor="middle" fill="#252522" font-size="12" font-family="Georgia" font-style="italic">Beyond</text>
@@ -297,7 +384,7 @@ footer{padding:55px 7% 25px;border-top:1px solid var(--line)}
   <article class="product-card">
    <div class="product-image grey">
     <span class="product-tag">DROP 001</span>
-    <svg viewBox="0 0 300 370">
+    <svg viewBox="0 0 300 370" aria-label="STAY UNDEFINED concept preview">
      <path d="M100 37 L125 25 Q150 50 175 25 L200 37 L267 75 L237 135 L205 120 L217 345 Q150 359 83 345 L95 120 L63 135 L33 75Z" fill="#444440" stroke="#68675f" stroke-width="2"/>
      <path d="M125 25 Q125 68 150 68 Q175 68 175 25" fill="none" stroke="#77766e" stroke-width="6"/>
      <text x="150" y="150" text-anchor="middle" fill="#f0eee8" font-size="11" letter-spacing="1">STAY</text>
@@ -315,7 +402,7 @@ footer{padding:55px 7% 25px;border-top:1px solid var(--line)}
 
 <section class="story" id="story">
  <div class="story-visual">
-  <svg viewBox="0 0 300 300">
+  <svg id="storyEmblem" viewBox="0 0 300 300" aria-label="VEXDRAPE brand emblem">
    <circle cx="150" cy="150" r="125" fill="none" stroke="#242420" stroke-width="2"/>
    <circle cx="150" cy="150" r="111" fill="none" stroke="#77746c" stroke-width="1"/>
    <circle cx="150" cy="150" r="75" fill="none" stroke="#aaa69c" stroke-width=".7"/>
@@ -347,7 +434,7 @@ footer{padding:55px 7% 25px;border-top:1px solid var(--line)}
   <input type="email" id="email" placeholder="Your email address" required>
   <button type="submit">JOIN ↗</button>
  </form>
- <p id="subscribeMessage" aria-live="polite"></p>
+ <p id="subscribeMessage" class="subscribe-status" aria-live="polite"></p>
 </section>
 </main>
 
@@ -355,7 +442,7 @@ footer{padding:55px 7% 25px;border-top:1px solid var(--line)}
  <div class="footer-top">
   <div class="footer-brand">
    <div class="brand">
-    <svg viewBox="0 0 100 100" fill="none">
+    <svg viewBox="0 0 100 100" fill="none" aria-label="VEXDRAPE footer mark">
      <circle cx="50" cy="50" r="46" stroke="#f0eee8" stroke-width="2"/>
      <circle cx="50" cy="50" r="39" stroke="#f0eee8"/>
      <text x="50" y="54" fill="#f0eee8" font-size="20" font-weight="bold" text-anchor="middle">VD</text>
@@ -366,49 +453,49 @@ footer{padding:55px 7% 25px;border-top:1px solid var(--line)}
   </div>
   <div class="footer-links">
    <div><h4>EXPLORE</h4><a href="#home">Home</a><a href="#collection">Collection</a><a href="#story">Our story</a></div>
-   <div><h4>FOLLOW</h4><a href="https://www.instagram.com/vexdrape/" target="_blank" rel="noopener">Instagram ↗</a><a href="mailto:hello@vexdrape.com">Contact</a></div>
+   <div><h4>FOLLOW</h4><a href="https://www.instagram.com/vexdrape/" target="_blank" rel="noopener">Instagram ↗</a><a href="#contact">Updates</a></div>
   </div>
  </div>
  <div class="footer-bottom"><span>© 2026 VEXDRAPE. ALL RIGHTS RESERVED.</span><span>WEAR YOUR PERSPECTIVE.</span></div>
 </footer>
 
 <div class="overlay" id="overlay" onclick="closeCart()"></div>
-<aside class="drawer" id="drawer">
- <div class="drawer-head"><h2>YOUR BAG (<span id="drawerCount">0</span>)</h2><button class="close" onclick="closeCart()">×</button></div>
+<aside class="drawer" id="drawer" aria-label="Shopping bag">
+ <div class="drawer-head"><h2>YOUR BAG (<span id="drawerCount">0</span>)</h2><button class="close" onclick="closeCart()" aria-label="Close bag">×</button></div>
  <div id="cartItems"></div>
  <div id="cartFooter" hidden>
   <div class="cart-total"><span>SUBTOTAL</span><span id="cartTotal">₹0</span></div>
-  <p class="cart-message">This is a preview shopping bag. Online checkout and payment processing are not connected yet.</p>
-  <button class="checkout" onclick="alert('Online checkout is coming soon. Please follow VEXDRAPE for updates.')">CHECKOUT — COMING SOON</button>
+  <p class="cart-message">Bag preview only. Live payment processing and order fulfilment are not active yet.</p>
+  <button class="checkout" onclick="alert('Live checkout is not active yet. Updates will be shared on @vexdrape.')">CHECKOUT — COMING SOON</button>
  </div>
 </aside>
 
-<div class="modal" id="productModal" onclick="if(event.target===this)closeProduct()">
+<div class="modal" id="productModal" onclick="if(event.target===this)closeProduct()" role="dialog" aria-modal="true">
  <div class="modal-box">
-  <button class="modal-close" onclick="closeProduct()">×</button>
+  <button class="modal-close" onclick="closeProduct()" aria-label="Close product modal">×</button>
   <div class="modal-content">
    <div class="modal-product-image" id="modalImage"></div>
    <div>
     <div class="section-label">VEXDRAPE / DROP 001</div>
     <h2 id="modalName">THE PERSPECTIVE</h2>
-    <p id="modalDescription">Unisex oversized T-shirt.</p>
+    <p id="modalDescription">Unisex oversized T-shirt · Qikink UC22 · DROP 001.</p>
     <div class="modal-price" id="modalPrice">₹899</div>
     <label class="option-label">COLOUR</label>
     <div class="options" id="colourOptions">
-     <button class="option selected" data-colour="Black" onclick="selectOption(this,'colourOptions')">BLACK</button>
-     <button class="option" data-colour="Off White" onclick="selectOption(this,'colourOptions')">OFF WHITE</button>
-     <button class="option" data-colour="Charcoal" onclick="selectOption(this,'colourOptions')">CHARCOAL</button>
+     <button type="button" class="option selected" data-colour="Black" onclick="selectOption(this,'colourOptions')">BLACK</button>
+     <button type="button" class="option" data-colour="Off White" onclick="selectOption(this,'colourOptions')">OFF WHITE</button>
+     <button type="button" class="option" data-colour="Charcoal" onclick="selectOption(this,'colourOptions')">CHARCOAL</button>
     </div>
     <label class="option-label">SIZE</label>
     <div class="options" id="sizeOptions">
-     <button class="option" onclick="selectOption(this,'sizeOptions')">XS</button>
-     <button class="option" onclick="selectOption(this,'sizeOptions')">S</button>
-     <button class="option selected" onclick="selectOption(this,'sizeOptions')">M</button>
-     <button class="option" onclick="selectOption(this,'sizeOptions')">L</button>
-     <button class="option" onclick="selectOption(this,'sizeOptions')">XL</button>
-     <button class="option" onclick="selectOption(this,'sizeOptions')">XXL</button>
+     <button type="button" class="option" onclick="selectOption(this,'sizeOptions')">XS</button>
+     <button type="button" class="option" onclick="selectOption(this,'sizeOptions')">S</button>
+     <button type="button" class="option selected" onclick="selectOption(this,'sizeOptions')">M</button>
+     <button type="button" class="option" onclick="selectOption(this,'sizeOptions')">L</button>
+     <button type="button" class="option" onclick="selectOption(this,'sizeOptions')">XL</button>
+     <button type="button" class="option" onclick="selectOption(this,'sizeOptions')">XXL</button>
     </div>
-    <button class="add-button" id="addButton" onclick="addToCart()">ADD TO BAG — ₹899</button>
+    <button type="button" class="add-button" id="addButton" onclick="addToCart()">ADD TO BAG — ₹899</button>
    </div>
   </div>
  </div>
@@ -422,23 +509,50 @@ const products = {
  },
  uh24:{
   name:"UH24 HOODIE",price:0,available:false,
-  description:"Streetwear hoodie featuring the VEXDRAPE crown logo on the back · Qikink UH24 · Coming soon."
+  description:"Hoodie featuring the VEXDRAPE crown emblem on the back · Qikink UH24 · Coming soon."
  },
  frame:{
   name:"BEYOND THE FRAME",price:0,available:false,
-  description:"An upcoming DROP 001 design concept."
+  description:"Upcoming DROP 001 concept · Not open for purchase yet."
  },
  undefined:{
   name:"STAY UNDEFINED",price:0,available:false,
-  description:"An upcoming DROP 001 design concept."
+  description:"Upcoming DROP 001 concept · Not open for purchase yet."
  }
+};
+const colourStyles = {
+ "Black":{ fill:"#171715", stroke:"#55544e", cardBg:"#252522" },
+ "Off White":{ fill:"#e9e6dc", stroke:"#aaa79e", cardBg:"#d9d6cc" },
+ "Charcoal":{ fill:"#444440", stroke:"#68675f", cardBg:"#393936" }
 };
 const cardIndexes = { perspective:0, uh24:1, frame:2, undefined:3 };
 let selectedProduct="perspective";
+let activeCardColour="Black";
 let cart=[];
 
 function toggleNav(){document.getElementById('nav').classList.toggle('open')}
 function closeNav(){document.getElementById('nav').classList.remove('open')}
+
+function previewCardColour(colour,btn){
+ activeCardColour=colour;
+ document.querySelectorAll('.swatch-btn').forEach(b=>b.classList.remove('active'));
+ if(btn)btn.classList.add('active');
+ const style=colourStyles[colour]||colourStyles["Black"];
+ const path=document.getElementById('perspectiveShirtPath');
+ const cardImg=document.getElementById('perspectiveCardImage');
+ if(path){path.setAttribute('fill',style.fill);path.setAttribute('stroke',style.stroke)}
+ if(cardImg){cardImg.style.backgroundColor=style.cardBg}
+ syncModalColour(colour);
+}
+
+function syncModalColour(colour){
+ const target=document.querySelector(`#colourOptions .option[data-colour="${colour}"]`);
+ if(target){
+  document.querySelectorAll('#colourOptions .option').forEach(x=>x.classList.remove('selected'));
+  target.classList.add('selected');
+ }
+}
+
 function openProduct(id){
  selectedProduct=id;
  const p=products[id];
@@ -448,15 +562,23 @@ function openProduct(id){
  document.getElementById('addButton').textContent=p.available?'ADD TO BAG — ₹'+p.price:'COMING SOON';
  document.getElementById('addButton').disabled=!p.available;
  document.getElementById('addButton').style.opacity=p.available?'1':'.4';
- const idx = cardIndexes[id] ?? 0;
+ const idx=cardIndexes[id]??0;
  document.getElementById('modalImage').innerHTML=document.querySelectorAll('.product-image svg')[idx].outerHTML;
  document.getElementById('productModal').classList.add('active');
 }
+
 function closeProduct(){document.getElementById('productModal').classList.remove('active')}
+
 function selectOption(button,group){
  document.querySelectorAll('#'+group+' .option').forEach(x=>x.classList.remove('selected'));
  button.classList.add('selected');
+ if(group==='colourOptions'&&selectedProduct==='perspective'){
+  const colour=button.dataset.colour;
+  const matchingSwatch=document.querySelector(`.swatch-btn[data-colour="${colour}"]`);
+  previewCardColour(colour,matchingSwatch);
+ }
 }
+
 function addToCart(){
  const p=products[selectedProduct];
  if(!p.available)return;
@@ -465,13 +587,27 @@ function addToCart(){
  const existing=cart.find(x=>x.id===selectedProduct&&x.colour===colour&&x.size===size);
  if(existing)existing.quantity++;
  else cart.push({id:selectedProduct,name:p.name,price:p.price,colour,size,quantity:1});
- updateCart();
+ updateCart(true);
  closeProduct();
  openCart();
 }
-function updateCart(){
+
+function changeQty(index,delta){
+ if(!cart[index])return;
+ cart[index].quantity+=delta;
+ if(cart[index].quantity<=0)cart.splice(index,1);
+ updateCart();
+}
+
+function updateCart(shouldBump=false){
  const count=cart.reduce((s,x)=>s+x.quantity,0);
- document.getElementById('bagCount').textContent=count;
+ const bagBadge=document.getElementById('bagCount');
+ bagBadge.textContent=count;
+ if(shouldBump){
+  bagBadge.classList.remove('bump');
+  void bagBadge.offsetWidth;
+  bagBadge.classList.add('bump');
+ }
  document.getElementById('drawerCount').textContent=count;
  const items=document.getElementById('cartItems');
  const footer=document.getElementById('cartFooter');
@@ -486,25 +622,68 @@ function updateCart(){
   <div class="cart-thumb">
    <svg viewBox="0 0 100 120"><path d="M32 12 L42 7 Q50 17 58 7 L68 12 L91 26 L80 46 L68 41 L72 112 Q50 117 28 112 L32 41 L20 46 L9 26Z" fill="${x.colour==='Black'?'#171715':x.colour==='Charcoal'?'#444440':'#e9e6dc'}" stroke="#888" stroke-width="1"/></svg>
   </div>
-  <div class="cart-details"><h3>${x.name}</h3><p>${x.colour} / Size ${x.size}</p><p>₹${x.price} × ${x.quantity}</p><button onclick="removeItem(${i})">REMOVE</button></div>
+  <div class="cart-details">
+   <h3>${x.name}</h3>
+   <p>${x.colour} / Size ${x.size}</p>
+   <p>₹${x.price} each</p>
+   <div class="qty-row">
+    <button type="button" class="qty-btn" onclick="changeQty(${i},-1)" aria-label="Decrease quantity">−</button>
+    <span class="qty-val">${x.quantity}</span>
+    <button type="button" class="qty-btn" onclick="changeQty(${i},1)" aria-label="Increase quantity">+</button>
+   </div>
+   <button type="button" class="remove-btn" onclick="removeItem(${i})">REMOVE</button>
+  </div>
  </div>`).join('');
  const total=cart.reduce((s,x)=>s+x.price*x.quantity,0);
  document.getElementById('cartTotal').textContent='₹'+total.toLocaleString('en-IN');
 }
+
 function removeItem(i){cart.splice(i,1);updateCart()}
+
 function openCart(){
  document.getElementById('overlay').classList.add('active');
  document.getElementById('drawer').classList.add('active');
 }
+
 function closeCart(){
  document.getElementById('overlay').classList.remove('active');
  document.getElementById('drawer').classList.remove('active');
 }
+
 function subscribe(e){
  e.preventDefault();
- document.getElementById('subscribeMessage').textContent='Thanks for your interest in VEXDRAPE.';
+ document.getElementById('subscribeMessage').textContent='Preview noted — live newsletter saving is not connected yet.';
  document.getElementById('email').value='';
 }
+
+const prefersReducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function updateScrollMotion(){
+ if(prefersReducedMotion)return;
+ const y=window.scrollY||0;
+ document.querySelectorAll('[data-speed]').forEach(el=>{
+  const speed=parseFloat(el.getAttribute('data-speed'))||0;
+  const rot=parseFloat(el.getAttribute('data-rot'))||0;
+  const shift=y*speed;
+  const tilt=rot+(y*speed*0.08);
+  el.style.transform=`translate3d(0, ${shift.toFixed(1)}px, 0) rotate(${tilt.toFixed(1)}deg)`;
+ });
+ const heroShirt=document.getElementById('heroShirt');
+ const heroCircle=document.getElementById('heroCircle');
+ const storyEmblem=document.getElementById('storyEmblem');
+ if(heroShirt)heroShirt.style.transform=`translate3d(0, ${Math.min(y*0.09,55).toFixed(1)}px, 0)`;
+ if(heroCircle)heroCircle.style.transform=`rotate(${(y*0.025).toFixed(1)}deg)`;
+ if(storyEmblem)storyEmblem.style.transform=`rotate(${(y*0.03).toFixed(1)}deg)`;
+}
+
+window.addEventListener('scroll',updateScrollMotion,{passive:true});
+document.addEventListener('keydown',e=>{
+ if(e.key==='Escape'){
+  closeProduct();
+  closeCart();
+  closeNav();
+ }
+});
+updateScrollMotion();
 updateCart();
 </script>
 </body>
