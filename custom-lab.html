@@ -1,0 +1,566 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VEXDRAPE — Custom Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#11110f;
+  --panel:#1b1b18;
+  --cream:#f0eee8;
+  --muted:#898981;
+  --line:#34342f;
+  --accent:#d7d2c6;
+}
+* {box-sizing:border-box}
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--cream);
+  font-family:'DM Sans',sans-serif;
+}
+header {
+  height:75px;
+  padding:0 6%;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.brand {
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;
+  letter-spacing:3px;
+  font-size:20px;
+}
+header a {
+  color:var(--cream);
+  text-decoration:none;
+  font-size:12px;
+  letter-spacing:1px;
+}
+main {
+  max-width:1250px;
+  margin:auto;
+  padding:45px 24px 80px;
+}
+.heading {margin-bottom:32px}
+.eyebrow {
+  color:var(--muted);
+  font-size:11px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+h1 {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(34px,6vw,58px);
+  line-height:1;
+  margin:14px 0;
+  letter-spacing:-2px;
+}
+.heading p {
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.7;
+}
+.editor {
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:24px;
+}
+.preview-panel,.controls {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:12px;
+}
+.preview-panel {padding:20px}
+.preview-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+.small-label {
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--muted);
+}
+.views {
+  display:flex;
+  gap:7px;
+}
+button {
+  font-family:inherit;
+  cursor:pointer;
+}
+.view-btn,.secondary {
+  border:1px solid var(--line);
+  color:var(--cream);
+  background:transparent;
+  padding:10px 15px;
+  border-radius:5px;
+  font-size:12px;
+}
+.view-btn.active,.primary {
+  background:var(--cream);
+  color:#11110f;
+  border-color:var(--cream);
+}
+#shirtCanvas {
+  width:100%;
+  display:block;
+  background:#22221e;
+  border-radius:8px;
+}
+.preview-note {
+  color:var(--muted);
+  font-size:11px;
+  text-align:center;
+  margin-top:14px;
+}
+.controls {padding:24px}
+.section {
+  padding-bottom:22px;
+  margin-bottom:22px;
+  border-bottom:1px solid var(--line);
+}
+.section:last-child {border:0;margin:0;padding:0}
+.section h3 {
+  font-size:13px;
+  margin:0 0 14px;
+  font-weight:600;
+}
+.section p {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+}
+.option-row {
+  display:flex;
+  gap:9px;
+}
+.option {
+  flex:1;
+  border:1px solid var(--line);
+  background:transparent;
+  color:var(--cream);
+  border-radius:5px;
+  padding:13px 8px;
+  font-size:12px;
+}
+.option.selected {
+  border-color:var(--cream);
+  background:#292923;
+}
+.locked {
+  background:#25251f;
+  padding:13px;
+  border-radius:6px;
+  font-size:12px;
+  line-height:1.6;
+  color:var(--accent);
+}
+input[type="file"] {
+  width:100%;
+  color:var(--muted);
+  font-size:12px;
+}
+input[type="text"] {
+  width:100%;
+  background:#11110f;
+  border:1px solid var(--line);
+  border-radius:5px;
+  padding:12px;
+  color:var(--cream);
+  outline:none;
+  margin-bottom:10px;
+}
+input[type="range"] {width:100%;accent-color:var(--cream)}
+.range-label {
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:11px;
+  margin:14px 0 5px;
+}
+.primary {
+  width:100%;
+  border-radius:5px;
+  border:0;
+  padding:13px;
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:1px;
+}
+.secondary {width:100%;margin-top:9px}
+.notice {
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.7;
+  margin-top:18px;
+}
+footer {
+  border-top:1px solid var(--line);
+  padding:25px;
+  text-align:center;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:2px;
+}
+@media(max-width:800px) {
+  main {padding:30px 14px 55px}
+  .editor {grid-template-columns:1fr}
+  .controls {padding:19px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">VEXDRAPE.</div>
+  <a href="index.html">← BACK TO STORE</a>
+</header>
+
+<main>
+  <div class="heading">
+    <div class="eyebrow">VEXDRAPE / EXPERIMENTAL STUDIO</div>
+    <h1>CUSTOM LAB.</h1>
+    <p>Create something that represents your perspective.<br>
+    Your design. Your expression. The VEXDRAPE identity.</p>
+  </div>
+
+  <div class="editor">
+    <div class="preview-panel">
+      <div class="preview-top">
+        <span class="small-label">LIVE GARMENT PREVIEW</span>
+        <div class="views">
+          <button class="view-btn active" id="frontBtn">FRONT</button>
+          <button class="view-btn" id="backBtn">BACK</button>
+        </div>
+      </div>
+      <canvas id="shirtCanvas" width="600" height="620"></canvas>
+      <div class="preview-note">BLACK OVERSIZED T-SHIRT · PREVIEW 001</div>
+    </div>
+
+    <div class="controls">
+      <div class="section">
+        <h3>01 / PROTECTED BRANDING</h3>
+        <p>Choose where your VEXDRAPE identity appears.</p>
+        <div class="option-row">
+          <button class="option selected" id="chestBtn">FRONT LEFT</button>
+          <button class="option" id="backLogoBtn">BACK</button>
+        </div>
+        <div class="locked" style="margin-top:12px">
+          🔒 LOGO PROTECTED<br>
+          Your VEXDRAPE logo cannot be deleted or covered by customer artwork.
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>02 / UPLOAD YOUR ARTWORK</h3>
+        <p>Upload a PNG or JPG for the currently selected side.</p>
+        <input type="file" id="artUpload" accept="image/png,image/jpeg,image/webp">
+        <div class="range-label"><span>ARTWORK SIZE</span><span id="sizeValue">100%</span></div>
+        <input type="range" id="sizeRange" min="40" max="180" value="100">
+        <div class="range-label"><span>HORIZONTAL POSITION</span><span id="xValue">50%</span></div>
+        <input type="range" id="xRange" min="10" max="90" value="50">
+        <div class="range-label"><span>VERTICAL POSITION</span><span id="yValue">50%</span></div>
+        <input type="range" id="yRange" min="15" max="85" value="50">
+      </div>
+
+      <div class="section">
+        <h3>03 / ADD YOUR TEXT</h3>
+        <input type="text" id="customText" maxlength="35" placeholder="Enter your text...">
+        <button class="secondary" id="addText">+ ADD TEXT TO DESIGN</button>
+      </div>
+
+      <div class="section">
+        <h3>04 / DESIGN MANAGEMENT</h3>
+        <p>Remove the last customer-created element from this side. Your logo will always remain.</p>
+        <button class="secondary" id="removeDesign">REMOVE LAST DESIGN</button>
+        <button class="secondary" id="resetSide">RESET THIS SIDE</button>
+      </div>
+
+      <button class="primary" id="previewButton">PREVIEW MY DESIGN</button>
+      <div class="notice">
+        This is an experimental preview. Designs are not saved or submitted to Qikink yet. Print areas, garment options and pricing will be confirmed before launch.
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>VEXDRAPE — WEAR YOUR PERSPECTIVE.</footer>
+
+<script>
+const canvas = document.getElementById("shirtCanvas");
+const ctx = canvas.getContext("2d");
+
+let side = "front";
+let logoPosition = "chest";
+let designs = {front:[],back:[]};
+let currentImage = null;
+
+const frontBtn = document.getElementById("frontBtn");
+const backBtn = document.getElementById("backBtn");
+const chestBtn = document.getElementById("chestBtn");
+const backLogoBtn = document.getElementById("backLogoBtn");
+
+const sizeRange = document.getElementById("sizeRange");
+const xRange = document.getElementById("xRange");
+const yRange = document.getElementById("yRange");
+
+function shirtPath() {
+  ctx.beginPath();
+  ctx.moveTo(220,110);
+  ctx.lineTo(155,135);
+  ctx.lineTo(75,245);
+  ctx.lineTo(145,290);
+  ctx.lineTo(190,235);
+  ctx.lineTo(190,535);
+  ctx.quadraticCurveTo(300,555,410,535);
+  ctx.lineTo(410,235);
+  ctx.lineTo(455,290);
+  ctx.lineTo(525,245);
+  ctx.lineTo(445,135);
+  ctx.lineTo(380,110);
+  ctx.quadraticCurveTo(300,160,220,110);
+  ctx.closePath();
+}
+
+function drawLogo() {
+  let x = logoPosition === "chest" ? 385 : 300;
+  let y = logoPosition === "chest" ? 240 : 190;
+
+  ctx.save();
+  ctx.textAlign = "center";
+  ctx.fillStyle = "#f0eee8";
+  ctx.strokeStyle = "#f0eee8";
+  ctx.lineWidth = 2;
+
+  if (side === "front" && logoPosition === "chest") {
+    ctx.beginPath();
+    ctx.arc(x,y,25,0,Math.PI*2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(x,y,20,0,Math.PI*2);
+    ctx.stroke();
+    ctx.font = "bold 8px Arial";
+    ctx.fillText("VD",x,y+3);
+    ctx.font = "bold 8px Arial";
+    ctx.fillText("VEXDRAPE",x,y+38);
+  }
+
+  if (side === "back" && logoPosition === "back") {
+    ctx.font = "bold 23px Arial";
+    ctx.fillText("VEXDRAPE",x,y);
+    ctx.font = "8px Arial";
+    ctx.fillText("WEAR YOUR PERSPECTIVE.",x,y+17);
+    ctx.fillRect(x-55,y+26,110,1);
+  }
+  ctx.restore();
+}
+
+function drawDesigns() {
+  designs[side].forEach(item => {
+    let x = item.x;
+    let y = item.y;
+
+    if (item.type === "image" && item.image) {
+      let w = 150 * item.scale;
+      let h = w * (item.image.height/item.image.width);
+      ctx.drawImage(item.image,x-w/2,y-h/2,w,h);
+    }
+
+    if (item.type === "text") {
+      ctx.save();
+      ctx.fillStyle = item.color;
+      ctx.textAlign = "center";
+      ctx.font = `bold ${item.fontSize}px Arial`;
+      ctx.fillText(item.text,x,y);
+      ctx.restore();
+    }
+  });
+}
+
+function drawShirt() {
+  ctx.clearRect(0,0,600,620);
+
+  ctx.fillStyle = "#22221e";
+  ctx.fillRect(0,0,600,620);
+
+  // Soft background light
+  let gradient = ctx.createRadialGradient(300,300,50,300,300,330);
+  gradient.addColorStop(0,"#34342e");
+  gradient.addColorStop(1,"#22221e");
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0,0,600,620);
+
+  // Shirt shadow
+  ctx.save();
+  ctx.shadowColor = "rgba(0,0,0,.55)";
+  ctx.shadowBlur = 28;
+  ctx.shadowOffsetY = 15;
+  shirtPath();
+  ctx.fillStyle = "#090909";
+  ctx.fill();
+  ctx.restore();
+
+  // Shirt surface
+  shirtPath();
+  let shirtGradient = ctx.createLinearGradient(100,100,500,530);
+  shirtGradient.addColorStop(0,"#292929");
+  shirtGradient.addColorStop(.5,"#111111");
+  shirtGradient.addColorStop(1,"#202020");
+  ctx.fillStyle = shirtGradient;
+  ctx.fill();
+
+  // Outline
+  shirtPath();
+  ctx.strokeStyle = "#44443f";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Neckline
+  ctx.beginPath();
+  if (side === "front") {
+    ctx.moveTo(220,111);
+    ctx.quadraticCurveTo(300,190,380,111);
+  } else {
+    ctx.moveTo(220,111);
+    ctx.quadraticCurveTo(300,145,380,111);
+  }
+  ctx.strokeStyle = "#55554e";
+  ctx.lineWidth = 9;
+  ctx.stroke();
+
+  // Sleeve seams
+  ctx.beginPath();
+  ctx.moveTo(155,135);
+  ctx.lineTo(190,235);
+  ctx.moveTo(445,135);
+  ctx.lineTo(410,235);
+  ctx.strokeStyle = "#3c3c37";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Custom artwork first
+  drawDesigns();
+
+  // Protected branding is always drawn last
+  drawLogo();
+
+  ctx.fillStyle = "#8c8c83";
+  ctx.font = "10px Arial";
+  ctx.textAlign = "center";
+  ctx.fillText(side.toUpperCase()+" VIEW",300,590);
+}
+
+function update() {
+  drawShirt();
+  document.getElementById("sizeValue").textContent = sizeRange.value+"%";
+  document.getElementById("xValue").textContent = xRange.value+"%";
+  document.getElementById("yValue").textContent = yRange.value+"%";
+}
+
+function selectSide(value) {
+  side = value;
+  frontBtn.classList.toggle("active",side==="front");
+  backBtn.classList.toggle("active",side==="back");
+  update();
+}
+
+frontBtn.onclick = () => selectSide("front");
+backBtn.onclick = () => selectSide("back");
+
+function selectLogo(value) {
+  logoPosition = value;
+  chestBtn.classList.toggle("selected",value==="chest");
+  backLogoBtn.classList.toggle("selected",value==="back");
+  update();
+}
+
+chestBtn.onclick = () => selectLogo("chest");
+backLogoBtn.onclick = () => selectLogo("back");
+
+document.getElementById("artUpload").addEventListener("change",function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const image = new Image();
+  image.onload = () => {
+    currentImage = image;
+    designs[side].push({
+      type:"image",
+      image:image,
+      x:600 * Number(xRange.value)/100,
+      y:620 * Number(yRange.value)/100,
+      scale:Number(sizeRange.value)/100
+    });
+    update();
+  };
+  image.src = URL.createObjectURL(file);
+});
+
+document.getElementById("addText").onclick = () => {
+  const text = document.getElementById("customText").value.trim();
+  if (!text) {
+    alert("Enter some text first.");
+    return;
+  }
+
+  designs[side].push({
+    type:"text",
+    text:text,
+    x:600 * Number(xRange.value)/100,
+    y:620 * Number(yRange.value)/100,
+    fontSize:24 * Number(sizeRange.value)/100,
+    color:"#f0eee8"
+  });
+
+  document.getElementById("customText").value = "";
+  update();
+};
+
+function updateSelectedDesign() {
+  const list = designs[side];
+  if (!list.length) return;
+
+  const item = list[list.length-1];
+  item.x = 600 * Number(xRange.value)/100;
+  item.y = 620 * Number(yRange.value)/100;
+
+  if (item.type === "image") {
+    item.scale = Number(sizeRange.value)/100;
+  } else {
+    item.fontSize = 24 * Number(sizeRange.value)/100;
+  }
+  update();
+}
+
+sizeRange.oninput = updateSelectedDesign;
+xRange.oninput = updateSelectedDesign;
+yRange.oninput = updateSelectedDesign;
+
+document.getElementById("removeDesign").onclick = () => {
+  designs[side].pop();
+  update();
+};
+
+document.getElementById("resetSide").onclick = () => {
+  if (confirm("Remove all customer artwork from this side? Your VEXDRAPE logo will stay.")) {
+    designs[side] = [];
+    update();
+  }
+};
+
+document.getElementById("previewButton").onclick = () => {
+  alert("Your design preview is ready! Permanent saving and ordering will be added after the Qikink integration is confirmed.");
+};
+
+update();
+</script>
+</body>
+</html>
