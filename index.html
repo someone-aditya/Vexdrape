@@ -1,1890 +1,1437 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#11110f">
+<meta name="theme-color" content="#10100f">
 <title>VEXDRAPE — Wear Your Perspective</title>
-<meta name="description" content="VEXDRAPE — Independent minimal streetwear. DROP 001: THE FIRST PERSPECTIVE.">
+<meta name="description" content="VEXDRAPE — Independent streetwear. Wear your perspective.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-
-:root {
-  --black:#11110f;
-  --dark:#191917;
-  --cream:#f0eee8;
-  --white:#fffefa;
-  --grey:#85847e;
-  --line:rgba(240,238,232,.17);
-  --serif:Georgia,serif;
+:root{
+  --black:#10100f;
+  --black2:#171715;
+  --panel:#20201e;
+  --cream:#eae7dd;
+  --paper:#f5f3ed;
+  --muted:#92918a;
+  --line:rgba(255,255,255,.13);
+  --darkline:rgba(0,0,0,.15);
+  --accent:#c8c1ae;
+  --white:#fff;
+  --mono:"DM Mono",monospace;
+  --sans:"DM Sans",sans-serif;
+  --serif:"Playfair Display",serif;
+  --nav:76px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--black);color:var(--cream);font-family:'DM Sans',sans-serif;position:relative;overflow-x:hidden}
-button,a{font:inherit}
+body{
+  background:var(--black);
+  color:var(--cream);
+  font-family:var(--sans);
+  overflow-x:hidden;
+}
+body.light-page{background:var(--cream);color:var(--black)}
+button,input,textarea,select{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
 a{color:inherit;text-decoration:none}
 button{cursor:pointer}
-
-.ambient-stage{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.ambient-orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.22;will-change:transform;transition:transform .12s linear}
-.orb-one{width:460px;height:460px;top:-110px;left:-100px;background:radial-gradient(circle,#f0eee8 0%,transparent 70%)}
-.orb-two{width:520px;height:520px;top:38%;right:-150px;background:radial-gradient(circle,#85847e 0%,transparent 70%)}
-.orb-three{width:420px;height:420px;bottom:-120px;left:22%;background:radial-gradient(circle,#d9d6cc 0%,transparent 70%);opacity:.14}
-
-.floating-piece{position:absolute;opacity:.085;color:var(--cream);will-change:transform;transition:transform .12s linear}
-.floating-piece svg{width:100%;height:100%;display:block}
-.piece-shirt-a{width:170px;top:14%;right:8%}
-.piece-shoe-a{width:165px;top:36%;left:4%}
-.piece-hoodie-a{width:190px;top:58%;right:6%}
-.piece-shoe-b{width:150px;top:79%;left:10%}
-
-.announcement,header,main,footer{position:relative;z-index:1}
-.announcement{text-align:center;padding:10px;background:var(--cream);color:var(--black);font-size:10px;letter-spacing:2px;font-weight:700}
-header{height:82px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(17,17,15,.92);backdrop-filter:blur(16px);z-index:10}
-.brand{display:flex;align-items:center;gap:11px}
-.brand svg{width:46px;height:46px}
-.brand-name{font-family:'Space Grotesk';font-weight:700;font-size:20px;letter-spacing:3px}
-nav{display:flex;gap:35px;align-items:center}
-nav a{font-size:11px;letter-spacing:1.5px;color:#d4d2cb;transition:.2s}
-nav a:hover{color:white}
-.header-right{display:flex;gap:22px;align-items:center}
-.icon-btn{background:none;border:0;color:var(--cream);font-size:12px;letter-spacing:1px;transition:transform .2s}
-.icon-btn:hover{transform:translateY(-1px)}
-.bag-count{background:var(--cream);color:var(--black);border-radius:50%;padding:3px 7px;font-size:10px;margin-left:5px;font-weight:700;display:inline-block;transition:transform .25s}
-.bag-count.bump{transform:scale(1.25)}
-.menu-btn{display:none}
-
-.hero{min-height:660px;display:grid;grid-template-columns:1fr 1fr;padding:70px 7%;align-items:center;gap:40px;overflow:hidden}
-.eyebrow{font-size:10px;letter-spacing:4px;color:#aaa89f;margin-bottom:25px}
-.hero h1{font-family:'Space Grotesk';font-size:clamp(52px,7vw,100px);line-height:.95;letter-spacing:-5px;font-weight:600}
-.hero h1 span{font-family:var(--serif);font-style:italic;font-weight:400}
-.hero-description{max-width:370px;color:#aaa89f;line-height:1.9;font-size:13px;margin:28px 0 34px}
-.actions{display:flex;gap:12px;flex-wrap:wrap}
-.btn{padding:16px 24px;border:1px solid var(--cream);font-size:10px;letter-spacing:2px;font-weight:700;transition:.25s;display:inline-block}
-.btn:active{transform:scale(.98)}
-.btn-primary{background:var(--cream);color:var(--black)}
-.btn-primary:hover{background:transparent;color:var(--cream)}
+img{display:block;width:100%;object-fit:cover}
+::selection{background:var(--cream);color:var(--black)}
+::-webkit-scrollbar{width:7px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:#555;border-radius:10px}
+.container{width:min(1440px,92%);margin:auto}
+.eyebrow{
+  font:10px var(--mono);
+  letter-spacing:2.2px;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.serif{font-family:var(--serif);font-style:italic}
+.display{
+  font-size:clamp(55px,10vw,145px);
+  line-height:.83;
+  letter-spacing:-.075em;
+  font-weight:800;
+  text-transform:uppercase;
+}
+.section-title{
+  font-size:clamp(38px,6vw,78px);
+  letter-spacing:-.065em;
+  line-height:.95;
+  font-weight:700;
+  text-transform:uppercase;
+}
+.muted{color:var(--muted)}
+.small{font-size:12px;line-height:1.7}
+.rule{height:1px;background:var(--line);width:100%}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  border:1px solid var(--cream);
+  padding:15px 21px;
+  background:var(--cream);
+  color:var(--black);
+  font:10px var(--mono);
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  transition:.3s;
+}
+.btn:hover{background:transparent;color:var(--cream);transform:translateY(-3px)}
+.btn-outline{background:transparent;color:var(--cream)}
 .btn-outline:hover{background:var(--cream);color:var(--black)}
-.hero-art{position:relative;min-height:460px;display:flex;align-items:center;justify-content:center}
-.hero-circle{position:absolute;width:min(420px,90%);aspect-ratio:1;border:1px solid #55534d;border-radius:50%;transition:transform .15s linear}
-.hero-circle:before,.hero-circle:after{content:"";position:absolute;border:1px solid #373630;border-radius:50%;inset:25px}
-.hero-circle:after{inset:52px}
-.hero-shirt{position:relative;width:75%;max-width:390px;filter:drop-shadow(0 25px 30px #000);transition:transform .15s linear}
-.hero-caption{position:absolute;bottom:12px;right:0;font-size:9px;letter-spacing:3px;color:#77766e}
-
-.marquee{background:var(--cream);color:var(--black);overflow:hidden;padding:17px 0;white-space:nowrap}
-.marquee-track{display:inline-block;animation:move 27s linear infinite;font-family:'Space Grotesk';font-size:13px;letter-spacing:4px;font-weight:700}
-@keyframes move{to{transform:translateX(-50%)}}
-
-.section{padding:100px 7%}
-.section-top{display:flex;justify-content:space-between;align-items:end;margin-bottom:42px;gap:20px}
-.section-label{font-size:10px;letter-spacing:3px;color:#aaa89f;margin-bottom:13px}
-.section h2{font-family:'Space Grotesk';font-size:clamp(35px,5vw,60px);letter-spacing:-2px;font-weight:500}
-.section-note{font-size:11px;color:#aaa89f;line-height:1.8;max-width:260px}
-.products{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.product-card{min-width:0;transition:transform .35s ease}
-.product-card:hover{transform:translateY(-4px)}
-.product-image{position:relative;aspect-ratio:4/5;background:#252522;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:background-color .3s ease}
-.product-image.light{background:#d9d6cc}
-.product-image.grey{background:#393936}
-.product-image svg{width:84%;height:90%;transition:transform .5s ease}
-.product-card:hover .product-image svg{transform:scale(1.045)}
-.product-tag{position:absolute;top:15px;left:15px;background:var(--cream);color:var(--black);font-size:9px;padding:7px 10px;letter-spacing:1.5px;font-weight:700}
-.quick-add{position:absolute;bottom:13px;left:13px;right:13px;border:0;padding:14px;background:var(--cream);color:var(--black);font-size:10px;letter-spacing:2px;font-weight:700;opacity:0;transform:translateY(8px);transition:.25s}
-.product-card:hover .quick-add{opacity:1;transform:none}
-.product-info{padding:17px 0;display:flex;justify-content:space-between;gap:10px}
-.product-info h3{font-size:13px;font-weight:600;letter-spacing:.5px}
-.product-info p{font-size:11px;color:#96948d;margin-top:7px}
-.price{font-size:13px;font-weight:600;white-space:nowrap}
-.colors{display:flex;gap:8px;margin-top:12px;align-items:center}
-.swatch-btn{width:16px;height:16px;border-radius:50%;border:1px solid #777;padding:0;position:relative;transition:transform .2s,box-shadow .2s}
-.swatch-btn:hover{transform:scale(1.15)}
-.swatch-btn.active{box-shadow:0 0 0 2px var(--black),0 0 0 3.5px var(--cream);border-color:var(--cream)}
-
-.story{background:var(--cream);color:var(--black);padding:100px 7%;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
-.story-visual{min-height:380px;background:#d9d6cc;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.story-visual svg{width:72%;max-width:340px;transition:transform .15s linear}
-.story-copy .section-label{color:#77746c}
-.story-copy h2{font-family:'Space Grotesk';font-size:clamp(38px,5vw,65px);line-height:1.05;letter-spacing:-3px;font-weight:500}
-.story-copy p{font-size:13px;line-height:2;color:#68665f;max-width:400px;margin:25px 0}
-.story-copy .btn{border-color:var(--black)}
-.story-copy .btn-primary{background:var(--black);color:var(--cream)}
-.story-copy .btn-primary:hover{background:transparent;color:var(--black)}
-
-.values{padding:80px 7%;display:grid;grid-template-columns:repeat(3,1fr);gap:35px}
-.value{border-top:1px solid var(--line);padding-top:22px;transition:border-color .25s}
-.value:hover{border-top-color:var(--cream)}
-.value-number{font-family:'Space Grotesk';font-size:12px;color:#85847e}
-.value h3{font-size:14px;letter-spacing:1px;margin:20px 0 12px}
-.value p{font-size:12px;line-height:1.8;color:#96948d;max-width:270px}
-
-.newsletter{padding:85px 7%;text-align:center;background:rgba(27,27,24,.92)}
-.newsletter h2{font-family:'Space Grotesk';font-size:clamp(32px,5vw,55px);letter-spacing:-2px}
-.newsletter p{font-size:12px;color:#aaa89f;margin:15px 0 25px}
-.newsletter-form{display:flex;max-width:420px;margin:auto;border-bottom:1px solid #777;padding-bottom:8px}
-.newsletter-form input{background:none;border:0;outline:0;color:white;flex:1;padding:10px;font-size:12px;min-width:0}
-.newsletter-form button{background:none;border:0;color:var(--cream);font-size:10px;letter-spacing:2px;font-weight:700}
-.subscribe-status{margin-top:16px;font-size:11px;color:#d4d2cb;min-height:16px}
-
-footer{padding:55px 7% 25px;border-top:1px solid var(--line);background:rgba(17,17,15,.94)}
-.footer-top{display:flex;justify-content:space-between;gap:35px;flex-wrap:wrap;padding-bottom:50px}
-.footer-brand p{font-size:11px;color:#85847e;margin-top:15px;letter-spacing:1px}
-.footer-links{display:flex;gap:60px}
-.footer-links h4{font-size:10px;letter-spacing:2px;margin-bottom:18px}
-.footer-links a{display:block;font-size:11px;color:#96948d;margin:12px 0;transition:.2s}
-.footer-links a:hover{color:var(--cream)}
-.footer-bottom{border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;color:#77766e;font-size:9px;letter-spacing:1px;gap:15px;flex-wrap:wrap}
-
-.overlay{position:fixed;inset:0;background:#0009;z-index:20;opacity:0;pointer-events:none;transition:.25s}
-.overlay.active{opacity:1;pointer-events:auto}
-.drawer{position:fixed;right:0;top:0;height:100%;width:min(430px,100%);background:var(--cream);color:var(--black);z-index:21;padding:28px;transform:translateX(100%);transition:.32s cubic-bezier(.22,1,.36,1);overflow:auto}
-.drawer.active{transform:none}
-.drawer-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ccc;padding-bottom:20px}
-.drawer-head h2{font-family:'Space Grotesk';font-size:22px}
-.close{background:none;border:0;font-size:25px;color:inherit}
-.cart-item{display:flex;gap:15px;padding:22px 0;border-bottom:1px solid #ccc}
-.cart-thumb{width:85px;height:100px;background:#252522;display:flex;align-items:center;justify-content:center}
-.cart-thumb svg{width:90%}
-.cart-details{flex:1}
-.cart-details h3{font-size:13px}
-.cart-details p{font-size:11px;color:#68665f;margin-top:7px}
-.qty-row{display:flex;align-items:center;gap:10px;margin-top:10px}
-.qty-btn{border:1px solid #888;background:transparent;color:var(--black);width:24px;height:24px;font-size:12px;line-height:1}
-.qty-val{font-size:11px;font-weight:700}
-.remove-btn{border:0;background:none;text-decoration:underline;font-size:10px;margin-top:10px;color:var(--black)}
-.cart-total{display:flex;justify-content:space-between;margin:25px 0;font-weight:700}
-.cart-message{font-size:11px;line-height:1.7;color:#68665f;margin-bottom:18px}
-.checkout{width:100%;background:var(--black);color:white;border:0;padding:17px;font-size:10px;letter-spacing:2px;font-weight:700}
-.empty{text-align:center;padding:60px 0;color:#68665f;font-size:13px}
-
-.modal{position:fixed;inset:0;background:#000b;z-index:30;display:none;align-items:center;justify-content:center;padding:20px}
-.modal.active{display:flex}
-.modal-box{background:var(--cream);color:var(--black);width:min(650px,100%);padding:30px;position:relative;animation:popIn .24s ease}
-@keyframes popIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
-.modal-close{position:absolute;right:20px;top:15px;background:none;border:0;font-size:25px}
-.modal-content{display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center}
-.modal-product-image{background:#292925;min-height:300px;display:flex;align-items:center;justify-content:center;transition:background-color .25s ease}
-.modal-product-image svg{width:90%}
-.modal-content h2{font-family:'Space Grotesk';font-size:27px}
-.modal-content p{font-size:12px;color:#68665f;margin:12px 0;line-height:1.6}
-.modal-price{font-weight:700;font-size:18px;margin:15px 0}
-.option-label{font-size:10px;letter-spacing:1px;font-weight:700;margin:17px 0 9px;display:block}
-.options{display:flex;gap:7px;flex-wrap:wrap}
-.option{border:1px solid #aaa;background:transparent;padding:9px 12px;font-size:10px;transition:.2s}
-.option.selected{background:var(--black);color:white;border-color:var(--black)}
-.add-button{width:100%;background:var(--black);color:white;border:0;padding:15px;margin-top:20px;font-size:10px;letter-spacing:2px;font-weight:700}
-
-
-/* VEXDRAPE CUSTOM LAB */
-.custom-lab{padding:95px 7%;background:#e9e6dc;color:#171715}
-.custom-lab .section-label{color:#77746c}
-.custom-lab h2{font-family:'Space Grotesk';font-size:clamp(36px,5vw,60px);letter-spacing:-2px;font-weight:500}
-.lab-intro{max-width:620px;color:#68665f;font-size:13px;line-height:1.8;margin:14px 0 35px}
-.lab-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);gap:28px;align-items:start}
-.lab-preview{background:#d8d5cb;min-height:570px;padding:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.lab-preview-top{position:absolute;top:18px;left:20px;right:20px;display:flex;justify-content:space-between;gap:10px;font-size:9px;letter-spacing:1.5px;color:#68665f}
-.garment-wrap{width:min(100%,390px);position:relative}
-.garment-svg{width:100%;height:auto;display:block;filter:drop-shadow(0 18px 18px #0002)}
-.garment-art{position:absolute;left:50%;top:43%;transform:translate(-50%,-50%);width:48%;text-align:center;white-space:pre-wrap;overflow-wrap:anywhere;font-size:22px;font-weight:700;line-height:1.05;pointer-events:none}
-.logo-zone{position:absolute;z-index:2;display:flex;align-items:center;justify-content:center;text-align:center;width:48px;height:48px;border:1px dashed #b59a50;border-radius:50%;background:#171715;color:#f0eee8;font-size:7px;letter-spacing:.5px;line-height:1.2;pointer-events:none}
-.logo-zone.front-left{left:28%;top:28%}
-.logo-zone.back-center{left:50%;top:29%;transform:translateX(-50%)}
-.logo-zone span{display:block}
-.logo-zone small{font-size:6px;display:block;margin-top:3px;color:#d6c99f}
-.logo-zone.hidden-zone{display:none}
-.lab-view-label{margin-top:16px;font-size:10px;letter-spacing:2px;color:#55534d}
-.lab-panel{background:#fffefa;padding:26px}
-.lab-panel h3{font-family:'Space Grotesk';font-size:20px;margin-bottom:8px}
-.lab-panel>p{font-size:11px;line-height:1.7;color:#68665f;margin-bottom:22px}
-.lab-field{margin:18px 0}
-.lab-field label{display:block;font-size:9px;font-weight:700;letter-spacing:1.5px;margin-bottom:8px}
-.lab-field input,.lab-field select{width:100%;border:1px solid #d2cfc5;background:#fffefa;color:#171715;padding:12px;font:inherit;font-size:12px;min-width:0}
-.lab-field input[type="color"]{height:43px;padding:4px}
-.lab-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.lab-choice-row{display:flex;gap:8px;flex-wrap:wrap}
-.lab-choice{border:1px solid #aaa79e;background:transparent;color:#171715;padding:11px 14px;font-size:9px;letter-spacing:1px}
-.lab-choice.active{background:#171715;color:#fffefa;border-color:#171715}
-.lab-lock-note{background:#f0eee8;padding:13px;font-size:10px;line-height:1.7;color:#55534d;margin-top:12px}
-.lab-lock-note strong{color:#171715}
-.lab-primary{width:100%;border:0;background:#171715;color:#fffefa;padding:15px;font-size:10px;font-weight:700;letter-spacing:1.5px;margin-top:8px}
-.lab-primary:disabled{opacity:.45;cursor:not-allowed}
-.lab-status{font-size:10px;line-height:1.6;margin-top:12px;color:#68665f;min-height:16px}
-.lab-warning{font-size:10px;line-height:1.6;color:#8a5a22;margin-top:10px}
-@media(max-width:760px){
- .custom-lab{padding:70px 6%}
- .lab-layout{grid-template-columns:1fr}
- .lab-preview{min-height:450px;padding:22px}
- .lab-panel{padding:21px}
+.btn-dark{background:var(--black);color:var(--cream);border-color:var(--black)}
+.btn-dark:hover{background:transparent;color:var(--black)}
+.icon-btn{
+  width:39px;height:39px;border:1px solid var(--line);
+  background:transparent;color:inherit;border-radius:50%;
+  display:grid;place-items:center;transition:.25s;
 }
-
-@media(prefers-reduced-motion:reduce){
- html{scroll-behavior:auto}
- .marquee-track{animation:none}
- .ambient-orb,.floating-piece,.hero-circle,.hero-shirt,.story-visual svg{transition:none}
+.icon-btn:hover{background:var(--cream);color:var(--black)}
+/* INTRO */
+.intro{
+  position:fixed;inset:0;z-index:10000;background:var(--black);
+  display:grid;place-items:center;transition:opacity .8s,visibility .8s;
 }
-@media(max-width:760px){
- header{height:70px;padding:0 5%}
- .brand-name{font-size:17px}
- .brand svg{width:40px}
- nav{display:none;position:absolute;top:70px;left:0;right:0;background:var(--black);padding:25px;flex-direction:column;gap:25px;border-bottom:1px solid var(--line)}
- nav.open{display:flex}
- .menu-btn{display:block}
- .hero{grid-template-columns:1fr;padding:65px 7% 35px;gap:15px}
- .hero h1{font-size:65px}
- .hero-art{min-height:330px}
- .hero-shirt{max-width:280px}
- .section{padding:75px 6%}
- .section-top{align-items:start;flex-direction:column}
- .products{grid-template-columns:repeat(2,1fr);gap:12px}
- .product-info{flex-direction:column}
- .quick-add{opacity:1;transform:none;padding:11px}
- .story{grid-template-columns:1fr;padding:70px 7%;gap:35px}
- .story-visual{min-height:300px}
- .values{grid-template-columns:1fr;gap:35px}
- .footer-links{gap:30px}
- .modal-content{grid-template-columns:1fr}
- .modal-product-image{min-height:220px}
- .modal-box{max-height:90vh;overflow:auto}
- .floating-piece{opacity:.055}
- .piece-shirt-a,.piece-hoodie-a{width:120px}
- .piece-shoe-a,.piece-shoe-b{width:115px}
+.intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+.intro-inner{text-align:center}
+.intro-mark{
+  width:65px;height:65px;border:1px solid var(--cream);border-radius:50%;
+  display:grid;place-items:center;margin:0 auto 25px;
+  font:18px var(--mono);letter-spacing:-2px;
+  animation:rotateMark 8s linear infinite;
 }
-@media(max-width:390px){
- .products{grid-template-columns:1fr}
- .hero h1{font-size:55px}
+.intro-name{font-size:clamp(28px,6vw,60px);letter-spacing:.25em;font-weight:700}
+.intro-line{width:0;height:1px;background:var(--cream);margin:22px auto;animation:lineGrow 1.3s .5s forwards}
+.intro-caption{font:9px var(--mono);letter-spacing:3px;color:var(--muted)}
+@keyframes rotateMark{to{transform:rotate(360deg)}}
+@keyframes lineGrow{to{width:180px}}
+/* TOP STRIP + HEADER */
+.top-strip{
+  height:25px;display:flex;align-items:center;justify-content:center;
+  background:var(--cream);color:var(--black);
+  font:9px var(--mono);letter-spacing:2px;text-transform:uppercase;
+  overflow:hidden;white-space:nowrap;
+}
+header{
+  height:var(--nav);position:sticky;top:0;z-index:100;
+  background:rgba(16,16,15,.91);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  height:100%;width:min(1500px,94%);margin:auto;
+  display:flex;align-items:center;justify-content:space-between;gap:25px;
+}
+.brand{display:flex;align-items:center;gap:11px;min-width:175px}
+.brand-symbol{
+  width:36px;height:36px;border:1px solid var(--cream);border-radius:50%;
+  display:grid;place-items:center;font:12px var(--mono);position:relative;
+}
+.brand-symbol:after{content:"";position:absolute;inset:5px;border:1px solid var(--line);border-radius:50%}
+.brand-name{font-size:15px;font-weight:700;letter-spacing:3px}
+.nav-links{display:flex;align-items:center;gap:clamp(15px,3vw,42px)}
+.nav-links a,.nav-action{
+  font:10px var(--mono);letter-spacing:1px;text-transform:uppercase;
+  color:#d1cec4;transition:.2s;
+}
+.nav-links a:hover,.nav-action:hover{color:white}
+.nav-right{display:flex;align-items:center;gap:18px}
+.nav-action{background:none;border:0}
+.cart-count{
+  display:inline-grid;place-items:center;background:var(--cream);color:var(--black);
+  width:19px;height:19px;border-radius:50%;font-size:10px;margin-left:4px;
+}
+.menu-toggle{display:none}
+.mobile-menu{
+  display:none;position:absolute;top:100%;left:0;right:0;
+  background:var(--black);padding:25px 5%;border-bottom:1px solid var(--line);
+}
+.mobile-menu.open{display:grid;gap:22px}
+.mobile-menu a{font:12px var(--mono);letter-spacing:2px;text-transform:uppercase}
+/* PAGE ROUTING */
+#app{min-height:70vh}
+.page{display:none;animation:pageIn .55s ease both}
+.page.active{display:block}
+@keyframes pageIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+/* HOME HERO */
+.hero{
+  min-height:min(760px,calc(100vh - 100px));
+  position:relative;overflow:hidden;display:flex;align-items:center;
+  border-bottom:1px solid var(--line);
+}
+.hero:before{
+  content:"";position:absolute;width:650px;height:650px;border-radius:50%;
+  background:radial-gradient(circle,rgba(220,215,195,.15),transparent 68%);
+  right:5%;top:0;pointer-events:none;
+}
+.hero-grid{
+  width:min(1450px,92%);margin:auto;display:grid;
+  grid-template-columns:1.05fr .95fr;align-items:center;gap:20px;
+  position:relative;z-index:2;padding:70px 0;
+}
+.hero-copy{position:relative;z-index:3}
+.hero-copy .eyebrow{margin-bottom:30px}
+.hero-title{font-size:clamp(65px,10vw,150px);line-height:.79;letter-spacing:-.09em;font-weight:800}
+.hero-title span{display:block}
+.hero-title .serif{font-size:1.02em;letter-spacing:-.08em;text-transform:none;margin-top:10px}
+.hero-description{max-width:340px;color:#a7a49b;font-size:12px;line-height:1.9;margin:30px 0}
+.hero-buttons{display:flex;gap:10px;flex-wrap:wrap}
+.hero-visual{height:530px;position:relative;display:grid;place-items:center}
+.hero-orbit{
+  width:min(440px,90%);aspect-ratio:1;border:1px solid rgba(234,231,221,.22);
+  border-radius:50%;position:absolute;animation:orbit 30s linear infinite;
+}
+.hero-orbit:before,.hero-orbit:after{
+  content:"";position:absolute;border:1px solid rgba(234,231,221,.12);border-radius:50%;
+}
+.hero-orbit:before{inset:20px}
+.hero-orbit:after{inset:42px}
+@keyframes orbit{to{transform:rotate(360deg)}}
+.hero-shirt{
+  width:min(440px,90%);position:relative;z-index:2;
+  filter:drop-shadow(0 30px 35px rgba(0,0,0,.6));
+  animation:float 5s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-16px) rotate(1deg)}}
+.hero-stamp{
+  position:absolute;right:0;bottom:15%;font:9px var(--mono);
+  letter-spacing:3px;color:var(--muted);writing-mode:vertical-rl;
+}
+.hero-index{position:absolute;left:4%;bottom:25px;font:9px var(--mono);color:var(--muted);letter-spacing:2px}
+.hero-scroll{position:absolute;right:4%;bottom:25px;font:9px var(--mono);letter-spacing:2px;color:var(--muted)}
+/* TICKER */
+.ticker{background:var(--cream);color:var(--black);overflow:hidden;padding:14px 0;white-space:nowrap}
+.ticker-track{display:flex;width:max-content;animation:ticker 35s linear infinite}
+.ticker span{font:10px var(--mono);letter-spacing:2.5px;padding:0 25px}
+@keyframes ticker{to{transform:translateX(-50%)}}
+/* HOME FEATURE */
+.section{padding:110px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:45px}
+.section-head p{max-width:230px}
+.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.product-card{min-width:0;cursor:pointer}
+.product-image{
+  position:relative;overflow:hidden;background:#252522;aspect-ratio: .78;
+}
+.product-image img{height:100%;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .4s}
+.product-card:hover .product-image img{transform:scale(1.07)}
+.product-tag{
+  position:absolute;top:13px;left:13px;background:var(--cream);color:var(--black);
+  padding:7px 9px;font:8px var(--mono);letter-spacing:1px;text-transform:uppercase;
+}
+.product-heart{
+  position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.4);background:rgba(0,0,0,.3);
+  color:white;font-size:16px;display:grid;place-items:center;
+}
+.product-heart.saved{background:var(--cream);color:var(--black)}
+.product-info{display:flex;justify-content:space-between;gap:12px;padding:15px 0 5px}
+.product-info h3{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+.product-info .price{font:11px var(--mono);white-space:nowrap}
+.product-meta{font-size:10px;color:var(--muted);margin-top:6px}
+.product-dots{display:flex;gap:5px;margin-top:10px}
+.product-dots i{width:9px;height:9px;border-radius:50%;background:#333;border:1px solid #888}
+.product-dots i:nth-child(2){background:#dedbd0}
+.product-dots i:nth-child(3){background:#777}
+/* FEATURE STORY */
+.feature-banner{
+  min-height:570px;background:#242421;position:relative;overflow:hidden;
+  display:grid;grid-template-columns:1fr 1fr;align-items:center;
+}
+.feature-banner:after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(16,16,15,.97),rgba(16,16,15,.15));
+}
+.feature-image{position:absolute;right:0;top:0;width:62%;height:100%;object-fit:cover;opacity:.65}
+.feature-copy{position:relative;z-index:2;padding:70px 8%}
+.feature-copy h2{font-size:clamp(45px,7vw,90px);line-height:.9;letter-spacing:-.07em;text-transform:uppercase;margin:20px 0}
+.feature-copy p{max-width:330px;color:#b8b5ab;font-size:12px;line-height:1.8;margin-bottom:28px}
+/* COLLECTION TILES */
+.collection-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px}
+.collection-tile{height:410px;position:relative;overflow:hidden;background:#292925;cursor:pointer}
+.collection-tile img{height:100%;transition:.8s}
+.collection-tile:hover img{transform:scale(1.06)}
+.collection-tile:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,rgba(0,0,0,.75))}
+.collection-label{position:absolute;z-index:2;left:22px;bottom:22px}
+.collection-label h3{font-size:30px;letter-spacing:-1.5px;text-transform:uppercase}
+.collection-label span{font:9px var(--mono);letter-spacing:2px}
+/* MARQUEE STORY */
+.manifesto{
+  padding:100px 0;background:var(--cream);color:var(--black);text-align:center;overflow:hidden;
+}
+.manifesto .eyebrow{color:#777}
+.manifesto h2{font-size:clamp(45px,8vw,110px);line-height:.95;letter-spacing:-.08em;margin:28px auto;max-width:1000px}
+.manifesto p{max-width:480px;margin:0 auto;color:#64635d;font-size:12px;line-height:1.9}
+/* FOOTER */
+footer{background:#0c0c0b;border-top:1px solid var(--line);padding:70px 0 25px}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:35px;padding-bottom:65px}
+.footer-brand .brand-name{font-size:21px}
+.footer-brand p{max-width:270px;color:var(--muted);font-size:11px;line-height:1.9;margin-top:20px}
+.footer-col h4{font:10px var(--mono);letter-spacing:2px;margin-bottom:22px;color:var(--muted)}
+.footer-col a{display:block;font-size:12px;margin:13px 0;color:#d2d0c8}
+.footer-col a:hover{color:white}
+.footer-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font:9px var(--mono);letter-spacing:1px}
+/* INNER PAGE HEADERS */
+.page-heading{padding:85px 0 50px;border-bottom:1px solid var(--line)}
+.page-heading h1{font-size:clamp(55px,10vw,125px);line-height:.85;letter-spacing:-.08em;text-transform:uppercase;margin:22px 0}
+.page-heading p{max-width:440px;color:var(--muted);font-size:12px;line-height:1.8;margin-top:22px}
+.page-content{padding:55px 0 110px}
+.light-page .page-heading{border-color:var(--darkline)}
+.light-page .page-heading p{color:#68675f}
+.light-page .eyebrow{color:#777}
+/* SHOP */
+.shop-toolbar{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:30px;flex-wrap:wrap}
+.filter-group{display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn{
+  padding:10px 14px;border:1px solid var(--line);background:transparent;color:inherit;
+  font:9px var(--mono);letter-spacing:1px;text-transform:uppercase;
+}
+.filter-btn.active,.filter-btn:hover{background:var(--cream);color:var(--black);border-color:var(--cream)}
+.shop-search{
+  padding:12px 14px;background:transparent;border:1px solid var(--line);color:inherit;
+  outline:none;min-width:190px;font-size:11px;
+}
+.shop-sort{padding:12px;background:transparent;color:inherit;border:1px solid var(--line);font:10px var(--mono)}
+.shop-sort option{background:var(--black);color:white}
+/* PRODUCT DETAIL */
+.product-detail{display:grid;grid-template-columns:1.05fr .95fr;gap:7%;padding:60px 0 110px}
+.detail-gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:start}
+.detail-gallery img{background:#252522;aspect-ratio:.78}
+.detail-main-image{grid-column:span 2}
+.detail-info{position:sticky;top:115px;align-self:start}
+.detail-info h1{font-size:clamp(38px,5vw,65px);line-height:.9;letter-spacing:-.07em;text-transform:uppercase;margin:18px 0}
+.detail-price{font:16px var(--mono);margin:22px 0}
+.detail-description{font-size:12px;line-height:1.9;color:var(--muted);max-width:420px}
+.detail-option{margin-top:30px}
+.option-title{font:10px var(--mono);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:13px}
+.option-buttons{display:flex;gap:8px;flex-wrap:wrap}
+.option-btn{min-width:42px;height:42px;padding:0 13px;background:transparent;border:1px solid var(--line);color:inherit;font:10px var(--mono)}
+.option-btn.selected{background:var(--cream);color:var(--black);border-color:var(--cream)}
+.detail-add{width:100%;margin-top:30px}
+.detail-note{border-top:1px solid var(--line);margin-top:30px;padding-top:20px;color:var(--muted);font-size:10px;line-height:1.9}
+/* CART */
+.cart-layout{display:grid;grid-template-columns:1.5fr .8fr;gap:50px}
+.cart-item{display:grid;grid-template-columns:110px 1fr auto;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
+.cart-item img{height:135px;background:#252522}
+.cart-item h3{font-size:13px;text-transform:uppercase;margin:8px 0}
+.cart-item p{font:10px var(--mono);color:var(--muted);line-height:2}
+.cart-item-actions{display:flex;align-items:center;gap:10px;margin-top:14px}
+.qty-btn{width:26px;height:26px;border:1px solid var(--line);background:transparent;color:inherit}
+.remove-btn{background:none;border:0;color:var(--muted);font:9px var(--mono);text-decoration:underline;margin-left:10px}
+.cart-summary{background:var(--panel);padding:28px;height:max-content}
+.cart-summary h3{font-size:22px;text-transform:uppercase;letter-spacing:-1px;margin-bottom:25px}
+.summary-row{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line);font-size:11px}
+.summary-total{font-size:15px;font-weight:700}
+.cart-summary .btn{width:100%;margin-top:22px}
+.empty-state{padding:80px 20px;text-align:center;border:1px solid var(--line)}
+.empty-state h2{font-size:34px;letter-spacing:-2px;text-transform:uppercase;margin:18px 0}
+.empty-state p{font-size:12px;color:var(--muted);margin-bottom:25px}
+/* CUSTOM LAB */
+.lab-layout{display:grid;grid-template-columns:1fr .9fr;gap:35px;align-items:start}
+.lab-preview{
+  position:sticky;top:110px;background:#d8d5cc;color:#111;
+  min-height:580px;display:grid;place-items:center;overflow:hidden;padding:40px;
+}
+.lab-preview-top{position:absolute;top:20px;left:20px;right:20px;display:flex;justify-content:space-between;font:9px var(--mono);letter-spacing:1px}
+.lab-shirt{width:min(370px,90%);filter:drop-shadow(0 20px 15px rgba(0,0,0,.15))}
+.lab-art{
+  position:absolute;top:45%;left:50%;transform:translate(-50%,-50%);
+  max-width:150px;max-height:130px;object-fit:contain;display:none;pointer-events:none;
+}
+.lab-art.visible{display:block}
+.lab-logo{
+  position:absolute;top:36%;left:50%;transform:translate(-50%,-50%);
+  border:1px solid #b5a66b;border-radius:50%;width:33px;height:33px;
+  display:grid;place-items:center;color:#c5ae60;background:#111;
+  font:7px var(--mono);letter-spacing:-.5px;pointer-events:none;
+}
+.lab-preview.back .lab-logo{top:25%;left:50%}
+.lab-preview.back .lab-art{top:54%}
+.lab-side-caption{position:absolute;bottom:20px;font:9px var(--mono);letter-spacing:2px}
+.lab-form{background:var(--paper);color:var(--black);padding:30px}
+.lab-form h2{font-size:27px;letter-spacing:-1px;text-transform:uppercase;margin-bottom:8px}
+.lab-form p{font-size:11px;color:#666;line-height:1.8}
+.lab-control{margin-top:25px}
+.lab-control label{display:block;font:9px var(--mono);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+.lab-control input,.lab-control select,.lab-control textarea{
+  width:100%;padding:13px;border:1px solid #d1cec4;background:white;color:#111;outline:none;font-size:12px;
+}
+.lab-control input[type=color]{height:44px;padding:4px}
+.lab-control input[type=range]{padding:0;accent-color:#111}
+.lab-upload{border:1px dashed #aaa;padding:18px;text-align:center}
+.lab-lock{background:#e8e5dc;padding:15px;margin-top:20px;font-size:10px;line-height:1.8;color:#555}
+.lab-form .btn{width:100%;margin-top:20px}
+/* STORY */
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:7%;align-items:center}
+.story-image{height:570px;background:#292925}
+.story-image img{height:100%}
+.story-copy h2{font-size:clamp(40px,6vw,75px);line-height:.9;letter-spacing:-.07em;text-transform:uppercase;margin:20px 0}
+.story-copy p{font-size:12px;line-height:2;color:var(--muted);margin:18px 0;max-width:480px}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:55px}
+.value-card{border:1px solid var(--line);padding:28px;min-height:190px}
+.value-card h3{font-size:17px;text-transform:uppercase;margin:25px 0 10px}
+.value-card p{font-size:11px;color:var(--muted);line-height:1.8}
+/* CONTACT / ACCOUNT */
+.form-card{max-width:650px;background:var(--paper);color:var(--black);padding:35px;margin:0 auto}
+.form-card h2{font-size:34px;letter-spacing:-2px;text-transform:uppercase;margin-bottom:10px}
+.form-card p{font-size:11px;color:#777;line-height:1.8;margin-bottom:25px}
+.form-field{margin:17px 0}
+.form-field label{display:block;font:9px var(--mono);letter-spacing:1px;text-transform:uppercase;margin-bottom:9px}
+.form-field input,.form-field textarea{
+  width:100%;padding:14px;border:1px solid #d2cfc5;background:white;color:#111;outline:none;font-size:12px;
+}
+.form-field textarea{min-height:120px;resize:vertical}
+.form-card .btn{width:100%}
+/* SEARCH OVERLAY */
+.overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;
+  display:none;align-items:flex-start;justify-content:center;padding:15vh 20px;
+  backdrop-filter:blur(8px);
+}
+.overlay.open{display:flex}
+.search-box{width:min(650px,100%);border-bottom:1px solid white;display:flex;gap:15px}
+.search-box input{flex:1;background:transparent;border:0;outline:0;color:white;font-size:25px;padding:15px 0}
+.search-box button{background:none;border:0;color:white;font-size:24px}
+/* TOAST */
+.toast{
+  position:fixed;bottom:25px;left:50%;transform:translate(-50%,20px);
+  background:var(--cream);color:var(--black);padding:14px 22px;
+  font:10px var(--mono);letter-spacing:1px;z-index:900;opacity:0;pointer-events:none;
+  transition:.3s;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .8s,transform .8s}
+.reveal.in{opacity:1;transform:translateY(0)}
+/* RESPONSIVE */
+@media(max-width:950px){
+  .nav-links{gap:14px}
+  .nav-links a{font-size:9px}
+  .product-grid{grid-template-columns:repeat(2,1fr);gap:25px 13px}
+  .hero-grid{grid-template-columns:1fr 1fr}
+  .hero-visual{height:430px}
+  .footer-top{grid-template-columns:1.5fr 1fr 1fr}
+  .footer-col:last-child{grid-column:2}
+}
+@media(max-width:700px){
+  :root{--nav:65px}
+  .nav-links,.nav-right .account-link{display:none}
+  .menu-toggle{display:grid}
+  .brand{min-width:0}
+  .hero{min-height:unset}
+  .hero-grid{grid-template-columns:1fr;padding:75px 0 50px}
+  .hero-copy{order:1}
+  .hero-visual{order:2;height:340px;margin-top:15px}
+  .hero-title{font-size:clamp(65px,17vw,105px)}
+  .hero-index,.hero-scroll{font-size:8px}
+  .section{padding:75px 0}
+  .section-head{align-items:start;flex-direction:column;margin-bottom:30px}
+  .product-grid{gap:25px 10px}
+  .product-info h3{font-size:10px}
+  .product-info .price{font-size:10px}
+  .feature-banner{min-height:520px;grid-template-columns:1fr}
+  .feature-image{width:100%;opacity:.45}
+  .feature-copy{padding:50px 7%}
+  .collection-grid{grid-template-columns:1fr 1fr}
+  .collection-tile{height:280px}
+  .collection-tile:last-child{grid-column:span 2}
+  .footer-top{grid-template-columns:1fr 1fr;gap:35px}
+  .footer-brand{grid-column:span 2}
+  .footer-col:last-child{grid-column:auto}
+  .footer-bottom{flex-direction:column}
+  .product-detail{grid-template-columns:1fr;gap:35px;padding-top:25px}
+  .detail-info{position:static}
+  .cart-layout{grid-template-columns:1fr;gap:30px}
+  .cart-item{grid-template-columns:85px 1fr auto;gap:12px}
+  .cart-item img{height:110px}
+  .lab-layout{grid-template-columns:1fr}
+  .lab-preview{position:relative;top:0;min-height:440px}
+  .lab-form{padding:23px}
+  .story-grid{grid-template-columns:1fr;gap:35px}
+  .story-image{height:380px}
+  .values-grid{grid-template-columns:1fr}
+  .page-heading{padding:65px 0 35px}
+}
+@media(max-width:400px){
+  .product-grid{grid-template-columns:1fr 1fr}
+  .product-tag{font-size:7px;top:8px;left:8px}
+  .product-heart{top:7px;right:7px}
+  .collection-tile{height:230px}
+  .collection-label h3{font-size:22px}
 }
 </style>
 </head>
 
 <body>
-
-<style>
-/* VEXDRAPE multi-page portal and dashboard layer */
-[hidden]{display:none!important}
-body{min-height:100vh}
-.portal-shell{position:relative;z-index:20;min-height:100vh;background:#11110f;color:#f0eee8;overflow:hidden}
-.portal-top{height:78px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(240,238,232,.14);background:rgba(17,17,15,.92);position:relative;z-index:2}
-.portal-brand{display:flex;align-items:center;gap:12px;font:700 19px 'Space Grotesk',sans-serif;letter-spacing:3px}
-.portal-mark{width:40px;height:40px;border:1px solid #eee;border-radius:50%;display:grid;place-items:center;font:700 12px 'Space Grotesk';letter-spacing:1px;position:relative}
-.portal-mark:after{content:'';position:absolute;inset:4px;border:1px solid #777;border-radius:50%}
-.portal-top-actions{display:flex;gap:10px;align-items:center}
-.portal-btn{border:1px solid #77766e;background:transparent;color:#f0eee8;padding:13px 18px;font-size:10px;letter-spacing:1.6px;font-weight:700;cursor:pointer;transition:.2s}
-.portal-btn:hover,.portal-btn.primary{background:#f0eee8;color:#11110f;border-color:#f0eee8}
-.portal-content{width:min(1220px,88%);margin:auto;padding:64px 0 90px;position:relative}
-.portal-kicker{font-size:10px;letter-spacing:4px;color:#aaa89f;margin-bottom:18px}
-.portal-h1{font:600 clamp(48px,8vw,104px)/.94 'Space Grotesk',sans-serif;letter-spacing:-5px;max-width:900px}
-.portal-h1 em{font-family:Georgia,serif;font-weight:400}
-.portal-lead{color:#aaa89f;line-height:1.9;font-size:14px;max-width:540px;margin:26px 0 30px}
-.portal-hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center;min-height:calc(100vh - 160px)}
-.portal-orbit{aspect-ratio:1;max-width:460px;margin:auto;border:1px solid #4d4b44;border-radius:50%;display:grid;place-items:center;position:relative;background:radial-gradient(circle,rgba(240,238,232,.08),transparent 65%)}
-.portal-orbit:before,.portal-orbit:after{content:'';position:absolute;inset:9%;border:1px solid #393832;border-radius:50%}.portal-orbit:after{inset:19%}
-.portal-orbit-center{width:43%;aspect-ratio:1;border-radius:50%;background:#e8e5dc;color:#11110f;display:grid;place-items:center;font:700 clamp(24px,4vw,45px) 'Space Grotesk';letter-spacing:-3px;box-shadow:0 25px 80px #000}
-.portal-orbit-note{position:absolute;bottom:13%;font-size:9px;letter-spacing:3px;color:#aaa89f}
-.portal-quicklinks{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
-.portal-footnote{color:#77766e;font-size:10px;line-height:1.7;margin-top:34px;max-width:600px}
-.portal-page{display:none;min-height:calc(100vh - 78px)}.portal-page.active{display:block}
-.portal-content.compact{padding-top:42px}
-.portal-title-row{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:34px;flex-wrap:wrap}
-.portal-title{font:500 clamp(34px,5vw,58px)/1 'Space Grotesk';letter-spacing:-2px}
-.portal-subtitle{color:#99978f;font-size:12px;line-height:1.8;max-width:470px;margin-top:12px}
-.portal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.portal-card{border:1px solid #393832;background:linear-gradient(145deg,#1b1b18,#141412);padding:24px;min-height:175px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;transition:.25s;text-align:left;color:#f0eee8}
-.portal-card:hover{border-color:#aaa89f;transform:translateY(-3px);background:#20201d}
-.portal-card .card-icon{font-size:22px;color:#aaa89f;margin-bottom:25px}.portal-card h3{font:600 18px 'Space Grotesk';margin-bottom:8px}.portal-card p{font-size:11px;line-height:1.7;color:#99978f}.portal-card .card-arrow{align-self:flex-end;color:#c8c5bb;font-size:18px;margin-top:12px}
-.portal-form-wrap{max-width:620px;margin:42px auto 70px;border:1px solid #393832;padding:clamp(24px,5vw,48px);background:#171715}
-.portal-role-list{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:26px 0}
-.role-option{border:1px solid #48473f;padding:17px 12px;background:transparent;color:#f0eee8;text-align:left;cursor:pointer}.role-option.active{background:#f0eee8;color:#11110f;border-color:#f0eee8}.role-option strong{display:block;font:600 14px 'Space Grotesk';margin-bottom:5px}.role-option small{font-size:9px;opacity:.7;line-height:1.5}
-.portal-input{width:100%;padding:15px;background:#10100f;border:1px solid #45443e;color:#f0eee8;margin:8px 0 14px;outline:none}.portal-input:focus{border-color:#f0eee8}.portal-label{font-size:9px;letter-spacing:2px;color:#aaa89f}
-.portal-divider{display:flex;align-items:center;gap:12px;color:#77766e;font-size:9px;letter-spacing:2px;margin:20px 0}.portal-divider:before,.portal-divider:after{content:'';height:1px;background:#393832;flex:1}
-.portal-notice{border:1px solid #514e43;padding:13px 15px;color:#aaa89f;font-size:10px;line-height:1.7;margin-top:18px}
-.portal-back{background:none;border:0;color:#aaa89f;font-size:10px;letter-spacing:1.5px;cursor:pointer;margin-bottom:25px}.portal-back:hover{color:white}
-.portal-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:22px}.portal-search{flex:1;min-width:220px;padding:14px 16px;background:#171715;border:1px solid #45443e;color:#f0eee8}.portal-chip{border:1px solid #45443e;background:transparent;color:#aaa89f;padding:10px 13px;font-size:9px;letter-spacing:1px}
-.idea-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.idea-item{padding:15px;border:1px solid #35342f;background:#171715;min-height:104px}.idea-item span{font-size:9px;color:#88867e;letter-spacing:1.5px}.idea-item h4{font:500 13px/1.5 'Space Grotesk';margin-top:10px}
-.ui-list{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.ui-style{border:1px solid #3b3a34;background:#171715;padding:10px;cursor:pointer;text-align:left;color:#f0eee8}.ui-style:hover,.ui-style.selected{border-color:#f0eee8}.ui-preview{height:105px;margin-bottom:12px;padding:10px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}.ui-preview b{font:700 13px 'Space Grotesk'}.ui-preview i{font-size:8px;opacity:.75}.ui-style strong{display:block;font:500 11px 'Space Grotesk';margin-bottom:4px}.ui-style small{font-size:9px;color:#99978f}
-.dashboard-top{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:36px}.dashboard-user{font-size:10px;color:#99978f;letter-spacing:1px}.dashboard-stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:26px}.dashboard-stat{border:1px solid #393832;padding:20px;background:#171715}.dashboard-stat span{font-size:9px;letter-spacing:1.5px;color:#99978f}.dashboard-stat strong{display:block;font:500 30px 'Space Grotesk';margin-top:12px}.dashboard-empty{border:1px dashed #49483f;padding:28px;color:#99978f;font-size:12px;line-height:1.8}
-.portal-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:11px}.portal-table th,.portal-table td{padding:14px 12px;border-bottom:1px solid #35342f;text-align:left}.portal-table th{color:#aaa89f;font-size:9px;letter-spacing:1.4px;font-weight:500}
-.font-upload-box{border:1px dashed #77766e;padding:14px;margin-top:10px;background:rgba(255,255,255,.025)}.font-upload-box label{display:block;font-size:9px;letter-spacing:1.5px;color:#aaa89f;margin-bottom:10px}.font-upload-box input{width:100%;color:#c9c6bd;font-size:11px}.font-upload-box small{display:block;color:#88867e;font-size:10px;line-height:1.6;margin-top:9px}
-@media(max-width:850px){.portal-hero-grid{grid-template-columns:1fr;gap:30px;padding-top:45px}.portal-orbit{max-width:310px}.portal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.idea-list{grid-template-columns:repeat(2,minmax(0,1fr))}.ui-list{grid-template-columns:repeat(3,minmax(0,1fr))}.dashboard-stat-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:540px){.portal-top{height:68px;padding:0 5%}.portal-brand{font-size:15px}.portal-top-actions .portal-btn{padding:10px;font-size:8px}.portal-content{width:90%;padding:42px 0 65px}.portal-h1{letter-spacing:-3px}.portal-grid{grid-template-columns:1fr}.portal-role-list{grid-template-columns:1fr}.idea-list{grid-template-columns:1fr 1fr}.ui-list{grid-template-columns:repeat(2,1fr)}.dashboard-top{align-items:flex-start;flex-direction:column}.dashboard-stat-grid{grid-template-columns:1fr 1fr}}
-</style>
-
-<div id="portalShell" class="portal-shell">
- <header class="portal-top">
-  <button class="portal-brand" onclick="showPortalPage('landing')" style="background:none;border:0;color:inherit;cursor:pointer"><span class="portal-mark">VD</span> VEXDRAPE</button>
-  <div class="portal-top-actions"><button class="portal-btn" onclick="showPortalPage('login')">SIGN IN</button><button class="portal-btn primary" onclick="enterStore()">EXPLORE STORE ↗</button></div>
- </header>
-
- <section class="portal-page active" id="page-landing">
-  <div class="portal-content portal-hero-grid">
-   <div><div class="portal-kicker">INDEPENDENT STREETWEAR · EST. 2026</div><h1 class="portal-h1">WEAR YOUR<br><em>PERSPECTIVE.</em></h1><p class="portal-lead">A different point of view. Explore the latest drop, create something personal in the Custom Lab, and make your own mark with VEXDRAPE.</p><div class="portal-quicklinks"><button class="portal-btn primary" onclick="enterStore()">EXPLORE DROP 001 ↗</button><button class="portal-btn" onclick="showPortalPage('login')">ENTER YOUR SPACE</button></div><p class="portal-footnote">VEXDRAPE — Wear Your Perspective. Independent streetwear built around individuality, creativity and self-expression.</p></div>
-   <div class="portal-orbit"><div class="portal-orbit-center">VD</div><div class="portal-orbit-note">DROP 001 / THE FIRST PERSPECTIVE</div></div>
+<div class="intro" id="intro">
+  <div class="intro-inner">
+    <div class="intro-mark">VD</div>
+    <div class="intro-name">VEXDRAPE</div>
+    <div class="intro-line"></div>
+    <div class="intro-caption">WEAR YOUR PERSPECTIVE</div>
   </div>
- </section>
-
- <section class="portal-page" id="page-login">
-  <div class="portal-form-wrap"><button class="portal-back" onclick="showPortalPage('landing')">← BACK TO LANDING</button><div class="portal-kicker">YOUR VEXDRAPE SPACE</div><h2 class="portal-title">SIGN IN / JOIN.</h2><p class="portal-subtitle">Choose how you want to enter. Each space has its own dashboard and tools.</p>
-   <div class="portal-role-list"><button class="role-option active" data-role="customer" onclick="selectPortalRole('customer',this)"><strong>Customer</strong><small>Orders, account and saved pieces</small></button><button class="role-option" data-role="creator" onclick="selectPortalRole('creator',this)"><strong>Creator</strong><small>Custom Lab and design workspace</small></button><button class="role-option" data-role="admin" onclick="selectPortalRole('admin',this)"><strong>Store Admin</strong><small>Store overview and management</small></button></div>
-   <label class="portal-label" for="portalEmail">EMAIL ADDRESS</label><input class="portal-input" id="portalEmail" type="email" placeholder="you@example.com" autocomplete="email"><label class="portal-label" for="portalPassword">PASSWORD</label><input class="portal-input" id="portalPassword" type="password" placeholder="Enter password" autocomplete="current-password">
-   <button class="portal-btn primary" style="width:100%;margin-top:8px" onclick="demoSignIn()">CONTINUE TO DASHBOARD ↗</button><div class="portal-divider">OR</div><button class="portal-btn" style="width:100%" onclick="guestSignIn()">CONTINUE AS GUEST</button>
-   <div class="portal-notice">Account sign-in is currently a front-end preview. Real email verification, Google sign-in, password security and saved cross-device accounts need a secure backend. Do not enter a real password here yet.</div>
-  </div>
- </section>
-
- <section class="portal-page" id="page-dashboard">
-  <div class="portal-content compact"><div class="dashboard-top"><div><div class="portal-kicker">YOUR WORKSPACE</div><h2 class="portal-title" id="dashboardHeading">CUSTOMER DASHBOARD.</h2><p class="portal-subtitle" id="dashboardIntro">Your VEXDRAPE space.</p></div><div><span class="dashboard-user" id="dashboardUser">GUEST ACCOUNT</span><button class="portal-btn" style="margin-left:12px" onclick="showPortalPage('landing')">EXIT ↗</button></div></div>
-   <div class="dashboard-stat-grid" id="dashboardStats"></div><div class="portal-grid" id="dashboardCards"></div>
-  </div>
- </section>
-
- <section class="portal-page" id="page-subpage"><div class="portal-content compact"><button class="portal-back" onclick="showPortalPage('dashboard')">← BACK TO DASHBOARD</button><div class="portal-title-row"><div><div class="portal-kicker" id="subpageKicker">VEXDRAPE WORKSPACE</div><h2 class="portal-title" id="subpageTitle">YOUR PAGE.</h2><p class="portal-subtitle" id="subpageDescription"></p></div><button class="portal-btn" onclick="showPortalPage('dashboard')">DASHBOARD ↗</button></div><div id="subpageContent"></div></div></section>
 </div>
 
-<div id="storeShell" class="store-shell" hidden>
-<div class="ambient-stage" aria-hidden="true">
- <div class="ambient-orb orb-one" data-speed="0.08"></div>
- <div class="ambient-orb orb-two" data-speed="-0.11"></div>
- <div class="ambient-orb orb-three" data-speed="0.06"></div>
-
- <div class="floating-piece piece-shirt-a" data-speed="0.14" data-rot="8">
-  <svg viewBox="0 0 120 140" fill="none" stroke="currentColor" stroke-width="1.6">
-   <path d="M36 16 L48 10 Q60 22 72 10 L84 16 L110 32 L96 58 L82 51 L87 128 Q60 135 33 128 L38 51 L24 58 L10 32 Z"/>
-  </svg>
- </div>
-
- <div class="floating-piece piece-shoe-a" data-speed="-0.12" data-rot="-12">
-  <svg viewBox="0 0 160 90" fill="none" stroke="currentColor" stroke-width="1.6">
-   <path d="M16 58 L46 42 L74 22 L98 28 L128 45 L146 52 L144 66 L16 66 Z"/>
-   <path d="M14 71 L146 71"/>
-  </svg>
- </div>
-
- <div class="floating-piece piece-hoodie-a" data-speed="0.16" data-rot="-7">
-  <svg viewBox="0 0 130 150" fill="none" stroke="currentColor" stroke-width="1.6">
-   <path d="M36 22 L50 12 Q65 26 80 12 L94 22 L120 38 L105 68 L90 59 L95 138 Q65 145 35 138 L40 59 L25 68 L10 38 Z"/>
-   <path d="M50 12 Q50 38 65 38 Q80 38 80 12"/>
-  </svg>
- </div>
-
- <div class="floating-piece piece-shoe-b" data-speed="-0.15" data-rot="11">
-  <svg viewBox="0 0 160 90" fill="none" stroke="currentColor" stroke-width="1.6">
-   <path d="M18 56 L48 40 L76 20 L100 26 L130 44 L146 52 L144 65 L18 65 Z"/>
-   <path d="M16 70 L146 70"/>
-  </svg>
- </div>
-</div>
-
-<div class="announcement">DROP 001 — THE FIRST PERSPECTIVE &nbsp; / &nbsp; VEXDRAPE</div>
+<div class="top-strip">DROP 001 — THE FIRST PERSPECTIVE &nbsp; / &nbsp; VEXDRAPE</div>
 
 <header>
- <a class="brand" href="#home">
-  <svg viewBox="0 0 100 100" fill="none" aria-label="VEXDRAPE logo">
-   <circle cx="50" cy="50" r="46" stroke="#f0eee8" stroke-width="2"/>
-   <circle cx="50" cy="50" r="39" stroke="#f0eee8" stroke-width=".8"/>
-   <text x="50" y="47" fill="#f0eee8" font-size="13" font-family="Arial" font-weight="bold" text-anchor="middle" letter-spacing="1">VD</text>
-   <path id="curve" d="M14 58 A37 37 0 0 0 86 58" fill="none"/>
-   <text fill="#f0eee8" font-size="5.5" letter-spacing="1">
-    <textPath href="#curve" startOffset="50%" text-anchor="middle">WEAR YOUR PERSPECTIVE</textPath>
-   </text>
-  </svg>
-  <span class="brand-name">VEXDRAPE</span>
- </a>
+  <div class="nav-inner">
+    <a href="#home" class="brand" aria-label="VEXDRAPE home">
+      <span class="brand-symbol">VD</span>
+      <span class="brand-name">VEXDRAPE</span>
+    </a>
 
- <nav id="nav" aria-label="Primary navigation">
-  <a href="#home" onclick="closeNav()">HOME</a>
-  <a href="#collection" onclick="closeNav()">COLLECTION</a>
-  <a href="#custom-lab" onclick="closeNav()">CUSTOM LAB</a>
-   <a href="#story" onclick="closeNav()">OUR STORY</a>
-  <a href="#contact" onclick="closeNav()">CONTACT</a>
- </nav>
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#shop">Shop</a>
+      <a href="#collections">Collections</a>
+      <a href="#custom">Custom Lab</a>
+      <a href="#story">Our Story</a>
+    </nav>
 
- <div class="header-right">
-  <button class="icon-btn" onclick="showPortalPage('login');document.getElementById('storeShell').hidden=true" aria-label="Sign in">ACCOUNT</button>
-  <button class="icon-btn menu-btn" onclick="toggleNav()" aria-label="Toggle menu">MENU</button>
-  <button class="icon-btn" onclick="openCart()" aria-label="Open shopping bag">BAG <span class="bag-count" id="bagCount">0</span></button>
- </div>
+    <div class="nav-right">
+      <button class="nav-action" onclick="navigate('account')">Account</button>
+      <button class="nav-action" onclick="navigate('cart')">Bag <span class="cart-count" id="cartCount">0</span></button>
+      <button class="icon-btn" onclick="openSearch()" aria-label="Search">⌕</button>
+      <button class="icon-btn menu-toggle" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home" onclick="closeMenu()">Home</a>
+    <a href="#shop" onclick="closeMenu()">Shop all</a>
+    <a href="#collections" onclick="closeMenu()">Collections</a>
+    <a href="#custom" onclick="closeMenu()">Custom Lab</a>
+    <a href="#story" onclick="closeMenu()">Our story</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+    <a href="#account" onclick="closeMenu()">Account</a>
+    <a href="#cart" onclick="closeMenu()">Shopping bag</a>
+  </div>
 </header>
 
-<main>
-<section class="hero" id="home">
- <div>
-  <div class="eyebrow">INDEPENDENT STREETWEAR · EST. 2026</div>
-  <h1>WEAR<br>YOUR<br><span>perspective.</span></h1>
-  <p class="hero-description">Not made to follow. Made to express. Discover a different perspective on everyday streetwear.</p>
-  <div class="actions">
-   <a href="#collection" class="btn btn-primary">EXPLORE DROP 001 ↗</a>
-   <a href="#story" class="btn btn-outline">OUR STORY</a>
+<div id="app">
+
+<!-- HOME PAGE -->
+<main class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">Independent streetwear · Est. 2026</div>
+        <h1 class="hero-title">
+          <span>Wear</span>
+          <span>Your</span>
+          <span class="serif">perspective.</span>
+        </h1>
+        <p class="hero-description">
+          Not made to follow. Made to express. Discover a different
+          perspective on everyday streetwear.
+        </p>
+        <div class="hero-buttons">
+          <a href="#shop" class="btn">Explore the drop <span>↗</span></a>
+          <a href="#story" class="btn btn-outline">Our story</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-orbit"></div>
+        <img class="hero-shirt"
+          src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90"
+          alt="VEXDRAPE inspired black streetwear T-shirt">
+        <div class="hero-stamp">01 — THE FIRST PERSPECTIVE</div>
+      </div>
+    </div>
+    <div class="hero-index">001 / VEXDRAPE ORIGINALS</div>
+    <div class="hero-scroll">SCROLL TO EXPLORE ↓</div>
+  </section>
+
+  <div class="ticker">
+    <div class="ticker-track">
+      <span>VEXDRAPE ✳ WEAR YOUR PERSPECTIVE ✳ DROP 001 ✳ INDEPENDENT BY DESIGN ✳</span>
+      <span>VEXDRAPE ✳ WEAR YOUR PERSPECTIVE ✳ DROP 001 ✳ INDEPENDENT BY DESIGN ✳</span>
+      <span>VEXDRAPE ✳ WEAR YOUR PERSPECTIVE ✳ DROP 001 ✳ INDEPENDENT BY DESIGN ✳</span>
+      <span>VEXDRAPE ✳ WEAR YOUR PERSPECTIVE ✳ DROP 001 ✳ INDEPENDENT BY DESIGN ✳</span>
+    </div>
   </div>
- </div>
- <div class="hero-art">
-  <div class="hero-circle" id="heroCircle"></div>
-  <svg class="hero-shirt" id="heroShirt" viewBox="0 0 400 460" xmlns="http://www.w3.org/2000/svg" aria-label="VEXDRAPE editorial garment illustration">
-   <defs>
-    <linearGradient id="shirtShade" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#343430"/><stop offset=".55" stop-color="#20201e"/><stop offset="1" stop-color="#11110f"/></linearGradient>
-   </defs>
-   <path d="M130 54 L165 37 Q200 70 235 37 L270 54 L365 105 L325 190 L280 168 L295 420 Q200 445 105 420 L120 168 L75 190 L35 105 Z" fill="url(#shirtShade)" stroke="#57564f" stroke-width="2"/>
-   <path d="M165 37 Q165 93 200 93 Q235 93 235 37" fill="none" stroke="#68675e" stroke-width="8"/>
-   <path d="M165 38 Q200 80 235 38" fill="none" stroke="#171715" stroke-width="3"/>
-   <circle cx="200" cy="177" r="24" fill="none" stroke="#ddd9ce" stroke-width="1.5"/>
-   <circle cx="200" cy="177" r="20" fill="none" stroke="#ddd9ce" stroke-width=".7"/>
-   <text x="200" y="180" text-anchor="middle" fill="#eeeae0" font-size="7" letter-spacing="1.2">VD</text>
-   <text x="200" y="188" text-anchor="middle" fill="#eeeae0" font-size="3.8" letter-spacing=".5">VEXDRAPE</text>
-   <path d="M110 420 Q200 438 290 420" fill="none" stroke="#55544d" stroke-width="2"/>
-  </svg>
-  <div class="hero-caption">01 / THE FIRST PERSPECTIVE</div>
- </div>
-</section>
 
-<div class="marquee" aria-hidden="true">
- <div class="marquee-track">VEXDRAPE ✳ WEAR YOUR PERSPECTIVE ✳ DROP 001 ✳ VEXDRAPE ✳ WEAR YOUR PERSPECTIVE ✳ DROP 001 ✳ VEXDRAPE ✳ WEAR YOUR PERSPECTIVE ✳ DROP 001 ✳ </div>
-</div>
-
-<section class="section" id="collection">
- <div class="section-top">
-  <div>
-   <div class="section-label">THE FIRST COLLECTION / 2026</div>
-   <h2>DROP 001.</h2>
-  </div>
-  <p class="section-note">A first expression of the VEXDRAPE identity. Minimal design. Everyday perspective.</p>
- </div>
-
- <div class="products">
-  <article class="product-card">
-   <div class="product-image" id="perspectiveCardImage">
-    <span class="product-tag">FEATURED</span>
-    <svg id="perspectiveCardSvg" viewBox="0 0 300 370" aria-label="THE PERSPECTIVE oversized T-shirt preview">
-     <path id="perspectiveShirtPath" d="M100 37 L125 25 Q150 50 175 25 L200 37 L267 75 L237 135 L205 120 L217 345 Q150 359 83 345 L95 120 L63 135 L33 75Z" fill="#171715" stroke="#55544e" stroke-width="2"/>
-     <path d="M125 25 Q125 68 150 68 Q175 68 175 25" fill="none" stroke="#77766e" stroke-width="6"/>
-     <circle cx="150" cy="135" r="18" fill="none" stroke="#f0eee8" stroke-width="1.4"/>
-     <circle cx="150" cy="135" r="14" fill="none" stroke="#f0eee8" stroke-width=".7"/>
-     <text x="150" y="138" text-anchor="middle" fill="#f0eee8" font-size="6">VD</text>
-    </svg>
-    <button class="quick-add" onclick="openProduct('perspective')">VIEW PRODUCT ↗</button>
-   </div>
-   <div class="product-info">
-    <div>
-     <h3>THE PERSPECTIVE</h3>
-     <p>Oversized · UC22 · XS–XXL</p>
-     <div class="colors" aria-label="Select colour preview">
-      <button type="button" class="swatch-btn active" style="background:#171715" data-colour="Black" aria-label="Black" onclick="previewCardColour('Black',this)"></button>
-      <button type="button" class="swatch-btn" style="background:#e9e6dc" data-colour="Off White" aria-label="Off White" onclick="previewCardColour('Off White',this)"></button>
-      <button type="button" class="swatch-btn" style="background:#555550" data-colour="Charcoal" aria-label="Charcoal" onclick="previewCardColour('Charcoal',this)"></button>
-     </div>
+  <section class="section container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">01 / First collection / 2026</div>
+        <h2 class="section-title" style="margin-top:18px">Drop 001.</h2>
+      </div>
+      <p class="small muted">A first expression of the VEXDRAPE identity. Minimal design. Everyday perspective.</p>
     </div>
-    <span class="price">₹899</span>
-   </div>
-  </article>
-
-  <article class="product-card">
-   <div class="product-image grey">
-    <span class="product-tag">DROP 001</span>
-    <svg viewBox="0 0 300 370" aria-label="UH24 HOODIE preview">
-     <path d="M92 42 L122 26 Q150 54 178 26 L208 42 L272 78 L240 144 L206 126 L218 345 Q150 359 82 345 L94 126 L60 144 L28 78Z" fill="#252522" stroke="#57564f" stroke-width="2"/>
-     <path d="M122 26 Q122 72 150 72 Q178 72 178 26" fill="none" stroke="#68675e" stroke-width="7"/>
-     <text x="150" y="152" text-anchor="middle" fill="#f0eee8" font-size="10" letter-spacing="1.5">UH24</text>
-     <text x="150" y="168" text-anchor="middle" fill="#aaa89f" font-size="8" letter-spacing="1">HOODIE</text>
-    </svg>
-    <button class="quick-add" onclick="openProduct('uh24')">VIEW PIECE ↗</button>
-   </div>
-   <div class="product-info">
-    <div><h3>UH24 HOODIE</h3><p>Back crown emblem · Qikink UH24 · Coming soon</p></div>
-    <span class="price">SOON</span>
-   </div>
-  </article>
-
-  <article class="product-card">
-   <div class="product-image light">
-    <span class="product-tag">DROP 001</span>
-    <svg viewBox="0 0 300 370" aria-label="BEYOND THE FRAME concept preview">
-     <path d="M100 37 L125 25 Q150 50 175 25 L200 37 L267 75 L237 135 L205 120 L217 345 Q150 359 83 345 L95 120 L63 135 L33 75Z" fill="#e9e6dc" stroke="#aaa79e" stroke-width="2"/>
-     <path d="M125 25 Q125 68 150 68 Q175 68 175 25" fill="none" stroke="#b7b3a9" stroke-width="6"/>
-     <text x="150" y="150" text-anchor="middle" fill="#252522" font-size="12" font-family="Georgia" font-style="italic">Beyond</text>
-     <text x="150" y="166" text-anchor="middle" fill="#252522" font-size="12" font-family="Georgia" font-style="italic">the frame.</text>
-    </svg>
-    <button class="quick-add" onclick="openProduct('frame')">VIEW CONCEPT ↗</button>
-   </div>
-   <div class="product-info">
-    <div><h3>BEYOND THE FRAME</h3><p>Design concept · Coming soon</p></div>
-    <span class="price">SOON</span>
-   </div>
-  </article>
-
-  <article class="product-card">
-   <div class="product-image grey">
-    <span class="product-tag">DROP 001</span>
-    <svg viewBox="0 0 300 370" aria-label="STAY UNDEFINED concept preview">
-     <path d="M100 37 L125 25 Q150 50 175 25 L200 37 L267 75 L237 135 L205 120 L217 345 Q150 359 83 345 L95 120 L63 135 L33 75Z" fill="#444440" stroke="#68675f" stroke-width="2"/>
-     <path d="M125 25 Q125 68 150 68 Q175 68 175 25" fill="none" stroke="#77766e" stroke-width="6"/>
-     <text x="150" y="150" text-anchor="middle" fill="#f0eee8" font-size="11" letter-spacing="1">STAY</text>
-     <text x="150" y="169" text-anchor="middle" fill="#f0eee8" font-size="11" letter-spacing="1">UNDEFINED.</text>
-    </svg>
-    <button class="quick-add" onclick="openProduct('undefined')">VIEW CONCEPT ↗</button>
-   </div>
-   <div class="product-info">
-    <div><h3>STAY UNDEFINED</h3><p>Design concept · Coming soon</p></div>
-    <span class="price">SOON</span>
-   </div>
-  </article>
- </div>
-</section>
-
-
-<section class="custom-lab" id="custom-lab">
- <div class="section-label">MAKE IT YOURS / VEXDRAPE CUSTOM LAB</div>
- <h2>YOUR DESIGN.<br>YOUR RULES.</h2>
- <p class="lab-intro">Create a personal T-shirt design with a library of 120+ typefaces. Your VEXDRAPE brand mark stays protected: choose its placement once, lock it, and customize the remaining print area.</p>
- <div class="lab-layout">
-  <div class="lab-preview">
-   <div class="lab-preview-top"><span>LIVE GARMENT PREVIEW</span><span id="labPreviewSide">FRONT VIEW</span></div>
-   <div class="garment-wrap" id="garmentWrap">
-    <svg class="garment-svg" viewBox="0 0 400 460" role="img" aria-label="T-shirt customization preview">
-     <path id="labShirtPath" d="M130 54 L165 37 Q200 70 235 37 L270 54 L365 105 L325 190 L280 168 L295 420 Q200 445 105 420 L120 168 L75 190 L35 105 Z" fill="#22221f" stroke="#57564f" stroke-width="2"/>
-     <path d="M165 37 Q165 93 200 93 Q235 93 235 37" fill="none" stroke="#68675e" stroke-width="8"/>
-     <path d="M165 38 Q200 80 235 38" fill="none" stroke="#171715" stroke-width="3"/>
-     <path id="labBackSeam" d="M200 105 L200 405" stroke="#ffffff" opacity="0" stroke-dasharray="4 5"/>
-    </svg>
-    <div class="garment-art" id="garmentArt">YOUR DESIGN</div>
-    <div class="logo-zone front-left" id="protectedLogo"><span>VEXDRAPE<small>LOGO ZONE</small></span></div>
-   </div>
-   <div class="lab-view-label" id="labViewLabel">FRONT / BLACK</div>
-  </div>
-  <div class="lab-panel">
-   <h3>Build your design</h3>
-   <p>Choose the garment view, set your permanent brand-mark position, then style your own text.</p>
-   <div class="lab-field">
-    <label>GARMENT VIEW</label>
-    <div class="lab-choice-row">
-     <button class="lab-choice active" type="button" id="labFrontBtn" onclick="setLabView('front')">FRONT</button>
-     <button class="lab-choice" type="button" id="labBackBtn" onclick="setLabView('back')">BACK</button>
+    <div class="product-grid" id="homeProducts"></div>
+    <div style="text-align:center;margin-top:45px">
+      <a href="#shop" class="btn btn-outline">Discover all products ↗</a>
     </div>
-   </div>
-   <div class="lab-field">
-    <label>VEXDRAPE LOGO PLACEMENT — CHOOSE ONCE</label>
-    <div class="lab-choice-row" id="logoPlacementChoices">
-     <button class="lab-choice" type="button" id="logoFrontBtn" onclick="chooseLogoPlacement('front')">FRONT-LEFT CHEST</button>
-     <button class="lab-choice" type="button" id="logoBackBtn" onclick="chooseLogoPlacement('back')">BACK</button>
-    </div>
-    <div class="lab-lock-note" id="logoLockNote"><strong>Brand protection:</strong> Choose front-left chest or back. After locking, the logo position cannot be changed in this design. The actual logo artwork will be added when VEXDRAPE supplies it.</div>
-    <button class="lab-primary" type="button" id="lockLogoBtn" onclick="lockLogoPlacement()" disabled>LOCK LOGO POSITION</button>
-   </div>
-   <div class="lab-field">
-    <label for="labText">YOUR TEXT</label>
-    <input id="labText" type="text" maxlength="90" value="YOUR DESIGN" placeholder="Type something..." oninput="updateLabDesign()">
-   </div>
-   <div class="lab-field">
-    <label for="labFont">FONT LIBRARY — 120+ FONTS</label>
-    <select id="labFont" onchange="updateLabDesign()">
-     <option value="ABeeZee">ABeeZee</option>
-<option value="Abel">Abel</option>
-<option value="Abril Fatface">Abril Fatface</option>
-<option value="Acme">Acme</option>
-<option value="Alegreya">Alegreya</option>
-<option value="Alegreya Sans">Alegreya Sans</option>
-<option value="Alfa Slab One">Alfa Slab One</option>
-<option value="Amatic SC">Amatic SC</option>
-<option value="Amiri">Amiri</option>
-<option value="Anton">Anton</option>
-<option value="Archivo">Archivo</option>
-<option value="Archivo Black">Archivo Black</option>
-<option value="Arimo">Arimo</option>
-<option value="Arvo">Arvo</option>
-<option value="Asap">Asap</option>
-<option value="Assistant">Assistant</option>
-<option value="B612">B612</option>
-<option value="Barlow">Barlow</option>
-<option value="Barlow Condensed">Barlow Condensed</option>
-<option value="Bebas Neue">Bebas Neue</option>
-<option value="Belgrano">Belgrano</option>
-<option value="Bitter">Bitter</option>
-<option value="Bodoni Moda">Bodoni Moda</option>
-<option value="Bowlby One SC">Bowlby One SC</option>
-<option value="Bree Serif">Bree Serif</option>
-<option value="Bungee">Bungee</option>
-<option value="Cabin">Cabin</option>
-<option value="Cairo">Cairo</option>
-<option value="Caveat">Caveat</option>
-<option value="Cinzel">Cinzel</option>
-<option value="Comfortaa">Comfortaa</option>
-<option value="Cormorant Garamond">Cormorant Garamond</option>
-<option value="Crimson Text">Crimson Text</option>
-<option value="DM Mono">DM Mono</option>
-<option value="DM Sans">DM Sans</option>
-<option value="DM Serif Display">DM Serif Display</option>
-<option value="Dosis">Dosis</option>
-<option value="DynaPuff">DynaPuff</option>
-<option value="EB Garamond">EB Garamond</option>
-<option value="Exo 2">Exo 2</option>
-<option value="Figtree">Figtree</option>
-<option value="Fira Code">Fira Code</option>
-<option value="Fira Sans">Fira Sans</option>
-<option value="Fjalla One">Fjalla One</option>
-<option value="Francois One">Francois One</option>
-<option value="Fraunces">Fraunces</option>
-<option value="Gabarito">Gabarito</option>
-<option value="Gloria Hallelujah">Gloria Hallelujah</option>
-<option value="Golos Text">Golos Text</option>
-<option value="Great Vibes">Great Vibes</option>
-<option value="IBM Plex Mono">IBM Plex Mono</option>
-<option value="IBM Plex Sans">IBM Plex Sans</option>
-<option value="Inconsolata">Inconsolata</option>
-<option value="Indie Flower">Indie Flower</option>
-<option value="Inter">Inter</option>
-<option value="Josefin Sans">Josefin Sans</option>
-<option value="Kanit">Kanit</option>
-<option value="Kaushan Script">Kaushan Script</option>
-<option value="Lato">Lato</option>
-<option value="League Spartan">League Spartan</option>
-<option value="Lexend">Lexend</option>
-<option value="Libre Baskerville">Libre Baskerville</option>
-<option value="Lilita One">Lilita One</option>
-<option value="Lobster">Lobster</option>
-<option value="Lora">Lora</option>
-<option value="M PLUS 1">M PLUS 1</option>
-<option value="Manrope">Manrope</option>
-<option value="Merriweather">Merriweather</option>
-<option value="Michroma">Michroma</option>
-<option value="Monoton">Monoton</option>
-<option value="Montserrat">Montserrat</option>
-<option value="Mukta">Mukta</option>
-<option value="Nanum Gothic">Nanum Gothic</option>
-<option value="Newsreader">Newsreader</option>
-<option value="Nunito">Nunito</option>
-<option value="Nunito Sans">Nunito Sans</option>
-<option value="Old Standard TT">Old Standard TT</option>
-<option value="Orbitron">Orbitron</option>
-<option value="Oswald">Oswald</option>
-<option value="Outfit">Outfit</option>
-<option value="Overpass">Overpass</option>
-<option value="Oxygen">Oxygen</option>
-<option value="Pacifico">Pacifico</option>
-<option value="Pathway Gothic One">Pathway Gothic One</option>
-<option value="Permanent Marker">Permanent Marker</option>
-<option value="Playfair Display">Playfair Display</option>
-<option value="Plus Jakarta Sans">Plus Jakarta Sans</option>
-<option value="Poiret One">Poiret One</option>
-<option value="Poppins">Poppins</option>
-<option value="Press Start 2P">Press Start 2P</option>
-<option value="Prompt">Prompt</option>
-<option value="Public Sans">Public Sans</option>
-<option value="Quicksand">Quicksand</option>
-<option value="Rajdhani">Rajdhani</option>
-<option value="Raleway">Raleway</option>
-<option value="Righteous">Righteous</option>
-<option value="Roboto">Roboto</option>
-<option value="Roboto Condensed">Roboto Condensed</option>
-<option value="Roboto Mono">Roboto Mono</option>
-<option value="Rokkitt">Rokkitt</option>
-<option value="Rubik">Rubik</option>
-<option value="Russo One">Russo One</option>
-<option value="Sacramento">Sacramento</option>
-<option value="Saira">Saira</option>
-<option value="Satisfy">Satisfy</option>
-<option value="Shadows Into Light">Shadows Into Light</option>
-<option value="Signika">Signika</option>
-<option value="Space Grotesk">Space Grotesk</option>
-<option value="Space Mono">Space Mono</option>
-<option value="Special Elite">Special Elite</option>
-<option value="Staatliches">Staatliches</option>
-<option value="Syne">Syne</option>
-<option value="Teko">Teko</option>
-<option value="Titillium Web">Titillium Web</option>
-<option value="Ubuntu">Ubuntu</option>
-<option value="Unbounded">Unbounded</option>
-<option value="Urbanist">Urbanist</option>
-<option value="Varela Round">Varela Round</option>
-<option value="Vollkorn">Vollkorn</option>
-<option value="Work Sans">Work Sans</option>
-    </select>
-    <div class="font-upload-box">
-     <label for="labFontUpload">OR UPLOAD YOUR OWN FONT (.TTF / .OTF)</label>
-     <input id="labFontUpload" type="file" accept=".ttf,.otf,font/ttf,font/otf" onchange="uploadLabFont(event)">
-     <small id="labFontUploadStatus">Your font is loaded locally in this browser tab. It is not uploaded to VEXDRAPE.</small>
-    </div>
-   </div>
-   <div class="lab-row">
-    <div class="lab-field">
-     <label for="labTextColor">TEXT COLOUR</label>
-     <input id="labTextColor" type="color" value="#f0eee8" oninput="updateLabDesign()">
-    </div>
-    <div class="lab-field">
-     <label for="labTextSize">TEXT SIZE</label>
-     <input id="labTextSize" type="range" min="12" max="42" value="22" oninput="updateLabDesign()">
-    </div>
-   </div>
-   <div class="lab-field">
-    <label>GARMENT COLOUR</label>
-    <div class="lab-choice-row">
-     <button type="button" class="lab-choice active" onclick="setLabColour('#22221f','BLACK',this)">BLACK</button>
-     <button type="button" class="lab-choice" onclick="setLabColour('#e9e6dc','OFF WHITE',this)">OFF WHITE</button>
-     <button type="button" class="lab-choice" onclick="setLabColour('#555550','CHARCOAL',this)">CHARCOAL</button>
-    </div>
-   </div>
-   <div class="lab-warning">Preview note: the dotted VEXDRAPE circle is a protected placeholder, not the final logo. Print-area dimensions and final production placement must be confirmed with the garment printer.</div>
-   <div class="lab-status" id="labStatus" aria-live="polite">Choose a logo position to begin. Your text preview updates live.</div>
-  </div>
- </div>
-</section>
+  </section>
 
-<section class="story" id="story">
- <div class="story-visual">
-  <svg id="storyEmblem" viewBox="0 0 300 300" aria-label="VEXDRAPE brand emblem">
-   <circle cx="150" cy="150" r="125" fill="none" stroke="#242420" stroke-width="2"/>
-   <circle cx="150" cy="150" r="111" fill="none" stroke="#77746c" stroke-width="1"/>
-   <circle cx="150" cy="150" r="75" fill="none" stroke="#aaa69c" stroke-width=".7"/>
-   <path d="M65 150 Q150 45 235 150 Q150 255 65 150Z" fill="none" stroke="#33332e" stroke-width="1"/>
-   <path d="M150 75 Q95 150 150 225 Q205 150 150 75Z" fill="none" stroke="#33332e" stroke-width="1"/>
-   <text x="150" y="146" text-anchor="middle" font-family="Space Grotesk" font-size="18" font-weight="bold" fill="#171715" letter-spacing="3">VD</text>
-   <text x="150" y="164" text-anchor="middle" font-size="7" fill="#55534d" letter-spacing="2">VEXDRAPE</text>
-  </svg>
- </div>
- <div class="story-copy">
-  <div class="section-label">A DIFFERENT POINT OF VIEW</div>
-  <h2>YOUR STYLE.<br>YOUR RULES.</h2>
-  <p>VEXDRAPE is built around one idea: personal style should never need permission. We create minimal streetwear with a clear identity, designed to let your perspective speak.</p>
-  <a href="#collection" class="btn btn-primary">DISCOVER THE COLLECTION ↗</a>
- </div>
-</section>
+  <section class="feature-banner">
+    <img class="feature-image"
+      src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1500&q=85"
+      alt="Streetwear collection">
+    <div class="feature-copy">
+      <div class="eyebrow">02 / Built different</div>
+      <h2>Less noise.<br><span class="serif">More meaning.</span></h2>
+      <p>Style isn't about fitting in. It's about expressing what makes you different. Find your point of view.</p>
+      <a href="#collections" class="btn">Explore collections ↗</a>
+    </div>
+  </section>
 
-<section class="values">
- <div class="value"><span class="value-number">01 / IDENTITY</span><h3>OWN YOUR PERSPECTIVE</h3><p>Wear what represents you. No rules, no borrowed identity.</p></div>
- <div class="value"><span class="value-number">02 / DESIGN</span><h3>LESS, BUT BETTER</h3><p>Minimal visual language. Intentional details. A distinct point of view.</p></div>
- <div class="value"><span class="value-number">03 / CULTURE</span><h3>MADE TO STAND APART</h3><p>Streetwear for people who choose their own direction.</p></div>
-</section>
+  <section class="section container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">03 / Find your perspective</div>
+        <h2 class="section-title" style="margin-top:18px">The collections.</h2>
+      </div>
+      <p class="small muted">Different ideas. One identity. Explore the VEXDRAPE universe.</p>
+    </div>
+    <div class="collection-grid">
+      <div class="collection-tile" onclick="navigate('collections')">
+        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85" alt="Originals">
+        <div class="collection-label"><span>01 / ESSENTIALS</span><h3>Originals</h3></div>
+      </div>
+      <div class="collection-tile" onclick="navigate('collections')">
+        <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85" alt="Oversized">
+        <div class="collection-label"><span>02 / EVERYDAY</span><h3>Oversized</h3></div>
+      </div>
+      <div class="collection-tile" onclick="navigate('custom')">
+        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=900&q=85" alt="Custom">
+        <div class="collection-label"><span>03 / YOUR RULES</span><h3>Custom Lab</h3></div>
+      </div>
+    </div>
+  </section>
 
-<section class="newsletter" id="contact">
- <div class="section-label">STAY IN THE PICTURE</div>
- <h2>BE PART OF THE PERSPECTIVE.</h2>
- <p>Follow the journey. Discover upcoming drops and new designs.</p>
- <form class="newsletter-form" onsubmit="subscribe(event)">
-  <input type="email" id="email" placeholder="Your email address" required>
-  <button type="submit">JOIN ↗</button>
- </form>
- <p id="subscribeMessage" class="subscribe-status" aria-live="polite"></p>
-</section>
+  <section class="manifesto">
+    <div class="container">
+      <div class="eyebrow">A different point of view</div>
+      <h2>YOUR STYLE.<br><span class="serif">YOUR RULES.</span></h2>
+      <p>VEXDRAPE is built around one idea: personal style should never need permission. We create minimal streetwear with a clear identity, designed to let your perspective speak.</p>
+      <div style="margin-top:30px"><a href="#story" class="btn btn-dark">Discover our story ↗</a></div>
+    </div>
+  </section>
 </main>
 
-<footer>
- <div class="footer-top">
-  <div class="footer-brand">
-   <div class="brand">
-    <svg viewBox="0 0 100 100" fill="none" aria-label="VEXDRAPE footer mark">
-     <circle cx="50" cy="50" r="46" stroke="#f0eee8" stroke-width="2"/>
-     <circle cx="50" cy="50" r="39" stroke="#f0eee8"/>
-     <text x="50" y="54" fill="#f0eee8" font-size="20" font-weight="bold" text-anchor="middle">VD</text>
-    </svg>
-    <span class="brand-name">VEXDRAPE</span>
-   </div>
-   <p>WEAR YOUR PERSPECTIVE.</p>
-  </div>
-  <div class="footer-links">
-   <div><h4>EXPLORE</h4><a href="#home">Home</a><a href="#collection">Collection</a><a href="#story">Our story</a></div>
-   <div><h4>FOLLOW</h4><a href="https://www.instagram.com/vexdrape/" target="_blank" rel="noopener">Instagram ↗</a><a href="#contact">Updates</a></div>
-  </div>
- </div>
- <div class="footer-bottom"><span>© 2026 VEXDRAPE. ALL RIGHTS RESERVED.</span><span>WEAR YOUR PERSPECTIVE.</span></div>
-</footer>
-
-<div class="overlay" id="overlay" onclick="closeCart()"></div>
-<aside class="drawer" id="drawer" aria-label="Shopping bag">
- <div class="drawer-head"><h2>YOUR BAG (<span id="drawerCount">0</span>)</h2><button class="close" onclick="closeCart()" aria-label="Close bag">×</button></div>
- <div id="cartItems"></div>
- <div id="cartFooter" hidden>
-  <div class="cart-total"><span>SUBTOTAL</span><span id="cartTotal">₹0</span></div>
-  <p class="cart-message">Bag preview only. Live payment processing and order fulfilment are not active yet.</p>
-  <button class="checkout" onclick="alert('Live checkout is not active yet. Updates will be shared on @vexdrape.')">CHECKOUT — COMING SOON</button>
- </div>
-</aside>
-
-<div class="modal" id="productModal" onclick="if(event.target===this)closeProduct()" role="dialog" aria-modal="true">
- <div class="modal-box">
-  <button class="modal-close" onclick="closeProduct()" aria-label="Close product modal">×</button>
-  <div class="modal-content">
-   <div class="modal-product-image" id="modalImage"></div>
-   <div>
-    <div class="section-label">VEXDRAPE / DROP 001</div>
-    <h2 id="modalName">THE PERSPECTIVE</h2>
-    <p id="modalDescription">Unisex oversized T-shirt · Qikink UC22 · DROP 001.</p>
-    <div class="modal-price" id="modalPrice">₹899</div>
-    <label class="option-label">COLOUR</label>
-    <div class="options" id="colourOptions">
-     <button type="button" class="option selected" data-colour="Black" onclick="selectOption(this,'colourOptions')">BLACK</button>
-     <button type="button" class="option" data-colour="Off White" onclick="selectOption(this,'colourOptions')">OFF WHITE</button>
-     <button type="button" class="option" data-colour="Charcoal" onclick="selectOption(this,'colourOptions')">CHARCOAL</button>
+<!-- SHOP PAGE -->
+<section class="page" id="page-shop">
+  <div class="container">
+    <div class="page-heading">
+      <div class="eyebrow">VEXDRAPE / The store</div>
+      <h1>Shop all.</h1>
+      <p>Explore the latest VEXDRAPE pieces. Find your fit, choose your perspective.</p>
     </div>
-    <label class="option-label">SIZE</label>
-    <div class="options" id="sizeOptions">
-     <button type="button" class="option" onclick="selectOption(this,'sizeOptions')">XS</button>
-     <button type="button" class="option" onclick="selectOption(this,'sizeOptions')">S</button>
-     <button type="button" class="option selected" onclick="selectOption(this,'sizeOptions')">M</button>
-     <button type="button" class="option" onclick="selectOption(this,'sizeOptions')">L</button>
-     <button type="button" class="option" onclick="selectOption(this,'sizeOptions')">XL</button>
-     <button type="button" class="option" onclick="selectOption(this,'sizeOptions')">XXL</button>
+    <div class="page-content">
+      <div class="shop-toolbar">
+        <div class="filter-group" id="filters">
+          <button class="filter-btn active" data-filter="All">All</button>
+          <button class="filter-btn" data-filter="T-Shirts">T-Shirts</button>
+          <button class="filter-btn" data-filter="Oversized">Oversized</button>
+          <button class="filter-btn" data-filter="Hoodies">Hoodies</button>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <input class="shop-search" id="shopSearch" placeholder="Search pieces..." oninput="renderShop()">
+          <select class="shop-sort" id="shopSort" onchange="renderShop()">
+            <option value="featured">Featured</option>
+            <option value="low">Price: low to high</option>
+            <option value="high">Price: high to low</option>
+          </select>
+        </div>
+      </div>
+      <div class="product-grid" id="shopProducts"></div>
     </div>
-    <button type="button" class="add-button" id="addButton" onclick="addToCart()">ADD TO BAG — ₹899</button>
-   </div>
   </div>
- </div>
-</div>
-
-</div><!-- /storeShell -->
-
-<script>
-const products = {
- perspective:{
-  name:"THE PERSPECTIVE",price:899,available:true,
-  description:"Unisex oversized T-shirt · Qikink UC22 · DROP 001."
- },
- uh24:{
-  name:"UH24 HOODIE",price:0,available:false,
-  description:"Hoodie featuring the VEXDRAPE crown emblem on the back · Qikink UH24 · Coming soon."
- },
- frame:{
-  name:"BEYOND THE FRAME",price:0,available:false,
-  description:"Upcoming DROP 001 concept · Not open for purchase yet."
- },
- undefined:{
-  name:"STAY UNDEFINED",price:0,available:false,
-  description:"Upcoming DROP 001 concept · Not open for purchase yet."
- }
-};
-const colourStyles = {
- "Black":{ fill:"#171715", stroke:"#55544e", cardBg:"#252522" },
- "Off White":{ fill:"#e9e6dc", stroke:"#aaa79e", cardBg:"#d9d6cc" },
- "Charcoal":{ fill:"#444440", stroke:"#68675f", cardBg:"#393936" }
-};
-const cardIndexes = { perspective:0, uh24:1, frame:2, undefined:3 };
-let selectedProduct="perspective";
-let activeCardColour="Black";
-let cart=[];
-
-function toggleNav(){document.getElementById('nav').classList.toggle('open')}
-function closeNav(){document.getElementById('nav').classList.remove('open')}
-
-function previewCardColour(colour,btn){
- activeCardColour=colour;
- document.querySelectorAll('.swatch-btn').forEach(b=>b.classList.remove('active'));
- if(btn)btn.classList.add('active');
- const style=colourStyles[colour]||colourStyles["Black"];
- const path=document.getElementById('perspectiveShirtPath');
- const cardImg=document.getElementById('perspectiveCardImage');
- if(path){path.setAttribute('fill',style.fill);path.setAttribute('stroke',style.stroke)}
- if(cardImg){cardImg.style.backgroundColor=style.cardBg}
- syncModalColour(colour);
-}
-
-function syncModalColour(colour){
- const target=document.querySelector(`#colourOptions .option[data-colour="${colour}"]`);
- if(target){
-  document.querySelectorAll('#colourOptions .option').forEach(x=>x.classList.remove('selected'));
-  target.classList.add('selected');
- }
-}
-
-function openProduct(id){
- selectedProduct=id;
- const p=products[id];
- document.getElementById('modalName').textContent=p.name;
- document.getElementById('modalDescription').textContent=p.description;
- document.getElementById('modalPrice').textContent=p.available?'₹'+p.price:'COMING SOON';
- document.getElementById('addButton').textContent=p.available?'ADD TO BAG — ₹'+p.price:'COMING SOON';
- document.getElementById('addButton').disabled=!p.available;
- document.getElementById('addButton').style.opacity=p.available?'1':'.4';
- const idx=cardIndexes[id]??0;
- document.getElementById('modalImage').innerHTML=document.querySelectorAll('.product-image svg')[idx].outerHTML;
- document.getElementById('productModal').classList.add('active');
-}
-
-function closeProduct(){document.getElementById('productModal').classList.remove('active')}
-
-function selectOption(button,group){
- document.querySelectorAll('#'+group+' .option').forEach(x=>x.classList.remove('selected'));
- button.classList.add('selected');
- if(group==='colourOptions'&&selectedProduct==='perspective'){
-  const colour=button.dataset.colour;
-  const matchingSwatch=document.querySelector(`.swatch-btn[data-colour="${colour}"]`);
-  previewCardColour(colour,matchingSwatch);
- }
-}
-
-function addToCart(){
- const p=products[selectedProduct];
- if(!p.available)return;
- const colour=document.querySelector('#colourOptions .selected').dataset.colour;
- const size=document.querySelector('#sizeOptions .selected').textContent;
- const existing=cart.find(x=>x.id===selectedProduct&&x.colour===colour&&x.size===size);
- if(existing)existing.quantity++;
- else cart.push({id:selectedProduct,name:p.name,price:p.price,colour,size,quantity:1});
- updateCart(true);
- closeProduct();
- openCart();
-}
-
-function changeQty(index,delta){
- if(!cart[index])return;
- cart[index].quantity+=delta;
- if(cart[index].quantity<=0)cart.splice(index,1);
- updateCart();
-}
-
-function updateCart(shouldBump=false){
- const count=cart.reduce((s,x)=>s+x.quantity,0);
- const bagBadge=document.getElementById('bagCount');
- bagBadge.textContent=count;
- if(shouldBump){
-  bagBadge.classList.remove('bump');
-  void bagBadge.offsetWidth;
-  bagBadge.classList.add('bump');
- }
- document.getElementById('drawerCount').textContent=count;
- const items=document.getElementById('cartItems');
- const footer=document.getElementById('cartFooter');
- if(!cart.length){
-  items.innerHTML='<div class="empty">Your bag is currently empty.<br><br>Discover DROP 001.</div>';
-  footer.hidden=true;
-  return;
- }
- footer.hidden=false;
- items.innerHTML=cart.map((x,i)=>`
- <div class="cart-item">
-  <div class="cart-thumb">
-   <svg viewBox="0 0 100 120"><path d="M32 12 L42 7 Q50 17 58 7 L68 12 L91 26 L80 46 L68 41 L72 112 Q50 117 28 112 L32 41 L20 46 L9 26Z" fill="${x.colour==='Black'?'#171715':x.colour==='Charcoal'?'#444440':'#e9e6dc'}" stroke="#888" stroke-width="1"/></svg>
-  </div>
-  <div class="cart-details">
-   <h3>${x.name}</h3>
-   <p>${x.colour} / Size ${x.size}</p>
-   <p>₹${x.price} each</p>
-   <div class="qty-row">
-    <button type="button" class="qty-btn" onclick="changeQty(${i},-1)" aria-label="Decrease quantity">−</button>
-    <span class="qty-val">${x.quantity}</span>
-    <button type="button" class="qty-btn" onclick="changeQty(${i},1)" aria-label="Increase quantity">+</button>
-   </div>
-   <button type="button" class="remove-btn" onclick="removeItem(${i})">REMOVE</button>
-  </div>
- </div>`).join('');
- const total=cart.reduce((s,x)=>s+x.price*x.quantity,0);
- document.getElementById('cartTotal').textContent='₹'+total.toLocaleString('en-IN');
-}
-
-function removeItem(i){cart.splice(i,1);updateCart()}
-
-function openCart(){
- document.getElementById('overlay').classList.add('active');
- document.getElementById('drawer').classList.add('active');
-}
-
-function closeCart(){
- document.getElementById('overlay').classList.remove('active');
- document.getElementById('drawer').classList.remove('active');
-}
-
-function subscribe(e){
- e.preventDefault();
- document.getElementById('subscribeMessage').textContent='Preview noted — live newsletter saving is not connected yet.';
- document.getElementById('email').value='';
-}
-
-const prefersReducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-function updateScrollMotion(){
- if(prefersReducedMotion)return;
- const y=window.scrollY||0;
- document.querySelectorAll('[data-speed]').forEach(el=>{
-  const speed=parseFloat(el.getAttribute('data-speed'))||0;
-  const rot=parseFloat(el.getAttribute('data-rot'))||0;
-  const shift=y*speed;
-  const tilt=rot+(y*speed*0.08);
-  el.style.transform=`translate3d(0, ${shift.toFixed(1)}px, 0) rotate(${tilt.toFixed(1)}deg)`;
- });
- const heroShirt=document.getElementById('heroShirt');
- const heroCircle=document.getElementById('heroCircle');
- const storyEmblem=document.getElementById('storyEmblem');
- if(heroShirt)heroShirt.style.transform=`translate3d(0, ${Math.min(y*0.09,55).toFixed(1)}px, 0)`;
- if(heroCircle)heroCircle.style.transform=`rotate(${(y*0.025).toFixed(1)}deg)`;
- if(storyEmblem)storyEmblem.style.transform=`rotate(${(y*0.03).toFixed(1)}deg)`;
-}
-
-
-/* VEXDRAPE CUSTOM LAB INTERACTIONS */
-let labView = 'front';
-let labLogoPlacement = '';
-let labLogoLocked = false;
-let labGarmentName = 'BLACK';
-let labGoogleFontLoaded = '';
-let labCustomFontFamily = '';
-function setLabView(view){
- labView=view;
- document.getElementById('labFrontBtn').classList.toggle('active',view==='front');
- document.getElementById('labBackBtn').classList.toggle('active',view==='back');
- document.getElementById('labPreviewSide').textContent=view.toUpperCase()+' VIEW';
- document.getElementById('labViewLabel').textContent=view.toUpperCase()+' / '+labGarmentName;
- const shirt=document.getElementById('labShirtPath');
- const art=document.getElementById('garmentArt');
- const backSeam=document.getElementById('labBackSeam');
- if(view==='back'){
-  shirt.setAttribute('d','M130 54 L165 37 Q200 70 235 37 L270 54 L365 105 L325 190 L280 168 L295 420 Q200 445 105 420 L120 168 L75 190 L35 105 Z');
-  backSeam.setAttribute('opacity','.22');
-  art.style.top='45%';
- }else{
-  backSeam.setAttribute('opacity','0');
-  art.style.top='43%';
- }
- updateProtectedLogo();
-}
-function chooseLogoPlacement(place){
- if(labLogoLocked)return;
- labLogoPlacement=place;
- document.getElementById('logoFrontBtn').classList.toggle('active',place==='front');
- document.getElementById('logoBackBtn').classList.toggle('active',place==='back');
- document.getElementById('lockLogoBtn').disabled=false;
- document.getElementById('labStatus').textContent='Placement selected. Lock it to protect the VEXDRAPE brand area.';
- updateProtectedLogo();
-}
-function lockLogoPlacement(){
- if(!labLogoPlacement||labLogoLocked)return;
- labLogoLocked=true;
- document.getElementById('logoFrontBtn').disabled=true;
- document.getElementById('logoBackBtn').disabled=true;
- document.getElementById('lockLogoBtn').disabled=true;
- document.getElementById('lockLogoBtn').textContent='LOGO POSITION LOCKED';
- document.getElementById('logoLockNote').innerHTML='<strong>Position locked.</strong> The VEXDRAPE logo zone is now fixed for this design. Customer artwork controls cannot move or cover it.';
- document.getElementById('labStatus').textContent='VEXDRAPE logo position locked. You can continue customizing the rest of the garment.';
- updateProtectedLogo();
-}
-function updateProtectedLogo(){
- const mark=document.getElementById('protectedLogo');
- mark.className='logo-zone '+(labLogoPlacement==='front'?'front-left':'back-center');
- mark.style.display=(!labLogoPlacement || (labView==='front'&&labLogoPlacement==='front') || (labView==='back'&&labLogoPlacement==='back'))?'flex':'none';
-}
-function updateLabDesign(){
- const text=document.getElementById('labText').value||'';
- const font=document.getElementById('labFont').value;
- const color=document.getElementById('labTextColor').value;
- const size=document.getElementById('labTextSize').value;
- const art=document.getElementById('garmentArt');
- art.textContent=text;
- art.style.color=color;
- art.style.fontSize=size+'px';
- art.style.fontFamily='"'+font+'", sans-serif';
- if(font!==labCustomFontFamily && font!==labGoogleFontLoaded){
-  let link=document.getElementById('labGoogleFont');
-  if(!link){link=document.createElement('link');link.id='labGoogleFont';link.rel='stylesheet';document.head.appendChild(link);}
-  link.href='https://fonts.googleapis.com/css2?family='+encodeURIComponent(font).replace(/%20/g,'+')+':wght@400;500;600;700;800&display=swap';
-  labGoogleFontLoaded=font;
- }
-}
-let labUploadedFontUrl='';
-async function uploadLabFont(event){
- const file=event.target.files?.[0];const status=document.getElementById('labFontUploadStatus');
- if(!file)return;
- const ext=(file.name.split('.').pop()||'').toLowerCase();
- if(!['ttf','otf'].includes(ext)){status.textContent='Please choose a .TTF or .OTF font file.';event.target.value='';return;}
- if(file.size>10*1024*1024){status.textContent='Font file is too large. Please choose a file under 10 MB.';event.target.value='';return;}
- try{
-  const family='VEXDrapeUpload'+Date.now();const url=URL.createObjectURL(file);const face=new FontFace(family,`url(${url})`);await face.load();document.fonts.add(face);
-  if(labUploadedFontUrl)URL.revokeObjectURL(labUploadedFontUrl);labUploadedFontUrl=url;
-  const select=document.getElementById('labFont');const option=document.createElement('option');option.value=family;option.textContent='UPLOADED — '+file.name;select.add(option);select.value=family;labCustomFontFamily=family;updateLabDesign();
-  status.textContent='Loaded: '+file.name+'. Available in this browser tab only; it is not sent to a server.';
- }catch(err){status.textContent='This font could not be loaded. Try another valid TTF or OTF file.';event.target.value='';}
-}
-function setLabColour(fill,name,button){
- document.getElementById('labShirtPath').setAttribute('fill',fill);
- document.querySelectorAll('.lab-panel .lab-choice').forEach(b=>{
-  if(b.closest('.lab-field')&&b.closest('.lab-field').querySelector('label')?.textContent.includes('GARMENT COLOUR'))b.classList.remove('active');
- });
- button.classList.add('active');
- labGarmentName=name;
- document.getElementById('labViewLabel').textContent=labView.toUpperCase()+' / '+name;
-}
-
-
-/* MULTI-PAGE PORTAL / DASHBOARDS */
-let portalRole='customer';
-let portalDisplayName='Guest';
-let ideaData=[];
-let uiData=[];
-function showPortalPage(name){
- document.getElementById('storeShell').hidden=true;
- document.getElementById('portalShell').hidden=false;
- document.querySelectorAll('.portal-page').forEach(p=>p.classList.toggle('active',p.id==='page-'+name));
- window.scrollTo({top:0,behavior:'smooth'});
-}
-function enterStore(){document.getElementById('portalShell').hidden=true;document.getElementById('storeShell').hidden=false;window.scrollTo({top:0,behavior:'smooth'});}
-function selectPortalRole(role,button){portalRole=role;document.querySelectorAll('.role-option').forEach(b=>b.classList.toggle('active',b===button));}
-function demoSignIn(){
- const email=document.getElementById('portalEmail').value.trim();
- if(!email || !email.includes('@')){alert('Please enter an email address to continue.');return;}
- portalDisplayName=email.split('@')[0];buildDashboard();showPortalPage('dashboard');
-}
-function guestSignIn(){portalDisplayName='Guest';portalRole='customer';buildDashboard();showPortalPage('dashboard');}
-const dashboardConfig={
- customer:{title:'CUSTOMER DASHBOARD.',intro:'Your orders, saved pieces and VEXDRAPE account in one place.',stats:[['ORDERS','0'],['SAVED DESIGNS','0'],['WISHLIST','0'],['ACCOUNT','ACTIVE']],cards:[['▣','My orders','Track purchases and view order details.','orders'],['♡','Wishlist','Keep the pieces you want to revisit.','wishlist'],['✳','Saved designs','Your saved Custom Lab creations.','saved-designs'],['◉','My profile','Manage your account details.','profile'],['⌕','Explore collection','Browse the latest VEXDRAPE pieces.','store'],['✦','Custom Lab','Create a design that feels like you.','custom-lab']]},
- creator:{title:'CREATOR DASHBOARD.',intro:'A dedicated workspace for ideas, design experiments and custom creations.',stats:[['DESIGNS','0'],['IDEAS','1,001'],['UI STYLES','101'],['FONTS','120+']],cards:[['✳','Open Custom Lab','Build a custom front or back print.','custom-lab'],['✦','Idea library','Search 1,001 generated creative directions.','ideas'],['▦','UI style library','Explore 101 visual style combinations.','ui-library'],['▣','My designs','Your saved and in-progress concepts.','saved-designs'],['⌕','Browse collection','See the current VEXDRAPE collection.','store'],['⚙','Workspace settings','Manage your creator preferences.','settings']]},
- admin:{title:'STORE ADMIN DASHBOARD.',intro:'A preview of the management workspace for the VEXDRAPE store owner.',stats:[['PRODUCTS','4'],['ORDERS','0'],['CUSTOMERS','0'],['REVENUE','—']],cards:[['▣','Products','Review product listings and availability.','admin-products'],['↗','Orders','Review incoming orders and status.','admin-orders'],['♙','Customers','Customer account overview.','admin-customers'],['▥','Analytics','Store performance overview.','admin-analytics'],['✦','Design submissions','Review Custom Lab design submissions.','admin-designs'],['⚙','Store settings','Brand, shipping and store preferences.','settings']]}
-};
-function buildDashboard(){
- const c=dashboardConfig[portalRole];
- document.getElementById('dashboardHeading').textContent=c.title;
- document.getElementById('dashboardIntro').textContent=c.intro;
- document.getElementById('dashboardUser').textContent=(portalRole.toUpperCase()+' / '+portalDisplayName.toUpperCase());
- document.getElementById('dashboardStats').innerHTML=c.stats.map(x=>`<div class="dashboard-stat"><span>${x[0]}</span><strong>${x[1]}</strong></div>`).join('');
- document.getElementById('dashboardCards').innerHTML=c.cards.map(x=>`<button class="portal-card" onclick="openDashboardPage('${x[3]}')"><div><div class="card-icon">${x[0]}</div><h3>${x[1]}</h3><p>${x[2]}</p></div><span class="card-arrow">↗</span></button>`).join('');
-}
-function openDashboardPage(id){
- if(id==='store'){enterStore();return;}
- if(id==='custom-lab'){enterStore();setTimeout(()=>document.getElementById('custom-lab')?.scrollIntoView({behavior:'smooth'}),80);return;}
- const pageMap={
-  orders:['MY ORDERS','Your order history and delivery updates.','No orders yet. When checkout and order syncing are connected, your purchases will appear here.'],
-  wishlist:['WISHLIST','Pieces you want to keep an eye on.','Your wishlist is empty. Explore DROP 001 to find something you like.'],
-  'saved-designs':['SAVED DESIGNS','Your Custom Lab work, all together.','No saved designs yet. Design saving will be connected when the account backend is added.'],
-  profile:['MY PROFILE','Your account details and preferences.','<div class="dashboard-empty">Profile editing will be enabled after secure account storage is connected. Current account: '+escapePortalText(portalDisplayName)+'</div>'],
-  settings:['WORKSPACE SETTINGS','Your VEXDRAPE preferences.','<div class="dashboard-empty">Settings preview: email preferences, design defaults, notification preferences and privacy controls.</div>'],
-  'admin-products':['PRODUCT MANAGEMENT','Manage product listings and availability.','<table class="portal-table"><tr><th>PRODUCT</th><th>STATUS</th><th>PRICE</th></tr><tr><td>THE PERSPECTIVE</td><td>Featured preview</td><td>₹899</td></tr><tr><td>UH24 HOODIE</td><td>Coming soon</td><td>—</td></tr><tr><td>BEYOND THE FRAME</td><td>Concept</td><td>—</td></tr><tr><td>STAY UNDEFINED</td><td>Concept</td><td>—</td></tr></table>'],
-  'admin-orders':['ORDER MANAGEMENT','Review customer orders and fulfilment status.','<div class="dashboard-empty">No live orders are connected. Qikink and checkout integration are required before this table can receive real orders.</div>'],
-  'admin-customers':['CUSTOMERS','Customer account overview.','<div class="dashboard-empty">Customer records will appear here after secure sign-in and database storage are connected.</div>'],
-  'admin-analytics':['STORE ANALYTICS','A snapshot of store activity.','<div class="dashboard-stat-grid"><div class="dashboard-stat"><span>VISITS</span><strong>—</strong></div><div class="dashboard-stat"><span>CONVERSION</span><strong>—</strong></div><div class="dashboard-stat"><span>ORDERS</span><strong>0</strong></div><div class="dashboard-stat"><span>SALES</span><strong>—</strong></div></div><div class="dashboard-empty">Live analytics need a connected analytics service.</div>'],
-  'admin-designs':['DESIGN SUBMISSIONS','Review designs sent by customers.','<div class="dashboard-empty">No submitted designs yet. Design upload and review workflow will be added as a connected feature.</div>']
- };
- if(id==='ideas'){renderIdeaLibrary();return;}
- if(id==='ui-library'){renderUILibrary();return;}
- const d=pageMap[id]||['COMING SOON','This workspace is being prepared.','<div class="dashboard-empty">This page is part of the VEXDRAPE roadmap.</div>'];
- document.getElementById('subpageKicker').textContent=portalRole.toUpperCase()+' WORKSPACE';
- document.getElementById('subpageTitle').textContent=d[0]+'.';
- document.getElementById('subpageDescription').textContent=d[1];
- document.getElementById('subpageContent').innerHTML=d[2];
- showPortalPage('subpage');
-}
-function escapePortalText(t){return String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function buildIdeaLibrary(){
- if(ideaData.length)return;
- const themes=['Optical illusion','Urban typography','Abstract geometry','Vintage athletics','Digital distortion','Architectural forms','Nature fragments','Underground music','Motion graphics','Minimal symbols'];
- const moods=['Quiet confidence','Raw energy','Night mode','Soft minimalism','Retro future','Industrial','Playful contrast','Monochrome','Experimental','Utility'];
- const formats=['Oversized back graphic','Small chest statement','Sleeve-free front layout','Typographic stack','Circular emblem','Broken grid','Negative-space graphic','Micro lettering','Large centered artwork','Asymmetric composition'];
- let n=1;for(const a of themes)for(const b of moods)for(const c of formats){ideaData.push({id:n++,title:`${a} / ${b}`,detail:c,search:`${a} ${b} ${c}`});}
- ideaData.push({id:1001,title:'Perspective shift / Signature concept',detail:'Hybrid front statement with a large back composition',search:'perspective shift signature hybrid front back composition'});
-}
-function renderIdeaLibrary(){
- buildIdeaLibrary();document.getElementById('subpageKicker').textContent='CREATIVE RESEARCH / 1,001 COMBINATIONS';document.getElementById('subpageTitle').textContent='IDEA LIBRARY.';document.getElementById('subpageDescription').textContent='Search a large set of creative directions for graphics, typography and streetwear layouts. These are starting points, not finished licensed artwork.';
- document.getElementById('subpageContent').innerHTML='<div class="portal-toolbar"><input class="portal-search" id="ideaSearch" placeholder="Search ideas, moods, layouts..." oninput="filterIdeas()"><span class="portal-chip" id="ideaCount">1,001 IDEAS</span></div><div class="idea-list" id="ideaResults"></div>';
- filterIdeas();showPortalPage('subpage');
-}
-function filterIdeas(){const q=(document.getElementById('ideaSearch')?.value||'').toLowerCase();const found=ideaData.filter(x=>(x.search+' '+x.title+' '+x.detail).toLowerCase().includes(q));document.getElementById('ideaCount').textContent=found.length+' RESULTS';document.getElementById('ideaResults').innerHTML=found.slice(0,120).map(x=>`<article class="idea-item"><span>IDEA ${String(x.id).padStart(4,'0')}</span><h4>${escapePortalText(x.title)}</h4><p style="font-size:10px;color:#99978f;margin-top:6px">${escapePortalText(x.detail)}</p></article>`).join('')||'<div class="dashboard-empty">No matches. Try another keyword.</div>';}
-function buildUIStyles(){
- if(uiData.length)return;
- const aesthetics=['Editorial Minimal','Neo Brutalist','Quiet Luxury','Tech Utility','Vintage Archive','Monochrome','Gallery White','Industrial Grid','Soft Contrast','Street Editorial'];
- const layouts=['Split Hero','Full Bleed','Asymmetric Grid','Card Stack','Sidebar Canvas','Magazine Columns','Large Typography','Product Rail','Bento Grid','Minimal Index'];
- const palettes=[['#11110f','#f0eee8'],['#e8e5dc','#171715'],['#242321','#e2ded4'],['#d9d6cc','#22221f'],['#171b1b','#d7e0dc']];
- let n=1;for(const a of aesthetics)for(const l of layouts){uiData.push({id:n++,name:`${a} / ${l}`,aesthetic:a,layout:l,palette:palettes[(n-2)%palettes.length]});}
- uiData.push({id:101,name:'VEXDRAPE Signature / Immersive Portal',aesthetic:'VEXDRAPE Signature',layout:'Immersive Portal',palette:palettes[0]});
-}
-function renderUILibrary(){
- buildUIStyles();document.getElementById('subpageKicker').textContent='DESIGN SYSTEM EXPLORER / 101 COMBINATIONS';document.getElementById('subpageTitle').textContent='UI LIBRARY.';document.getElementById('subpageDescription').textContent='Explore 100 combinations of visual direction and layout structure. Select a style to preview its design language.';
- document.getElementById('subpageContent').innerHTML='<div class="portal-toolbar"><input class="portal-search" id="uiSearch" placeholder="Search styles or layouts..." oninput="filterUIStyles()"><span class="portal-chip" id="uiCount">101 STYLES</span></div><div class="ui-list" id="uiResults"></div><div id="uiSelectedNote" class="portal-notice">Choose a style to see its direction. These are UI references, not 100 separate live website themes.</div>';
- filterUIStyles();showPortalPage('subpage');
-}
-function filterUIStyles(){const q=(document.getElementById('uiSearch')?.value||'').toLowerCase();const found=uiData.filter(x=>x.name.toLowerCase().includes(q));document.getElementById('uiCount').textContent=found.length+' STYLES';document.getElementById('uiResults').innerHTML=found.map(x=>`<button class="ui-style" onclick="selectUIStyle(${x.id})"><div class="ui-preview" style="background:${x.palette[0]};color:${x.palette[1]};border:1px solid ${x.palette[1]}44"><i>${x.aesthetic.toUpperCase()}</i><b>VEX<br>DRAPE.</b><i>${x.layout.toUpperCase()}</i></div><strong>${escapePortalText(x.name)}</strong><small>STYLE ${String(x.id).padStart(3,'0')}</small></button>`).join('');}
-function selectUIStyle(id){const x=uiData.find(v=>v.id===id);document.getElementById('uiSelectedNote').textContent=`Selected: ${x.name}. Direction: ${x.aesthetic}; layout: ${x.layout}. Palette preview: ${x.palette.join(' / ')}. This is a reference preset; applying a full site-wide theme can be added later.`;document.querySelectorAll('.ui-style').forEach(b=>b.classList.toggle('selected',b.textContent.includes(String(id).padStart(3,'0'))));}
-
-window.addEventListener('scroll',updateScrollMotion,{passive:true});
-document.addEventListener('keydown',e=>{
- if(e.key==='Escape'){
-  closeProduct();
-  closeCart();
-  closeNav();
- }
-});
-updateScrollMotion();
-updateCart();
-showPortalPage('landing');
-updateLabDesign();
-updateProtectedLogo();
-</script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#11110f">
-<title>VEXDRAPE — Wear Your Perspective</title>
-<meta name="description" content="VEXDRAPE — Independent minimal streetwear. DROP 001: THE FIRST PERSPECTIVE.">
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-
-:root {
-  --black:#11110f;
-  --dark:#191917;
-  --cream:#f0eee8;
-  --white:#fffefa;
-  --grey:#85847e;
-  --line:rgba(240,238,232,.17);
-  --serif:Georgia,serif;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--black);color:var(--cream);font-family:'DM Sans',sans-serif;position:relative;overflow-x:hidden}
-button,a{font:inherit}
-a{color:inherit;text-decoration:none}
-button{cursor:pointer}
-
-.ambient-stage{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.ambient-orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.22;will-change:transform;transition:transform .12s linear}
-.orb-one{width:460px;height:460px;top:-110px;left:-100px;background:radial-gradient(circle,#f0eee8 0%,transparent 70%)}
-.orb-two{width:520px;height:520px;top:38%;right:-150px;background:radial-gradient(circle,#85847e 0%,transparent 70%)}
-.orb-three{width:420px;height:420px;bottom:-120px;left:22%;background:radial-gradient(circle,#d9d6cc 0%,transparent 70%);opacity:.14}
-
-.floating-piece{position:absolute;opacity:.085;color:var(--cream);will-change:transform;transition:transform .12s linear}
-.floating-piece svg{width:100%;height:100%;display:block}
-.piece-shirt-a{width:170px;top:14%;right:8%}
-.piece-shoe-a{width:165px;top:36%;left:4%}
-.piece-hoodie-a{width:190px;top:58%;right:6%}
-.piece-shoe-b{width:150px;top:79%;left:10%}
-
-.announcement,header,main,footer{position:relative;z-index:1}
-.announcement{text-align:center;padding:10px;background:var(--cream);color:var(--black);font-size:10px;letter-spacing:2px;font-weight:700}
-header{height:82px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(17,17,15,.92);backdrop-filter:blur(16px);z-index:10}
-.brand{display:flex;align-items:center;gap:11px}
-.brand svg{width:46px;height:46px}
-.brand-name{font-family:'Space Grotesk';font-weight:700;font-size:20px;letter-spacing:3px}
-nav{display:flex;gap:35px;align-items:center}
-nav a{font-size:11px;letter-spacing:1.5px;color:#d4d2cb;transition:.2s}
-nav a:hover{color:white}
-.header-right{display:flex;gap:22px;align-items:center}
-.icon-btn{background:none;border:0;color:var(--cream);font-size:12px;letter-spacing:1px;transition:transform .2s}
-.icon-btn:hover{transform:translateY(-1px)}
-.bag-count{background:var(--cream);color:var(--black);border-radius:50%;padding:3px 7px;font-size:10px;margin-left:5px;font-weight:700;display:inline-block;transition:transform .25s}
-.bag-count.bump{transform:scale(1.25)}
-.menu-btn{display:none}
-
-.hero{min-height:660px;display:grid;grid-template-columns:1fr 1fr;padding:70px 7%;align-items:center;gap:40px;overflow:hidden}
-.eyebrow{font-size:10px;letter-spacing:4px;color:#aaa89f;margin-bottom:25px}
-.hero h1{font-family:'Space Grotesk';font-size:clamp(52px,7vw,100px);line-height:.95;letter-spacing:-5px;font-weight:600}
-.hero h1 span{font-family:var(--serif);font-style:italic;font-weight:400}
-.hero-description{max-width:370px;color:#aaa89f;line-height:1.9;font-size:13px;margin:28px 0 34px}
-.actions{display:flex;gap:12px;flex-wrap:wrap}
-.btn{padding:16px 24px;border:1px solid var(--cream);font-size:10px;letter-spacing:2px;font-weight:700;transition:.25s;display:inline-block}
-.btn:active{transform:scale(.98)}
-.btn-primary{background:var(--cream);color:var(--black)}
-.btn-primary:hover{background:transparent;color:var(--cream)}
-.btn-outline:hover{background:var(--cream);color:var(--black)}
-.hero-art{position:relative;min-height:460px;display:flex;align-items:center;justify-content:center}
-.hero-circle{position:absolute;width:min(420px,90%);aspect-ratio:1;border:1px solid #55534d;border-radius:50%;transition:transform .15s linear}
-.hero-circle:before,.hero-circle:after{content:"";position:absolute;border:1px solid #373630;border-radius:50%;inset:25px}
-.hero-circle:after{inset:52px}
-.hero-shirt{position:relative;width:75%;max-width:390px;filter:drop-shadow(0 25px 30px #000);transition:transform .15s linear}
-.hero-caption{position:absolute;bottom:12px;right:0;font-size:9px;letter-spacing:3px;color:#77766e}
-
-.marquee{background:var(--cream);color:var(--black);overflow:hidden;padding:17px 0;white-space:nowrap}
-.marquee-track{display:inline-block;animation:move 27s linear infinite;font-family:'Space Grotesk';font-size:13px;letter-spacing:4px;font-weight:700}
-@keyframes move{to{transform:translateX(-50%)}}
-
-.section{padding:100px 7%}
-.section-top{display:flex;justify-content:space-between;align-items:end;margin-bottom:42px;gap:20px}
-.section-label{font-size:10px;letter-spacing:3px;color:#aaa89f;margin-bottom:13px}
-.section h2{font-family:'Space Grotesk';font-size:clamp(35px,5vw,60px);letter-spacing:-2px;font-weight:500}
-.section-note{font-size:11px;color:#aaa89f;line-height:1.8;max-width:260px}
-.products{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.product-card{min-width:0;transition:transform .35s ease}
-.product-card:hover{transform:translateY(-4px)}
-.product-image{position:relative;aspect-ratio:4/5;background:#252522;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:background-color .3s ease}
-.product-image.light{background:#d9d6cc}
-.product-image.grey{background:#393936}
-.product-image svg{width:84%;height:90%;transition:transform .5s ease}
-.product-card:hover .product-image svg{transform:scale(1.045)}
-.product-tag{position:absolute;top:15px;left:15px;background:var(--cream);color:var(--black);font-size:9px;padding:7px 10px;letter-spacing:1.5px;font-weight:700}
-.quick-add{position:absolute;bottom:13px;left:13px;right:13px;border:0;padding:14px;background:var(--cream);color:var(--black);font-size:10px;letter-spacing:2px;font-weight:700;opacity:0;transform:translateY(8px);transition:.25s}
-.product-card:hover .quick-add{opacity:1;transform:none}
-.product-info{padding:17px 0;display:flex;justify-content:space-between;gap:10px}
-.product-info h3{font-size:13px;font-weight:600;letter-spacing:.5px}
-.product-info p{font-size:11px;color:#96948d;margin-top:7px}
-.price{font-size:13px;font-weight:600;white-space:nowrap}
-.colors{display:flex;gap:8px;margin-top:12px;align-items:center}
-.swatch-btn{width:16px;height:16px;border-radius:50%;border:1px solid #777;padding:0;position:relative;transition:transform .2s,box-shadow .2s}
-.swatch-btn:hover{transform:scale(1.15)}
-.swatch-btn.active{box-shadow:0 0 0 2px var(--black),0 0 0 3.5px var(--cream);border-color:var(--cream)}
-
-.story{background:var(--cream);color:var(--black);padding:100px 7%;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
-.story-visual{min-height:380px;background:#d9d6cc;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.story-visual svg{width:72%;max-width:340px;transition:transform .15s linear}
-.story-copy .section-label{color:#77746c}
-.story-copy h2{font-family:'Space Grotesk';font-size:clamp(38px,5vw,65px);line-height:1.05;letter-spacing:-3px;font-weight:500}
-.story-copy p{font-size:13px;line-height:2;color:#68665f;max-width:400px;margin:25px 0}
-.story-copy .btn{border-color:var(--black)}
-.story-copy .btn-primary{background:var(--black);color:var(--cream)}
-.story-copy .btn-primary:hover{background:transparent;color:var(--black)}
-
-.values{padding:80px 7%;display:grid;grid-template-columns:repeat(3,1fr);gap:35px}
-.value{border-top:1px solid var(--line);padding-top:22px;transition:border-color .25s}
-.value:hover{border-top-color:var(--cream)}
-.value-number{font-family:'Space Grotesk';font-size:12px;color:#85847e}
-.value h3{font-size:14px;letter-spacing:1px;margin:20px 0 12px}
-.value p{font-size:12px;line-height:1.8;color:#96948d;max-width:270px}
-
-.newsletter{padding:85px 7%;text-align:center;background:rgba(27,27,24,.92)}
-.newsletter h2{font-family:'Space Grotesk';font-size:clamp(32px,5vw,55px);letter-spacing:-2px}
-.newsletter p{font-size:12px;color:#aaa89f;margin:15px 0 25px}
-.newsletter-form{display:flex;max-width:420px;margin:auto;border-bottom:1px solid #777;padding-bottom:8px}
-.newsletter-form input{background:none;border:0;outline:0;color:white;flex:1;padding:10px;font-size:12px;min-width:0}
-.newsletter-form button{background:none;border:0;color:var(--cream);font-size:10px;letter-spacing:2px;font-weight:700}
-.subscribe-status{margin-top:16px;font-size:11px;color:#d4d2cb;min-height:16px}
-
-footer{padding:55px 7% 25px;border-top:1px solid var(--line);background:rgba(17,17,15,.94)}
-.footer-top{display:flex;justify-content:space-between;gap:35px;flex-wrap:wrap;padding-bottom:50px}
-.footer-brand p{font-size:11px;color:#85847e;margin-top:15px;letter-spacing:1px}
-.footer-links{display:flex;gap:60px}
-.footer-links h4{font-size:10px;letter-spacing:2px;margin-bottom:18px}
-.footer-links a{display:block;font-size:11px;color:#96948d;margin:12px 0;transition:.2s}
-.footer-links a:hover{color:var(--cream)}
-.footer-bottom{border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;color:#77766e;font-size:9px;letter-spacing:1px;gap:15px;flex-wrap:wrap}
-
-.overlay{position:fixed;inset:0;background:#0009;z-index:20;opacity:0;pointer-events:none;transition:.25s}
-.overlay.active{opacity:1;pointer-events:auto}
-.drawer{position:fixed;right:0;top:0;height:100%;width:min(430px,100%);background:var(--cream);color:var(--black);z-index:21;padding:28px;transform:translateX(100%);transition:.32s cubic-bezier(.22,1,.36,1);overflow:auto}
-.drawer.active{transform:none}
-.drawer-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ccc;padding-bottom:20px}
-.drawer-head h2{font-family:'Space Grotesk';font-size:22px}
-.close{background:none;border:0;font-size:25px;color:inherit}
-.cart-item{display:flex;gap:15px;padding:22px 0;border-bottom:1px solid #ccc}
-.cart-thumb{width:85px;height:100px;background:#252522;display:flex;align-items:center;justify-content:center}
-.cart-thumb svg{width:90%}
-.cart-details{flex:1}
-.cart-details h3{font-size:13px}
-.cart-details p{font-size:11px;color:#68665f;margin-top:7px}
-.qty-row{display:flex;align-items:center;gap:10px;margin-top:10px}
-.qty-btn{border:1px solid #888;background:transparent;color:var(--black);width:24px;height:24px;font-size:12px;line-height:1}
-.qty-val{font-size:11px;font-weight:700}
-.remove-btn{border:0;background:none;text-decoration:underline;font-size:10px;margin-top:10px;color:var(--black)}
-.cart-total{display:flex;justify-content:space-between;margin:25px 0;font-weight:700}
-.cart-message{font-size:11px;line-height:1.7;color:#68665f;margin-bottom:18px}
-.checkout{width:100%;background:var(--black);color:white;border:0;padding:17px;font-size:10px;letter-spacing:2px;font-weight:700}
-.empty{text-align:center;padding:60px 0;color:#68665f;font-size:13px}
-
-.modal{position:fixed;inset:0;background:#000b;z-index:30;display:none;align-items:center;justify-content:center;padding:20px}
-.modal.active{display:flex}
-.modal-box{background:var(--cream);color:var(--black);width:min(650px,100%);padding:30px;position:relative;animation:popIn .24s ease}
-@keyframes popIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
-.modal-close{position:absolute;right:20px;top:15px;background:none;border:0;font-size:25px}
-.modal-content{display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center}
-.modal-product-image{background:#292925;min-height:300px;display:flex;align-items:center;justify-content:center;transition:background-color .25s ease}
-.modal-product-image svg{width:90%}
-.modal-content h2{font-family:'Space Grotesk';font-size:27px}
-.modal-content p{font-size:12px;color:#68665f;margin:12px 0;line-height:1.6}
-.modal-price{font-weight:700;font-size:18px;margin:15px 0}
-.option-label{font-size:10px;letter-spacing:1px;font-weight:700;margin:17px 0 9px;display:block}
-.options{display:flex;gap:7px;flex-wrap:wrap}
-.option{border:1px solid #aaa;background:transparent;padding:9px 12px;font-size:10px;transition:.2s}
-.option.selected{background:var(--black);color:white;border-color:var(--black)}
-.add-button{width:100%;background:var(--black);color:white;border:0;padding:15px;margin-top:20px;font-size:10px;letter-spacing:2px;font-weight:700}
-
-@media(prefers-reduced-motion:reduce){
- html{scroll-behavior:auto}
- .marquee-track{animation:none}
- .ambient-orb,.floating-piece,.hero-circle,.hero-shirt,.story-visual svg{transition:none}
-}
-@media(max-width:760px){
- header{height:70px;padding:0 5%}
- .brand-name{font-size:17px}
- .brand svg{width:40px}
- nav{display:none;position:absolute;top:70px;left:0;right:0;background:var(--black);padding:25px;flex-direction:column;gap:25px;border-bottom:1px solid var(--line)}
- nav.open{display:flex}
- .menu-btn{display:block}
- .hero{grid-template-columns:1fr;padding:65px 7% 35px;gap:15px}
- .hero h1{font-size:65px}
- .hero-art{min-height:330px}
- .hero-shirt{max-width:280px}
- .section{padding:75px 6%}
- .section-top{align-items:start;flex-direction:column}
- .products{grid-template-columns:repeat(2,1fr);gap:12px}
- .product-info{flex-direction:column}
- .quick-add{opacity:1;transform:none;padding:11px}
- .story{grid-template-columns:1fr;padding:70px 7%;gap:35px}
- .story-visual{min-height:300px}
- .values{grid-template-columns:1fr;gap:35px}
- .footer-links{gap:30px}
- .modal-content{grid-template-columns:1fr}
- .modal-product-image{min-height:220px}
- .modal-box{max-height:90vh;overflow:auto}
- .floating-piece{opacity:.055}
- .piece-shirt-a,.piece-hoodie-a{width:120px}
- .piece-shoe-a,.piece-shoe-b{width:115px}
-}
-@media(max-width:390px){
- .products{grid-template-columns:1fr}
- .hero h1{font-size:55px}
-}
-</style>
-</head>
-
-<body>
-<div class="ambient-stage" aria-hidden="true">
- <div class="ambient-orb orb-one" data-speed="0.08"></div>
- <div class="ambient-orb orb-two" data-speed="-0.11"></div>
- <div class="ambient-orb orb-three" data-speed="0.06"></div>
-
- <div class="floating-piece piece-shirt-a" data-speed="0.14" data-rot="8">
-  <svg viewBox="0 0 120 140" fill="none" stroke="currentColor" stroke-width="1.6">
-   <path d="M36 16 L48 10 Q60 22 72 10 L84 16 L110 32 L96 58 L82 51 L87 128 Q60 135 33 128 L38 51 L24 58 L10 32 Z"/>
-  </svg>
- </div>
-
- <div class="floating-piece piece-shoe-a" data-speed="-0.12" data-rot="-12">
-  <svg viewBox="0 0 160 90" fill="none" stroke="currentColor" stroke-width="1.6">
-   <path d="M16 58 L46 42 L74 22 L98 28 L128 45 L146 52 L144 66 L16 66 Z"/>
-   <path d="M14 71 L146 71"/>
-  </svg>
- </div>
-
- <div class="floating-piece piece-hoodie-a" data-speed="0.16" data-rot="-7">
-  <svg viewBox="0 0 130 150" fill="none" stroke="currentColor" stroke-width="1.6">
-   <path d="M36 22 L50 12 Q65 26 80 12 L94 22 L120 38 L105 68 L90 59 L95 138 Q65 145 35 138 L40 59 L25 68 L10 38 Z"/>
-   <path d="M50 12 Q50 38 65 38 Q80 38 80 12"/>
-  </svg>
- </div>
-
- <div class="floating-piece piece-shoe-b" data-speed="-0.15" data-rot="11">
-  <svg viewBox="0 0 160 90" fill="none" stroke="currentColor" stroke-width="1.6">
-   <path d="M18 56 L48 40 L76 20 L100 26 L130 44 L146 52 L144 65 L18 65 Z"/>
-   <path d="M16 70 L146 70"/>
-  </svg>
- </div>
-</div>
-
-<div class="announcement">DROP 001 — THE FIRST PERSPECTIVE &nbsp; / &nbsp; VEXDRAPE</div>
-
-<header>
- <a class="brand" href="#home">
-  <svg viewBox="0 0 100 100" fill="none" aria-label="VEXDRAPE logo">
-   <circle cx="50" cy="50" r="46" stroke="#f0eee8" stroke-width="2"/>
-   <circle cx="50" cy="50" r="39" stroke="#f0eee8" stroke-width=".8"/>
-   <text x="50" y="47" fill="#f0eee8" font-size="13" font-family="Arial" font-weight="bold" text-anchor="middle" letter-spacing="1">VD</text>
-   <path id="curve" d="M14 58 A37 37 0 0 0 86 58" fill="none"/>
-   <text fill="#f0eee8" font-size="5.5" letter-spacing="1">
-    <textPath href="#curve" startOffset="50%" text-anchor="middle">WEAR YOUR PERSPECTIVE</textPath>
-   </text>
-  </svg>
-  <span class="brand-name">VEXDRAPE</span>
- </a>
-
- <nav id="nav" aria-label="Primary navigation">
-  <a href="#home" onclick="closeNav()">HOME</a>
-  <a href="#collection" onclick="closeNav()">COLLECTION</a>
-  <a href="#story" onclick="closeNav()">OUR STORY</a>
-  <a href="#contact" onclick="closeNav()">CONTACT</a>
- </nav>
-
- <div class="header-right">
-  <button class="icon-btn menu-btn" onclick="toggleNav()" aria-label="Toggle menu">MENU</button>
-  <button class="icon-btn" onclick="openCart()" aria-label="Open shopping bag">BAG <span class="bag-count" id="bagCount">0</span></button>
- </div>
-</header>
-
-<main>
-<section class="hero" id="home">
- <div>
-  <div class="eyebrow">INDEPENDENT STREETWEAR · EST. 2026</div>
-  <h1>WEAR<br>YOUR<br><span>perspective.</span></h1>
-  <p class="hero-description">Not made to follow. Made to express. Discover a different perspective on everyday streetwear.</p>
-  <div class="actions">
-   <a href="#collection" class="btn btn-primary">EXPLORE DROP 001 ↗</a>
-   <a href="#story" class="btn btn-outline">OUR STORY</a>
-  </div>
- </div>
- <div class="hero-art">
-  <div class="hero-circle" id="heroCircle"></div>
-  <svg class="hero-shirt" id="heroShirt" viewBox="0 0 400 460" xmlns="http://www.w3.org/2000/svg" aria-label="VEXDRAPE editorial garment illustration">
-   <defs>
-    <linearGradient id="shirtShade" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#343430"/><stop offset=".55" stop-color="#20201e"/><stop offset="1" stop-color="#11110f"/></linearGradient>
-   </defs>
-   <path d="M130 54 L165 37 Q200 70 235 37 L270 54 L365 105 L325 190 L280 168 L295 420 Q200 445 105 420 L120 168 L75 190 L35 105 Z" fill="url(#shirtShade)" stroke="#57564f" stroke-width="2"/>
-   <path d="M165 37 Q165 93 200 93 Q235 93 235 37" fill="none" stroke="#68675e" stroke-width="8"/>
-   <path d="M165 38 Q200 80 235 38" fill="none" stroke="#171715" stroke-width="3"/>
-   <circle cx="200" cy="177" r="24" fill="none" stroke="#ddd9ce" stroke-width="1.5"/>
-   <circle cx="200" cy="177" r="20" fill="none" stroke="#ddd9ce" stroke-width=".7"/>
-   <text x="200" y="180" text-anchor="middle" fill="#eeeae0" font-size="7" letter-spacing="1.2">VD</text>
-   <text x="200" y="188" text-anchor="middle" fill="#eeeae0" font-size="3.8" letter-spacing=".5">VEXDRAPE</text>
-   <path d="M110 420 Q200 438 290 420" fill="none" stroke="#55544d" stroke-width="2"/>
-  </svg>
-  <div class="hero-caption">01 / THE FIRST PERSPECTIVE</div>
- </div>
 </section>
 
-<div class="marquee" aria-hidden="true">
- <div class="marquee-track">VEXDRAPE ✳ WEAR YOUR PERSPECTIVE ✳ DROP 001 ✳ VEXDRAPE ✳ WEAR YOUR PERSPECTIVE ✳ DROP 001 ✳ VEXDRAPE ✳ WEAR YOUR PERSPECTIVE ✳ DROP 001 ✳ </div>
-</div>
-
-<section class="section" id="collection">
- <div class="section-top">
-  <div>
-   <div class="section-label">THE FIRST COLLECTION / 2026</div>
-   <h2>DROP 001.</h2>
-  </div>
-  <p class="section-note">A first expression of the VEXDRAPE identity. Minimal design. Everyday perspective.</p>
- </div>
-
- <div class="products">
-  <article class="product-card">
-   <div class="product-image" id="perspectiveCardImage">
-    <span class="product-tag">FEATURED</span>
-    <svg id="perspectiveCardSvg" viewBox="0 0 300 370" aria-label="THE PERSPECTIVE oversized T-shirt preview">
-     <path id="perspectiveShirtPath" d="M100 37 L125 25 Q150 50 175 25 L200 37 L267 75 L237 135 L205 120 L217 345 Q150 359 83 345 L95 120 L63 135 L33 75Z" fill="#171715" stroke="#55544e" stroke-width="2"/>
-     <path d="M125 25 Q125 68 150 68 Q175 68 175 25" fill="none" stroke="#77766e" stroke-width="6"/>
-     <circle cx="150" cy="135" r="18" fill="none" stroke="#f0eee8" stroke-width="1.4"/>
-     <circle cx="150" cy="135" r="14" fill="none" stroke="#f0eee8" stroke-width=".7"/>
-     <text x="150" y="138" text-anchor="middle" fill="#f0eee8" font-size="6">VD</text>
-    </svg>
-    <button class="quick-add" onclick="openProduct('perspective')">VIEW PRODUCT ↗</button>
-   </div>
-   <div class="product-info">
-    <div>
-     <h3>THE PERSPECTIVE</h3>
-     <p>Oversized · UC22 · XS–XXL</p>
-     <div class="colors" aria-label="Select colour preview">
-      <button type="button" class="swatch-btn active" style="background:#171715" data-colour="Black" aria-label="Black" onclick="previewCardColour('Black',this)"></button>
-      <button type="button" class="swatch-btn" style="background:#e9e6dc" data-colour="Off White" aria-label="Off White" onclick="previewCardColour('Off White',this)"></button>
-      <button type="button" class="swatch-btn" style="background:#555550" data-colour="Charcoal" aria-label="Charcoal" onclick="previewCardColour('Charcoal',this)"></button>
-     </div>
+<!-- COLLECTIONS PAGE -->
+<section class="page" id="page-collections">
+  <div class="container">
+    <div class="page-heading">
+      <div class="eyebrow">VEXDRAPE / Curated ideas</div>
+      <h1>Collections.</h1>
+      <p>Every collection has a point of view. Find the one that speaks yours.</p>
     </div>
-    <span class="price">₹899</span>
-   </div>
-  </article>
-
-  <article class="product-card">
-   <div class="product-image grey">
-    <span class="product-tag">DROP 001</span>
-    <svg viewBox="0 0 300 370" aria-label="UH24 HOODIE preview">
-     <path d="M92 42 L122 26 Q150 54 178 26 L208 42 L272 78 L240 144 L206 126 L218 345 Q150 359 82 345 L94 126 L60 144 L28 78Z" fill="#252522" stroke="#57564f" stroke-width="2"/>
-     <path d="M122 26 Q122 72 150 72 Q178 72 178 26" fill="none" stroke="#68675e" stroke-width="7"/>
-     <text x="150" y="152" text-anchor="middle" fill="#f0eee8" font-size="10" letter-spacing="1.5">UH24</text>
-     <text x="150" y="168" text-anchor="middle" fill="#aaa89f" font-size="8" letter-spacing="1">HOODIE</text>
-    </svg>
-    <button class="quick-add" onclick="openProduct('uh24')">VIEW PIECE ↗</button>
-   </div>
-   <div class="product-info">
-    <div><h3>UH24 HOODIE</h3><p>Back crown emblem · Qikink UH24 · Coming soon</p></div>
-    <span class="price">SOON</span>
-   </div>
-  </article>
-
-  <article class="product-card">
-   <div class="product-image light">
-    <span class="product-tag">DROP 001</span>
-    <svg viewBox="0 0 300 370" aria-label="BEYOND THE FRAME concept preview">
-     <path d="M100 37 L125 25 Q150 50 175 25 L200 37 L267 75 L237 135 L205 120 L217 345 Q150 359 83 345 L95 120 L63 135 L33 75Z" fill="#e9e6dc" stroke="#aaa79e" stroke-width="2"/>
-     <path d="M125 25 Q125 68 150 68 Q175 68 175 25" fill="none" stroke="#b7b3a9" stroke-width="6"/>
-     <text x="150" y="150" text-anchor="middle" fill="#252522" font-size="12" font-family="Georgia" font-style="italic">Beyond</text>
-     <text x="150" y="166" text-anchor="middle" fill="#252522" font-size="12" font-family="Georgia" font-style="italic">the frame.</text>
-    </svg>
-    <button class="quick-add" onclick="openProduct('frame')">VIEW CONCEPT ↗</button>
-   </div>
-   <div class="product-info">
-    <div><h3>BEYOND THE FRAME</h3><p>Design concept · Coming soon</p></div>
-    <span class="price">SOON</span>
-   </div>
-  </article>
-
-  <article class="product-card">
-   <div class="product-image grey">
-    <span class="product-tag">DROP 001</span>
-    <svg viewBox="0 0 300 370" aria-label="STAY UNDEFINED concept preview">
-     <path d="M100 37 L125 25 Q150 50 175 25 L200 37 L267 75 L237 135 L205 120 L217 345 Q150 359 83 345 L95 120 L63 135 L33 75Z" fill="#444440" stroke="#68675f" stroke-width="2"/>
-     <path d="M125 25 Q125 68 150 68 Q175 68 175 25" fill="none" stroke="#77766e" stroke-width="6"/>
-     <text x="150" y="150" text-anchor="middle" fill="#f0eee8" font-size="11" letter-spacing="1">STAY</text>
-     <text x="150" y="169" text-anchor="middle" fill="#f0eee8" font-size="11" letter-spacing="1">UNDEFINED.</text>
-    </svg>
-    <button class="quick-add" onclick="openProduct('undefined')">VIEW CONCEPT ↗</button>
-   </div>
-   <div class="product-info">
-    <div><h3>STAY UNDEFINED</h3><p>Design concept · Coming soon</p></div>
-    <span class="price">SOON</span>
-   </div>
-  </article>
- </div>
+    <div class="page-content">
+      <div class="collection-grid">
+        <div class="collection-tile" onclick="setFilterAndShop('T-Shirts')">
+          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85" alt="Originals collection">
+          <div class="collection-label"><span>01 / ESSENTIALS</span><h3>Originals</h3></div>
+        </div>
+        <div class="collection-tile" onclick="setFilterAndShop('Oversized')">
+          <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85" alt="Oversized collection">
+          <div class="collection-label"><span>02 / RELAXED FIT</span><h3>Oversized</h3></div>
+        </div>
+        <div class="collection-tile" onclick="setFilterAndShop('Hoodies')">
+          <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85" alt="Hoodies collection">
+          <div class="collection-label"><span>03 / LAYER UP</span><h3>Hoodies</h3></div>
+        </div>
+      </div>
+      <div style="margin-top:65px">
+        <div class="eyebrow">The current selection</div>
+        <h2 class="section-title" style="margin:15px 0 30px">Available now.</h2>
+        <div class="product-grid" id="collectionProducts"></div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="story" id="story">
- <div class="story-visual">
-  <svg id="storyEmblem" viewBox="0 0 300 300" aria-label="VEXDRAPE brand emblem">
-   <circle cx="150" cy="150" r="125" fill="none" stroke="#242420" stroke-width="2"/>
-   <circle cx="150" cy="150" r="111" fill="none" stroke="#77746c" stroke-width="1"/>
-   <circle cx="150" cy="150" r="75" fill="none" stroke="#aaa69c" stroke-width=".7"/>
-   <path d="M65 150 Q150 45 235 150 Q150 255 65 150Z" fill="none" stroke="#33332e" stroke-width="1"/>
-   <path d="M150 75 Q95 150 150 225 Q205 150 150 75Z" fill="none" stroke="#33332e" stroke-width="1"/>
-   <text x="150" y="146" text-anchor="middle" font-family="Space Grotesk" font-size="18" font-weight="bold" fill="#171715" letter-spacing="3">VD</text>
-   <text x="150" y="164" text-anchor="middle" font-size="7" fill="#55534d" letter-spacing="2">VEXDRAPE</text>
-  </svg>
- </div>
- <div class="story-copy">
-  <div class="section-label">A DIFFERENT POINT OF VIEW</div>
-  <h2>YOUR STYLE.<br>YOUR RULES.</h2>
-  <p>VEXDRAPE is built around one idea: personal style should never need permission. We create minimal streetwear with a clear identity, designed to let your perspective speak.</p>
-  <a href="#collection" class="btn btn-primary">DISCOVER THE COLLECTION ↗</a>
- </div>
+<!-- PRODUCT DETAIL PAGE -->
+<section class="page" id="page-product">
+  <div class="container" id="productDetail"></div>
 </section>
 
-<section class="values">
- <div class="value"><span class="value-number">01 / IDENTITY</span><h3>OWN YOUR PERSPECTIVE</h3><p>Wear what represents you. No rules, no borrowed identity.</p></div>
- <div class="value"><span class="value-number">02 / DESIGN</span><h3>LESS, BUT BETTER</h3><p>Minimal visual language. Intentional details. A distinct point of view.</p></div>
- <div class="value"><span class="value-number">03 / CULTURE</span><h3>MADE TO STAND APART</h3><p>Streetwear for people who choose their own direction.</p></div>
+<!-- CUSTOM LAB PAGE -->
+<section class="page light-page" id="page-custom">
+  <div class="container">
+    <div class="page-heading">
+      <div class="eyebrow">VEXDRAPE / Custom Lab</div>
+      <h1>Your design.<br><span class="serif">Your rules.</span></h1>
+      <p>Create a personal T-shirt concept. Your VEXDRAPE identity remains protected while you explore your own design.</p>
+    </div>
+    <div class="page-content">
+      <div class="lab-layout">
+        <div class="lab-preview" id="labPreview">
+          <div class="lab-preview-top"><span>LIVE GARMENT PREVIEW</span><span>DESIGN STUDY</span></div>
+          <svg class="lab-shirt" viewBox="0 0 500 560" aria-label="T-shirt preview">
+            <path d="M165 42 L215 25 Q250 65 285 25 L335 42 L455 105 L410 220 L350 190 L370 520 Q250 545 130 520 L150 190 L90 220 L45 105 Z" fill="#171715" stroke="#55544e" stroke-width="3"/>
+            <path d="M215 25 Q250 105 285 25" fill="none" stroke="#77756c" stroke-width="13"/>
+            <path d="M215 25 Q250 92 285 25" fill="none" stroke="#252522" stroke-width="5"/>
+          </svg>
+          <div class="lab-logo">VD</div>
+          <img class="lab-art" id="labArt" alt="Your uploaded artwork preview">
+          <div class="lab-side-caption" id="labCaption">FRONT / BLACK</div>
+        </div>
+
+        <div class="lab-form">
+          <div class="eyebrow">Create something different</div>
+          <h2>Build your design.</h2>
+          <p>Choose your garment view, set your permanent brand-mark position, then customise the remaining print area.</p>
+
+          <div class="lab-control">
+            <label>Garment view</label>
+            <div class="option-buttons">
+              <button class="option-btn selected" id="labFront" onclick="setLabSide('front')">Front</button>
+              <button class="option-btn" id="labBack" onclick="setLabSide('back')">Back</button>
+            </div>
+          </div>
+
+          <div class="lab-control">
+            <label>VEXDRAPE logo placement — choose once</label>
+            <div class="option-buttons">
+              <button class="option-btn selected" id="logoFront" onclick="setLogoPlacement('front')">Front-left chest</button>
+              <button class="option-btn" id="logoBack" onclick="setLogoPlacement('back')">Back</button>
+            </div>
+            <div class="lab-lock">Brand protection: the VEXDRAPE logo is a fixed brand element. This preview does not provide controls to remove, resize, rotate or move it. Keep customer artwork clear of the logo area.</div>
+          </div>
+
+          <div class="lab-control">
+            <label>Your text</label>
+            <input id="labText" type="text" maxlength="40" placeholder="YOUR DESIGN" oninput="updateLabText()">
+          </div>
+
+          <div class="lab-control">
+            <label>Font library</label>
+            <select id="labFont" onchange="updateLabText()">
+              <option value="DM Sans">DM Sans</option>
+              <option value="Georgia">Georgia</option>
+              <option value="Arial">Arial</option>
+              <option value="Courier New">Courier New</option>
+              <option value="Impact">Impact</option>
+              <option value="Trebuchet MS">Trebuchet MS</option>
+            </select>
+          </div>
+
+          <div class="lab-control">
+            <label>Upload your own artwork (PNG / JPG)</label>
+            <div class="lab-upload">
+              <input type="file" id="labFile" accept="image/png,image/jpeg,image/webp" onchange="previewArtwork(event)">
+              <p style="margin-top:9px">Use artwork you own or have permission to use.</p>
+            </div>
+          </div>
+
+          <div class="lab-control">
+            <label>Text colour</label>
+            <input type="color" id="labColor" value="#eae7dd" onchange="updateLabText()">
+          </div>
+
+          <div class="lab-control">
+            <label>Text size</label>
+            <input type="range" id="labSize" min="12" max="34" value="20" oninput="updateLabText()">
+          </div>
+
+          <div class="lab-control">
+            <label>Garment colour</label>
+            <div class="option-buttons">
+              <button class="option-btn selected" onclick="setLabColor('#171715','BLACK',this)">Black</button>
+              <button class="option-btn" onclick="setLabColor('#eae7dd','CREAM',this)">Cream</button>
+              <button class="option-btn" onclick="setLabColor('#777873','GREY',this)">Grey</button>
+            </div>
+          </div>
+
+          <button class="btn btn-dark" onclick="saveLabConcept()">Save concept locally ↗</button>
+          <p style="margin-top:14px;font-size:9px">Concept preview only. Production-ready artwork checks and Qikink custom-order submission are not connected yet.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="newsletter" id="contact">
- <div class="section-label">STAY IN THE PICTURE</div>
- <h2>BE PART OF THE PERSPECTIVE.</h2>
- <p>Follow the journey. Discover upcoming drops and new designs.</p>
- <form class="newsletter-form" onsubmit="subscribe(event)">
-  <input type="email" id="email" placeholder="Your email address" required>
-  <button type="submit">JOIN ↗</button>
- </form>
- <p id="subscribeMessage" class="subscribe-status" aria-live="polite"></p>
+<!-- STORY PAGE -->
+<section class="page" id="page-story">
+  <div class="container">
+    <div class="page-heading">
+      <div class="eyebrow">VEXDRAPE / Our identity</div>
+      <h1>Not here<br>to fit in.</h1>
+      <p>We believe what you wear can say something without saying everything.</p>
+    </div>
+    <div class="page-content">
+      <div class="story-grid">
+        <div class="story-image">
+          <img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1100&q=90" alt="Streetwear editorial">
+        </div>
+        <div class="story-copy">
+          <div class="eyebrow">01 / The beginning</div>
+          <h2>Wear your <span class="serif">perspective.</span></h2>
+          <p>VEXDRAPE began with a simple idea: streetwear should be more than a trend. It should be a way to express who you are.</p>
+          <p>Our direction is minimal, considered and expressive. We focus on strong visual identity, everyday pieces and designs that give people room to make their own statement.</p>
+          <p>We are building this one drop at a time. This is the first perspective.</p>
+        </div>
+      </div>
+      <div class="values-grid">
+        <div class="value-card"><div class="eyebrow">01 / Identity</div><h3>Own your perspective.</h3><p>Wear what represents you. No rules to follow. No identity to borrow.</p></div>
+        <div class="value-card"><div class="eyebrow">02 / Design</div><h3>Less, but better.</h3><p>Minimal visual language. Intentional details. Pieces made to stand apart.</p></div>
+        <div class="value-card"><div class="eyebrow">03 / Culture</div><h3>Made to stand apart.</h3><p>Different ideas. Different people. One shared belief in individuality.</p></div>
+      </div>
+    </div>
+  </div>
 </section>
-</main>
+
+<!-- CONTACT PAGE -->
+<section class="page light-page" id="page-contact">
+  <div class="container">
+    <div class="page-heading">
+      <div class="eyebrow">VEXDRAPE / Get in touch</div>
+      <h1>Let's talk.</h1>
+      <p>Questions about a product, an order or a collaboration? Send us a message.</p>
+    </div>
+    <div class="page-content">
+      <form class="form-card" onsubmit="sendContact(event)">
+        <h2>Contact us.</h2>
+        <p>Fill in the details below. Your email app will open with your message ready to send.</p>
+        <div class="form-field"><label>Your name</label><input id="contactName" required placeholder="Name"></div>
+        <div class="form-field"><label>Email address</label><input id="contactEmail" type="email" required placeholder="you@example.com"></div>
+        <div class="form-field"><label>Subject</label><input id="contactSubject" required placeholder="What would you like to ask?"></div>
+        <div class="form-field"><label>Message</label><textarea id="contactMessage" required placeholder="Write your message..."></textarea></div>
+        <button class="btn btn-dark" type="submit">Prepare message ↗</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ACCOUNT PAGE -->
+<section class="page light-page" id="page-account">
+  <div class="container">
+    <div class="page-heading">
+      <div class="eyebrow">VEXDRAPE / Your space</div>
+      <h1>Account.</h1>
+      <p>Your personal VEXDRAPE space.</p>
+    </div>
+    <div class="page-content">
+      <div class="form-card">
+        <h2>Welcome.</h2>
+        <p>Account sign-in and cloud order history will be added when the secure account backend is ready. For now, you can explore the store and save your cart in this browser.</p>
+        <button class="btn btn-dark" onclick="navigate('shop')">Explore the store ↗</button>
+        <div style="margin-top:30px;border-top:1px solid #ddd;padding-top:22px">
+          <div class="eyebrow">Your local shopping bag</div>
+          <p id="accountCartInfo" style="margin-top:10px">Your cart is stored on this device.</p>
+          <button class="btn btn-outline btn-dark" onclick="navigate('cart')">View your bag</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CART PAGE -->
+<section class="page" id="page-cart">
+  <div class="container">
+    <div class="page-heading">
+      <div class="eyebrow">VEXDRAPE / Your selection</div>
+      <h1>Your bag.</h1>
+      <p>Your pieces. Your perspective.</p>
+    </div>
+    <div class="page-content" id="cartContent"></div>
+  </div>
+</section>
+
+</div>
 
 <footer>
- <div class="footer-top">
-  <div class="footer-brand">
-   <div class="brand">
-    <svg viewBox="0 0 100 100" fill="none" aria-label="VEXDRAPE footer mark">
-     <circle cx="50" cy="50" r="46" stroke="#f0eee8" stroke-width="2"/>
-     <circle cx="50" cy="50" r="39" stroke="#f0eee8"/>
-     <text x="50" y="54" fill="#f0eee8" font-size="20" font-weight="bold" text-anchor="middle">VD</text>
-    </svg>
-    <span class="brand-name">VEXDRAPE</span>
-   </div>
-   <p>WEAR YOUR PERSPECTIVE.</p>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="brand"><span class="brand-symbol">VD</span><span class="brand-name">VEXDRAPE</span></div>
+        <p>Independent streetwear. Built around individuality, designed to express. Wear your perspective.</p>
+      </div>
+      <div class="footer-col">
+        <h4>EXPLORE</h4>
+        <a href="#shop">Shop all</a>
+        <a href="#collections">Collections</a>
+        <a href="#custom">Custom Lab</a>
+        <a href="#story">Our story</a>
+      </div>
+      <div class="footer-col">
+        <h4>INFORMATION</h4>
+        <a href="#contact">Contact</a>
+        <a href="#account">My account</a>
+        <a href="#cart">Shopping bag</a>
+      </div>
+      <div class="footer-col">
+        <h4>FOLLOW</h4>
+        <a href="https://www.instagram.com/vexdrape/" target="_blank" rel="noopener">Instagram ↗</a>
+        <a href="mailto:hello@vexdrape.com">Email us ↗</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 VEXDRAPE. ALL RIGHTS RESERVED.</span>
+      <span>WEAR YOUR PERSPECTIVE.</span>
+      <span>INDEPENDENT BY DESIGN.</span>
+    </div>
   </div>
-  <div class="footer-links">
-   <div><h4>EXPLORE</h4><a href="#home">Home</a><a href="#collection">Collection</a><a href="#story">Our story</a></div>
-   <div><h4>FOLLOW</h4><a href="https://www.instagram.com/vexdrape/" target="_blank" rel="noopener">Instagram ↗</a><a href="#contact">Updates</a></div>
-  </div>
- </div>
- <div class="footer-bottom"><span>© 2026 VEXDRAPE. ALL RIGHTS RESERVED.</span><span>WEAR YOUR PERSPECTIVE.</span></div>
 </footer>
 
-<div class="overlay" id="overlay" onclick="closeCart()"></div>
-<aside class="drawer" id="drawer" aria-label="Shopping bag">
- <div class="drawer-head"><h2>YOUR BAG (<span id="drawerCount">0</span>)</h2><button class="close" onclick="closeCart()" aria-label="Close bag">×</button></div>
- <div id="cartItems"></div>
- <div id="cartFooter" hidden>
-  <div class="cart-total"><span>SUBTOTAL</span><span id="cartTotal">₹0</span></div>
-  <p class="cart-message">Bag preview only. Live payment processing and order fulfilment are not active yet.</p>
-  <button class="checkout" onclick="alert('Live checkout is not active yet. Updates will be shared on @vexdrape.')">CHECKOUT — COMING SOON</button>
- </div>
-</aside>
-
-<div class="modal" id="productModal" onclick="if(event.target===this)closeProduct()" role="dialog" aria-modal="true">
- <div class="modal-box">
-  <button class="modal-close" onclick="closeProduct()" aria-label="Close product modal">×</button>
-  <div class="modal-content">
-   <div class="modal-product-image" id="modalImage"></div>
-   <div>
-    <div class="section-label">VEXDRAPE / DROP 001</div>
-    <h2 id="modalName">THE PERSPECTIVE</h2>
-    <p id="modalDescription">Unisex oversized T-shirt · Qikink UC22 · DROP 001.</p>
-    <div class="modal-price" id="modalPrice">₹899</div>
-    <label class="option-label">COLOUR</label>
-    <div class="options" id="colourOptions">
-     <button type="button" class="option selected" data-colour="Black" onclick="selectOption(this,'colourOptions')">BLACK</button>
-     <button type="button" class="option" data-colour="Off White" onclick="selectOption(this,'colourOptions')">OFF WHITE</button>
-     <button type="button" class="option" data-colour="Charcoal" onclick="selectOption(this,'colourOptions')">CHARCOAL</button>
-    </div>
-    <label class="option-label">SIZE</label>
-    <div class="options" id="sizeOptions">
-     <button type="button" class="option" onclick="selectOption(this,'sizeOptions')">XS</button>
-     <button type="button" class="option" onclick="selectOption(this,'sizeOptions')">S</button>
-     <button type="button" class="option selected" onclick="selectOption(this,'sizeOptions')">M</button>
-     <button type="button" class="option" onclick="selectOption(this,'sizeOptions')">L</button>
-     <button type="button" class="option" onclick="selectOption(this,'sizeOptions')">XL</button>
-     <button type="button" class="option" onclick="selectOption(this,'sizeOptions')">XXL</button>
-    </div>
-    <button type="button" class="add-button" id="addButton" onclick="addToCart()">ADD TO BAG — ₹899</button>
-   </div>
+<div class="overlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()">
+  <div class="search-box">
+    <input id="globalSearch" placeholder="Search VEXDRAPE..." onkeydown="if(event.key==='Enter')searchFromOverlay()">
+    <button onclick="closeSearch()" aria-label="Close search">×</button>
   </div>
- </div>
 </div>
+<div class="toast" id="toast">Added to your bag</div>
 
 <script>
-const products = {
- perspective:{
-  name:"THE PERSPECTIVE",price:899,available:true,
-  description:"Unisex oversized T-shirt · Qikink UC22 · DROP 001."
- },
- uh24:{
-  name:"UH24 HOODIE",price:0,available:false,
-  description:"Hoodie featuring the VEXDRAPE crown emblem on the back · Qikink UH24 · Coming soon."
- },
- frame:{
-  name:"BEYOND THE FRAME",price:0,available:false,
-  description:"Upcoming DROP 001 concept · Not open for purchase yet."
- },
- undefined:{
-  name:"STAY UNDEFINED",price:0,available:false,
-  description:"Upcoming DROP 001 concept · Not open for purchase yet."
- }
-};
-const colourStyles = {
- "Black":{ fill:"#171715", stroke:"#55544e", cardBg:"#252522" },
- "Off White":{ fill:"#e9e6dc", stroke:"#aaa79e", cardBg:"#d9d6cc" },
- "Charcoal":{ fill:"#444440", stroke:"#68675f", cardBg:"#393936" }
-};
-const cardIndexes = { perspective:0, uh24:1, frame:2, undefined:3 };
-let selectedProduct="perspective";
-let activeCardColour="Black";
-let cart=[];
+/* =========================================================
+   VEXDRAPE STORE ENGINE
+   Edit product information in the PRODUCTS array below.
+========================================================= */
 
-function toggleNav(){document.getElementById('nav').classList.toggle('open')}
-function closeNav(){document.getElementById('nav').classList.remove('open')}
+const PRODUCTS = [
+  {
+    id:"perspective-tee",
+    name:"The Perspective",
+    category:"T-Shirts",
+    type:"Regular fit T-shirt",
+    price:899,
+    oldPrice:null,
+    tag:"Featured",
+    description:"A clean everyday essential with the VEXDRAPE identity. Minimal by design, made to carry your perspective.",
+    image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90",
+    images:[
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90",
+      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=90"
+    ],
+    sizes:["S","M","L","XL","XXL"],
+    colors:["Black","Cream","Grey"],
+    available:true
+  },
+  {
+    id:"unbound-hoodie",
+    name:"Unbound Hoodie",
+    category:"Hoodies",
+    type:"Relaxed fit hoodie",
+    price:1499,
+    oldPrice:null,
+    tag:"Drop 001",
+    description:"A relaxed layer with a quiet statement. Designed for everyday wear and a distinct point of view.",
+    image:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=90",
+    images:[
+      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=90",
+      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=90"
+    ],
+    sizes:["S","M","L","XL","XXL"],
+    colors:["Black","Grey"],
+    available:false
+  },
+  {
+    id:"beyond-frame",
+    name:"Beyond the Frame",
+    category:"Oversized",
+    type:"Oversized T-shirt",
+    price:999,
+    oldPrice:null,
+    tag:"Drop 001",
+    description:"A graphic-led expression of individuality. A little different by design.",
+    image:"https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=90",
+    images:[
+      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=90",
+      "https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1000&q=90"
+    ],
+    sizes:["S","M","L","XL","XXL"],
+    colors:["Cream","Black"],
+    available:false
+  },
+  {
+    id:"stay-undefined",
+    name:"Stay Undefined",
+    category:"T-Shirts",
+    type:"Classic T-shirt",
+    price:899,
+    oldPrice:null,
+    tag:"Drop 001",
+    description:"For the ones who refuse to be put in a box. Stay undefined. Keep evolving.",
+    image:"https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1000&q=90",
+    images:[
+      "https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1000&q=90",
+      "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=90"
+    ],
+    sizes:["S","M","L","XL"],
+    colors:["Black","Cream"],
+    available:false
+  },
+  {
+    id:"form-and-function",
+    name:"Form & Function",
+    category:"Oversized",
+    type:"Oversized T-shirt",
+    price:999,
+    oldPrice:null,
+    tag:"Coming soon",
+    description:"A considered silhouette with a minimal design language.",
+    image:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=90",
+    images:[
+      "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=90"
+    ],
+    sizes:["S","M","L","XL"],
+    colors:["Black","Grey"],
+    available:false
+  },
+  {
+    id:"everyday-essentials",
+    name:"Everyday Essentials",
+    category:"T-Shirts",
+    type:"Essential T-shirt",
+    price:799,
+    oldPrice:null,
+    tag:"Coming soon",
+    description:"A simple starting point. Everyday comfort with the VEXDRAPE point of view.",
+    image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90",
+    images:[
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90"
+    ],
+    sizes:["S","M","L","XL"],
+    colors:["Black","Cream","Grey"],
+    available:false
+  }
+];
 
-function previewCardColour(colour,btn){
- activeCardColour=colour;
- document.querySelectorAll('.swatch-btn').forEach(b=>b.classList.remove('active'));
- if(btn)btn.classList.add('active');
- const style=colourStyles[colour]||colourStyles["Black"];
- const path=document.getElementById('perspectiveShirtPath');
- const cardImg=document.getElementById('perspectiveCardImage');
- if(path){path.setAttribute('fill',style.fill);path.setAttribute('stroke',style.stroke)}
- if(cardImg){cardImg.style.backgroundColor=style.cardBg}
- syncModalColour(colour);
+let activeFilter = "All";
+let currentProduct = null;
+let selectedSize = "M";
+let selectedColor = "Black";
+let cart = loadJSON("vexdrape_cart",[]);
+let favorites = loadJSON("vexdrape_favorites",[]);
+let labSide = "front";
+let logoPlacement = "front";
+let labArtworkUrl = null;
+let labGarmentColor = "#171715";
+let toastTimer;
+
+/* ---------- BASIC HELPERS ---------- */
+function loadJSON(key,fallback){
+  try{return JSON.parse(localStorage.getItem(key)) ?? fallback}
+  catch(e){return fallback}
+}
+function saveJSON(key,value){
+  localStorage.setItem(key,JSON.stringify(value));
+}
+function money(value){
+  return "₹"+Number(value).toLocaleString("en-IN");
+}
+function toast(message){
+  const el=document.getElementById("toast");
+  el.textContent=message;
+  el.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>el.classList.remove("show"),2300);
+}
+function productById(id){return PRODUCTS.find(p=>p.id===id)}
+function cartCount(){
+  return cart.reduce((sum,item)=>sum+item.qty,0);
+}
+function updateCartCount(){
+  document.getElementById("cartCount").textContent=cartCount();
+  const accountInfo=document.getElementById("accountCartInfo");
+  if(accountInfo) accountInfo.textContent=cartCount()+" item(s) currently in your local shopping bag.";
 }
 
-function syncModalColour(colour){
- const target=document.querySelector(`#colourOptions .option[data-colour="${colour}"]`);
- if(target){
-  document.querySelectorAll('#colourOptions .option').forEach(x=>x.classList.remove('selected'));
-  target.classList.add('selected');
- }
+/* ---------- ROUTER ---------- */
+function navigate(route){
+  if(route==="product") route="shop";
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  const page=document.getElementById("page-"+route);
+  if(!page){
+    route="home";
+    document.getElementById("page-home").classList.add("active");
+  }else{
+    page.classList.add("active");
+  }
+
+  document.body.classList.toggle("light-page",
+    ["custom","contact","account"].includes(route)
+  );
+
+  if(route==="shop") renderShop();
+  if(route==="collections") renderCollections();
+  if(route==="cart") renderCart();
+  if(route==="account") updateCartCount();
+
+  closeMenu();
+  window.scrollTo({top:0,behavior:"instant"});
+  setTimeout(observeReveals,100);
 }
-
-function openProduct(id){
- selectedProduct=id;
- const p=products[id];
- document.getElementById('modalName').textContent=p.name;
- document.getElementById('modalDescription').textContent=p.description;
- document.getElementById('modalPrice').textContent=p.available?'₹'+p.price:'COMING SOON';
- document.getElementById('addButton').textContent=p.available?'ADD TO BAG — ₹'+p.price:'COMING SOON';
- document.getElementById('addButton').disabled=!p.available;
- document.getElementById('addButton').style.opacity=p.available?'1':'.4';
- const idx=cardIndexes[id]??0;
- document.getElementById('modalImage').innerHTML=document.querySelectorAll('.product-image svg')[idx].outerHTML;
- document.getElementById('productModal').classList.add('active');
+function handleRoute(){
+  let route=location.hash.replace("#","")||"home";
+  if(route.startsWith("product/")){
+    const id=route.split("/")[1];
+    showProduct(id);
+    return;
+  }
+  navigate(route);
 }
+window.addEventListener("hashchange",handleRoute);
 
-function closeProduct(){document.getElementById('productModal').classList.remove('active')}
-
-function selectOption(button,group){
- document.querySelectorAll('#'+group+' .option').forEach(x=>x.classList.remove('selected'));
- button.classList.add('selected');
- if(group==='colourOptions'&&selectedProduct==='perspective'){
-  const colour=button.dataset.colour;
-  const matchingSwatch=document.querySelector(`.swatch-btn[data-colour="${colour}"]`);
-  previewCardColour(colour,matchingSwatch);
- }
+/* ---------- PRODUCT CARDS ---------- */
+function productCard(p){
+  const saved=favorites.includes(p.id);
+  return `
+    <article class="product-card">
+      <div class="product-image" onclick="showProduct('${p.id}')">
+        <img src="${p.image}" alt="${p.name}" loading="lazy">
+        <span class="product-tag">${p.tag}</span>
+        <button class="product-heart ${saved?"saved":""}" onclick="event.stopPropagation();toggleFavorite('${p.id}')" aria-label="Save ${p.name}">${saved?"♥":"♡"}</button>
+      </div>
+      <div class="product-info">
+        <div>
+          <h3 onclick="showProduct('${p.id}')" style="cursor:pointer">${p.name}</h3>
+          <div class="product-meta">${p.type}</div>
+          <div class="product-dots"><i></i><i></i><i></i></div>
+        </div>
+        <div class="price">${money(p.price)}</div>
+      </div>
+    </article>`;
 }
-
-function addToCart(){
- const p=products[selectedProduct];
- if(!p.available)return;
- const colour=document.querySelector('#colourOptions .selected').dataset.colour;
- const size=document.querySelector('#sizeOptions .selected').textContent;
- const existing=cart.find(x=>x.id===selectedProduct&&x.colour===colour&&x.size===size);
- if(existing)existing.quantity++;
- else cart.push({id:selectedProduct,name:p.name,price:p.price,colour,size,quantity:1});
- updateCart(true);
- closeProduct();
- openCart();
+function renderHome(){
+  document.getElementById("homeProducts").innerHTML=PRODUCTS.slice(0,4).map(productCard).join("");
 }
-
-function changeQty(index,delta){
- if(!cart[index])return;
- cart[index].quantity+=delta;
- if(cart[index].quantity<=0)cart.splice(index,1);
- updateCart();
+function renderShop(){
+  const search=(document.getElementById("shopSearch")?.value||"").toLowerCase();
+  const sort=document.getElementById("shopSort")?.value||"featured";
+  let items=PRODUCTS.filter(p=>
+    (activeFilter==="All"||p.category===activeFilter) &&
+    (p.name.toLowerCase().includes(search)||p.type.toLowerCase().includes(search))
+  );
+  if(sort==="low")items.sort((a,b)=>a.price-b.price);
+  if(sort==="high")items.sort((a,b)=>b.price-a.price);
+  document.getElementById("shopProducts").innerHTML=items.length
+    ?items.map(productCard).join("")
+    :'<div class="empty-state" style="grid-column:1/-1"><h2>No pieces found.</h2><p>Try another search or category.</p></div>';
 }
-
-function updateCart(shouldBump=false){
- const count=cart.reduce((s,x)=>s+x.quantity,0);
- const bagBadge=document.getElementById('bagCount');
- bagBadge.textContent=count;
- if(shouldBump){
-  bagBadge.classList.remove('bump');
-  void bagBadge.offsetWidth;
-  bagBadge.classList.add('bump');
- }
- document.getElementById('drawerCount').textContent=count;
- const items=document.getElementById('cartItems');
- const footer=document.getElementById('cartFooter');
- if(!cart.length){
-  items.innerHTML='<div class="empty">Your bag is currently empty.<br><br>Discover DROP 001.</div>';
-  footer.hidden=true;
-  return;
- }
- footer.hidden=false;
- items.innerHTML=cart.map((x,i)=>`
- <div class="cart-item">
-  <div class="cart-thumb">
-   <svg viewBox="0 0 100 120"><path d="M32 12 L42 7 Q50 17 58 7 L68 12 L91 26 L80 46 L68 41 L72 112 Q50 117 28 112 L32 41 L20 46 L9 26Z" fill="${x.colour==='Black'?'#171715':x.colour==='Charcoal'?'#444440':'#e9e6dc'}" stroke="#888" stroke-width="1"/></svg>
-  </div>
-  <div class="cart-details">
-   <h3>${x.name}</h3>
-   <p>${x.colour} / Size ${x.size}</p>
-   <p>₹${x.price} each</p>
-   <div class="qty-row">
-    <button type="button" class="qty-btn" onclick="changeQty(${i},-1)" aria-label="Decrease quantity">−</button>
-    <span class="qty-val">${x.quantity}</span>
-    <button type="button" class="qty-btn" onclick="changeQty(${i},1)" aria-label="Increase quantity">+</button>
-   </div>
-   <button type="button" class="remove-btn" onclick="removeItem(${i})">REMOVE</button>
-  </div>
- </div>`).join('');
- const total=cart.reduce((s,x)=>s+x.price*x.quantity,0);
- document.getElementById('cartTotal').textContent='₹'+total.toLocaleString('en-IN');
+function renderCollections(){
+  document.getElementById("collectionProducts").innerHTML=PRODUCTS.slice(0,4).map(productCard).join("");
 }
-
-function removeItem(i){cart.splice(i,1);updateCart()}
-
-function openCart(){
- document.getElementById('overlay').classList.add('active');
- document.getElementById('drawer').classList.add('active');
-}
-
-function closeCart(){
- document.getElementById('overlay').classList.remove('active');
- document.getElementById('drawer').classList.remove('active');
-}
-
-function subscribe(e){
- e.preventDefault();
- document.getElementById('subscribeMessage').textContent='Preview noted — live newsletter saving is not connected yet.';
- document.getElementById('email').value='';
-}
-
-const prefersReducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-function updateScrollMotion(){
- if(prefersReducedMotion)return;
- const y=window.scrollY||0;
- document.querySelectorAll('[data-speed]').forEach(el=>{
-  const speed=parseFloat(el.getAttribute('data-speed'))||0;
-  const rot=parseFloat(el.getAttribute('data-rot'))||0;
-  const shift=y*speed;
-  const tilt=rot+(y*speed*0.08);
-  el.style.transform=`translate3d(0, ${shift.toFixed(1)}px, 0) rotate(${tilt.toFixed(1)}deg)`;
- });
- const heroShirt=document.getElementById('heroShirt');
- const heroCircle=document.getElementById('heroCircle');
- const storyEmblem=document.getElementById('storyEmblem');
- if(heroShirt)heroShirt.style.transform=`translate3d(0, ${Math.min(y*0.09,55).toFixed(1)}px, 0)`;
- if(heroCircle)heroCircle.style.transform=`rotate(${(y*0.025).toFixed(1)}deg)`;
- if(storyEmblem)storyEmblem.style.transform=`rotate(${(y*0.03).toFixed(1)}deg)`;
-}
-
-window.addEventListener('scroll',updateScrollMotion,{passive:true});
-document.addEventListener('keydown',e=>{
- if(e.key==='Escape'){
-  closeProduct();
-  closeCart();
-  closeNav();
- }
+document.getElementById("filters").addEventListener("click",e=>{
+  const btn=e.target.closest("[data-filter]");
+  if(!btn)return;
+  activeFilter=btn.dataset.filter;
+  document.querySelectorAll(".filter-btn").forEach(b=>b.classList.toggle("active",b===btn));
+  renderShop();
 });
-updateScrollMotion();
-updateCart();
+function setFilterAndShop(filter){
+  activeFilter=filter;
+  location.hash="shop";
+  setTimeout(()=>{
+    document.querySelectorAll(".filter-btn").forEach(b=>b.classList.toggle("active",b.dataset.filter===filter));
+    renderShop();
+  },80);
+}
+
+/* ---------- PRODUCT DETAIL ---------- */
+function showProduct(id){
+  const p=productById(id);
+  if(!p)return;
+  currentProduct=p;
+  selectedSize=p.sizes.includes("M")?"M":p.sizes[0];
+  selectedColor=p.colors[0];
+  location.hash="product/"+id;
+  document.querySelectorAll(".page").forEach(el=>el.classList.remove("active"));
+  document.getElementById("page-product").classList.add("active");
+  document.body.classList.remove("light-page");
+  renderProductDetail(p);
+  window.scrollTo({top:0,behavior:"instant"});
+}
+function renderProductDetail(p){
+  document.getElementById("productDetail").innerHTML=`
+    <div class="product-detail">
+      <div class="detail-gallery">
+        <img class="detail-main-image" src="${p.images[0]}" alt="${p.name}">
+        ${p.images.slice(1).map(src=>`<img src="${src}" alt="${p.name} alternate view">`).join("")}
+      </div>
+      <div class="detail-info">
+        <div class="eyebrow">VEXDRAPE / DROP 001</div>
+        <h1>${p.name}</h1>
+        <div class="detail-price">${money(p.price)}</div>
+        <p class="detail-description">${p.description}</p>
+        <div class="detail-option">
+          <div class="option-title">Select size</div>
+          <div class="option-buttons">${p.sizes.map(s=>`<button class="option-btn ${s===selectedSize?"selected":""}" onclick="selectSize('${s}',this)">${s}</button>`).join("")}</div>
+        </div>
+        <div class="detail-option">
+          <div class="option-title">Colour — <span id="selectedColorText">${selectedColor}</span></div>
+          <div class="option-buttons">${p.colors.map(c=>`<button class="option-btn ${c===selectedColor?"selected":""}" onclick="selectColor('${c}',this)">${c}</button>`).join("")}</div>
+        </div>
+        ${p.available
+          ?`<button class="btn detail-add" onclick="addToCart('${p.id}')">Add to bag — ${money(p.price)} ↗</button>`
+          :`<button class="btn detail-add" onclick="toast('This design is not available yet')">Coming soon</button>`}
+        <div class="detail-note">
+          <p>01 / Designed with the VEXDRAPE point of view.</p>
+          <p>02 / Product availability and final specifications will be confirmed before launch.</p>
+          <p>03 / Shipping and checkout will be enabled after the store's order integration is ready.</p>
+        </div>
+        <button class="btn btn-outline" style="margin-top:20px" onclick="navigate('shop')">← Back to shop</button>
+      </div>
+    </div>`;
+}
+function selectSize(size,button){
+  selectedSize=size;
+  button.parentElement.querySelectorAll(".option-btn").forEach(b=>b.classList.remove("selected"));
+  button.classList.add("selected");
+}
+function selectColor(color,button){
+  selectedColor=color;
+  document.getElementById("selectedColorText").textContent=color;
+  button.parentElement.querySelectorAll(".option-btn").forEach(b=>b.classList.remove("selected"));
+  button.classList.add("selected");
+}
+
+/* ---------- CART ---------- */
+function addToCart(id){
+  const p=productById(id);
+  if(!p||!p.available)return;
+  const existing=cart.find(i=>i.id===id&&i.size===selectedSize&&i.color===selectedColor);
+  if(existing)existing.qty++;
+  else cart.push({id,size:selectedSize,color:selectedColor,qty:1});
+  saveJSON("vexdrape_cart",cart);
+  updateCartCount();
+  toast("Added to your bag");
+}
+function changeQty(index,amount){
+  cart[index].qty+=amount;
+  if(cart[index].qty<=0)cart.splice(index,1);
+  saveJSON("vexdrape_cart",cart);
+  renderCart();
+  updateCartCount();
+}
+function removeCartItem(index){
+  cart.splice(index,1);
+  saveJSON("vexdrape_cart",cart);
+  renderCart();
+  updateCartCount();
+}
+function renderCart(){
+  const el=document.getElementById("cartContent");
+  if(!cart.length){
+    el.innerHTML=`<div class="empty-state"><div class="eyebrow">Your bag is waiting</div><h2>Nothing here yet.</h2><p>Find something that speaks your perspective.</p><a class="btn" href="#shop">Explore the store ↗</a></div>`;
+    return;
+  }
+  const subtotal=cart.reduce((sum,item)=>sum+productById(item.id).price*item.qty,0);
+  el.innerHTML=`
+    <div class="cart-layout">
+      <div>
+        ${cart.map((item,index)=>{
+          const p=productById(item.id);
+          return `<div class="cart-item">
+            <img src="${p.image}" alt="${p.name}">
+            <div>
+              <div class="eyebrow">${p.category}</div>
+              <h3>${p.name}</h3>
+              <p>Size: ${item.size}<br>Colour: ${item.color}<br>${money(p.price)}</p>
+              <div class="cart-item-actions">
+                <button class="qty-btn" onclick="changeQty(${index},-1)">−</button>
+                <span>${item.qty}</span>
+                <button class="qty-btn" onclick="changeQty(${index},1)">+</button>
+                <button class="remove-btn" onclick="removeCartItem(${index})">Remove</button>
+              </div>
+            </div>
+            <strong style="font:11px var(--mono)">${money(p.price*item.qty)}</strong>
+          </div>`;
+        }).join("")}
+      </div>
+      <aside class="cart-summary">
+        <h3>Order summary</h3>
+        <div class="summary-row"><span>Subtotal</span><span>${money(subtotal)}</span></div>
+        <div class="summary-row"><span>Shipping</span><span>Calculated later</span></div>
+        <div class="summary-row summary-total"><span>Total</span><span>${money(subtotal)}</span></div>
+        <button class="btn" onclick="checkoutNotice()">Continue to checkout ↗</button>
+        <p class="small muted" style="margin-top:17px">Checkout is not active yet. No payment or order will be submitted.</p>
+      </aside>
+    </div>`;
+}
+function checkoutNotice(){
+  toast("Checkout is being prepared — no order was placed");
+}
+
+/* ---------- FAVOURITES ---------- */
+function toggleFavorite(id){
+  favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];
+  saveJSON("vexdrape_favorites",favorites);
+  renderHome();
+  renderShop();
+  renderCollections();
+  toast(favorites.includes(id)?"Saved to wishlist":"Removed from wishlist");
+}
+
+/* ---------- CUSTOM LAB ---------- */
+function setLabSide(side){
+  labSide=side;
+  document.getElementById("labPreview").classList.toggle("back",side==="back");
+  document.getElementById("labFront").classList.toggle("selected",side==="front");
+  document.getElementById("labBack").classList.toggle("selected",side==="back");
+  document.getElementById("labCaption").textContent=side.toUpperCase()+" / "+(labGarmentColor==="#171715"?"BLACK":labGarmentColor==="#eae7dd"?"CREAM":"GREY");
+}
+function setLogoPlacement(side){
+  logoPlacement=side;
+  document.getElementById("logoFront").classList.toggle("selected",side==="front");
+  document.getElementById("logoBack").classList.toggle("selected",side==="back");
+  const logo=document.querySelector(".lab-logo");
+  if(side==="front"){
+    logo.style.left="39%";logo.style.top="36%";
+  }else{
+    logo.style.left="50%";logo.style.top="25%";
+  }
+  toast("Logo position locked for this concept");
+}
+function setLabColor(color,name,button){
+  labGarmentColor=color;
+  document.querySelector(".lab-shirt path").setAttribute("fill",color);
+  document.querySelectorAll(".lab-control .option-btn").forEach(b=>{
+    if(["BLACK","CREAM","GREY"].includes(b.textContent))b.classList.remove("selected");
+  });
+  button.classList.add("selected");
+  document.getElementById("labCaption").textContent=labSide.toUpperCase()+" / "+name;
+}
+function updateLabText(){
+  const text=document.getElementById("labText").value;
+  const old=document.getElementById("labTextOverlay");
+  if(old)old.remove();
+  if(!text)return;
+  const preview=document.getElementById("labPreview");
+  const overlay=document.createElement("div");
+  overlay.id="labTextOverlay";
+  overlay.textContent=text;
+  overlay.style.cssText=`
+    position:absolute;top:${labSide==="front"?"53%":"58%"};left:50%;
+    transform:translate(-50%,-50%);max-width:65%;text-align:center;
+    color:${document.getElementById("labColor").value};
+    font-family:"${document.getElementById("labFont").value}";
+    font-size:${document.getElementById("labSize").value}px;
+    font-weight:700;overflow-wrap:anywhere;pointer-events:none;
+  `;
+  preview.appendChild(overlay);
+}
+function previewArtwork(event){
+  const file=event.target.files[0];
+  if(!file)return;
+  if(file.size>5*1024*1024){toast("Please use an image under 5 MB");return;}
+  if(labArtworkUrl)URL.revokeObjectURL(labArtworkUrl);
+  labArtworkUrl=URL.createObjectURL(file);
+  const art=document.getElementById("labArt");
+  art.src=labArtworkUrl;
+  art.classList.add("visible");
+  toast("Artwork preview loaded");
+}
+function saveLabConcept(){
+  const concept={
+    side:labSide,
+    logoPlacement,
+    text:document.getElementById("labText").value,
+    font:document.getElementById("labFont").value,
+    color:document.getElementById("labColor").value,
+    garmentColor:labGarmentColor,
+    createdAt:new Date().toISOString()
+  };
+  saveJSON("vexdrape_lab_concept",concept);
+  toast("Concept settings saved on this device");
+}
+
+/* ---------- SEARCH ---------- */
+function openSearch(){
+  document.getElementById("searchOverlay").classList.add("open");
+  setTimeout(()=>document.getElementById("globalSearch").focus(),100);
+}
+function closeSearch(){
+  document.getElementById("searchOverlay").classList.remove("open");
+}
+function searchFromOverlay(){
+  const q=document.getElementById("globalSearch").value.trim();
+  closeSearch();
+  location.hash="shop";
+  setTimeout(()=>{
+    document.getElementById("shopSearch").value=q;
+    renderShop();
+  },100);
+}
+
+/* ---------- CONTACT ---------- */
+function sendContact(event){
+  event.preventDefault();
+  const name=document.getElementById("contactName").value;
+  const email=document.getElementById("contactEmail").value;
+  const subject=document.getElementById("contactSubject").value;
+  const message=document.getElementById("contactMessage").value;
+  const body=`Name: ${name}\nEmail: ${email}\n\n${message}`;
+  window.location.href=`mailto:hello@vexdrape.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+/* ---------- MOBILE MENU ---------- */
+function toggleMenu(){document.getElementById("mobileMenu").classList.toggle("open")}
+function closeMenu(){document.getElementById("mobileMenu").classList.remove("open")}
+
+/* ---------- SCROLL REVEALS ---------- */
+let revealObserver;
+function observeReveals(){
+  if(revealObserver)revealObserver.disconnect();
+  revealObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add("in");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },{threshold:.08});
+  document.querySelectorAll(".page.active .reveal").forEach(el=>revealObserver.observe(el));
+}
+
+/* ---------- STARTUP ---------- */
+renderHome();
+renderShop();
+renderCollections();
+updateCartCount();
+
+setTimeout(()=>{
+  document.getElementById("intro").classList.add("hide");
+},1900);
+
+handleRoute();
+observeReveals();
+
+window.addEventListener("keydown",e=>{
+  if(e.key==="Escape")closeSearch();
+});
 </script>
 </body>
 </html>
