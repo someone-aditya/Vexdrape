@@ -139,15 +139,32 @@ app.post("/api/gelato/test", async (req, res) => {
       });
     }
 
-    const catalogs = await response.json();
+    
+const data = await response.json();
 
-    return res.json({
-      success: true,
-      message: "Gelato API authentication successful!",
-      catalogsReceived: Array.isArray(catalogs)
-        ? catalogs.length
-        : 0
-    });
+const catalogs = Array.isArray(data)
+  ? data
+  : Array.isArray(data.catalogs)
+    ? data.catalogs
+    : Array.isArray(data.data)
+      ? data.data
+      : [];
+
+return res.json({
+  success: true,
+  message: "Gelato API authentication successful!",
+  responseType: Array.isArray(data) ? "array" : typeof data,
+  responseKeys:
+    data && typeof data === "object" && !Array.isArray(data)
+      ? Object.keys(data)
+      : [],
+  catalogsReceived: catalogs.length,
+  catalogPreview: catalogs.slice(0, 10).map(item => ({
+    catalogUid: item.catalogUid,
+    title: item.title
+  }))
+});
+
 
   } catch (error) {
     console.error("Gelato test error:", error.message);
