@@ -101,6 +101,64 @@ app.post("/api/qikink/test", async (req, res) => {
   }
 });
 
+app.post("/api/gelato/test", async (req, res) => {
+  try {
+    const testKey = process.env.QIKINK_TEST_KEY;
+
+    if (!testKey || req.headers["x-test-key"] !== testKey) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized"
+      });
+    }
+
+    const apiKey = process.env.GELATO_API_KEY;
+
+    if (!apiKey) {
+      return res.status(500).json({
+        success: false,
+        message: "Gelato API key is missing"
+      });
+    }
+
+    const response = await fetch(
+      "https://product.gelatoapis.com/v3/catalogs",
+      {
+        method: "GET",
+        headers: {
+          "X-API-KEY": apiKey
+        }
+      }
+    );
+
+    if (!response.ok) {
+      return res.status(502).json({
+        success: false,
+        message: "Gelato API request failed",
+        gelatoStatus: response.status
+      });
+    }
+
+    const catalogs = await response.json();
+
+    return res.json({
+      success: true,
+      message: "Gelato API authentication successful!",
+      catalogsReceived: Array.isArray(catalogs)
+        ? catalogs.length
+        : 0
+    });
+
+  } catch (error) {
+    console.error("Gelato test error:", error.message);
+
+    return res.status(500).json({
+      success: false,
+      message: "Unable to connect to Gelato"
+    });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`VEXDRAPE server running on port ${PORT}`);
 });
